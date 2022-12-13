@@ -1,0 +1,22 @@
+
+.Menu{
+  margin-top: 1%;
+  background-color: rgba(187, 185, 185, 0.404);
+  max-width: 45%;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+}
+
+.section{
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.section .menuComponent{
+  background-color: #009687;
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+}

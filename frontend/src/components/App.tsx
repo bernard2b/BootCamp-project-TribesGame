@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./landing/Landing";
 
+
 import TroopsPage from "./pages/Troops";
 import LeaderboardPage from "./pages/Leaderboard";
 import BattlePage from "./pages/Battle";
