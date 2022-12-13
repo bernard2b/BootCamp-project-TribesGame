@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Battle() {
+function BattlePage() {
   return (
     <div>Battle</div>
   )
 }
 
-export default Battle
+export default BattlePage

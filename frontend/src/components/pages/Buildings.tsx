@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Buildings() {
+function BuildingsPage() {
   return (
     <div>Buildings</div>
   )
 }
 
-export default Buildings
+export default BuildingsPage

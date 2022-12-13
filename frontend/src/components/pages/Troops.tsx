@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Troops() {
+function TroopsPage() {
   return (
     <div>Troops</div>
   )
 }
 
-export default Troops
+export default TroopsPage
