@@ -1,9 +1,9 @@
 import React from 'react'
 
-function LeaderboardPage() {
+function Leaderboard() {
   return (
     <div>Leaderboard</div>
   )
 }
 
-export default LeaderboardPage
+export default Leaderboard
