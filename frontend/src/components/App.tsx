@@ -7,7 +7,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<Registration />} />
-        <Route path='*' element = {<Landing />} />
+        <Route path='/' element = {<Landing />} />
       </Routes>
     </BrowserRouter>
   );
