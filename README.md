@@ -2,6 +2,8 @@
 
 ![CI](https://github.com/green-fox-academy/dusicyon-viridian-tribes-react/actions/workflows/ci.yml/badge.svg?branch=master)
 
+[Project Description](./docs/description/README.md)
+
 ## Workspaces
 
 - `frontend`: the frontend code using React
