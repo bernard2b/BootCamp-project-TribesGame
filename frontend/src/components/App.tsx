@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./landing/Landing";
-
-
 import TroopsPage from "./pages/Troops";
 import LeaderboardPage from "./pages/Leaderboard";
 import BattlePage from "./pages/Battle";
 import BuildingsPage from "./pages/Buildings";
+import NotFound from '../NotFound';
 
 export default function App() {
   return (
@@ -15,9 +14,9 @@ export default function App() {
         <Route path="/kingdom/buildings" element={<BuildingsPage />}/>
         <Route path="/kingdom/leaderboard" element={<LeaderboardPage />}/>
         <Route path="/kingdom/troops" element={<TroopsPage />}/>
-        <Route path="*" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-   
     </BrowserRouter>
   );
 }
