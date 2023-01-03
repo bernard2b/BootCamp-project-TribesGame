@@ -1,0 +1,18 @@
+
+.section{
+  margin-top: 1%;
+  background-color: rgba(251, 251, 251, 0.404);
+  border: 1px solid black;
+  border-radius: 30px;
+  max-width: fit-content;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section img{
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+}

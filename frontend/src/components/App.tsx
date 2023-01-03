@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NotFound from '../NotFound';
+import NotFound from '../components/pages/NotFound';
 import Landing from './landing/Landing';
 import Registration from './pages/registration/Registration';
 
@@ -9,6 +9,7 @@ export default function App() {
       <Routes>
         <Route path="/register" element={<Registration />} />
         <Route path='/' element = {<Landing />} />
+        <Route path ="*" element={< NotFound/>} />
       </Routes>
     </BrowserRouter>
   );
