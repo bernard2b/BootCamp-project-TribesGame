@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NotFound from '../NotFound';
 import Landing from './landing/Landing';
 import Registration from './pages/registration/Registration';
 
