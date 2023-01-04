@@ -1,13 +1,5 @@
-
-export interface BuildingsRequest {}   //???
+import Building from "../models/buildings";
 
 export interface BuildingsResponse {
-  buildings: [
-    {
-      id: number;
-      type: string;
-      level: number;
-      hp: number;
-
-  }];
+  buildings: Building[]
 }
