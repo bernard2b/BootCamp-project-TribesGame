@@ -25,7 +25,7 @@ const buildingsData = [
     title: "Mine",
     level: "1",
     img: require("./buildings-pictures/mine.png"),
-  },
+  }
 ];
 
 function Buildings() {
