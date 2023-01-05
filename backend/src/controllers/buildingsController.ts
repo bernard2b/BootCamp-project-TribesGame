@@ -1,23 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
-import { BuildingsResponse } from '../interfaces/buildings';
+import { GetAllBuildingsResponse } from '../interfaces/buildings';
 import * as buildingsService from '../services/buildingsService';
 
-export async function getAllBuilding(
+export async function getAllBuildings(
   req: Request,
-  res: Response<BuildingsResponse>,
+  res: Response<GetAllBuildingsResponse>,
   next: NextFunction
 ): Promise<void> {
   try {
-    const data = await buildingsService.getAllData();
+    const data = await buildingsService.getAllBuildings();
     res.send(data);
   } catch (error) {
-    if (error instanceof ParameterError) {
-      next(new HttpError(status.BAD_REQUEST, error.message));
-    }
-    if (error instanceof NotFoundError) {
-      next(new HttpError(status.NOT_FOUND));
-    }
+    next(new HttpError(status.INTERNAL_SERVER_ERROR));
   }
 }

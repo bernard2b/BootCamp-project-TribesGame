@@ -2,10 +2,10 @@ import request from 'supertest';
 import status from 'http-status';
 import app from '../src/app';
 import * as buildingsRepo from '../src/repositories/buildingsRepo';
-import Building from '../src/models/buildings';
+import Building from '../src/models/building';
 
 describe('GET /api/buildings', () => {
-  it('returns an object with data for a buildings', async () => {
+  it('returns all existing buildings', async () => {
     const newBuilding = await Building.create({
       name: 'strigops',
       level: 12,

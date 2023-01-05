@@ -1,5 +1,5 @@
-import Building from "../models/buildings";
+import Building from "../models/building";
 
-export interface BuildingsResponse {
+export interface GetAllBuildingsResponse {
   buildings: Building[]
 }

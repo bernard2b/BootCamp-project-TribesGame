@@ -11,7 +11,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.get('/hello', helloController.getHelloWorld);
-router.get('/buildings', buildingsController.getAllBuilding);
+router.get('/buildings', buildingsController.getAllBuildings);
 
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));
 router.use(apiErrorHandler);
