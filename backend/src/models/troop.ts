@@ -2,7 +2,7 @@ import { Table, Column, Model, ForeignKey, BelongsTo } from 'sequelize-typescrip
 import Imperium from './imperium';
 
 @Table
-export default class Building extends Model {
+export default class Troops extends Model {
   @Column
   name: string;
 
@@ -14,22 +14,27 @@ export default class Building extends Model {
   defaultValue: 1;
 
   @Column
+  attack: number;
+
+  @Column
+  defense: number;
+
+  @Column
+  healthPoint: number;
+
+  @Column
   mineralCost: number;
 
   @Column
   timeCost: number;
 
   @Column
-  goldPerMinute: number;
+  foodUpkeep: number;
 
-  @Column
-  foodPerMinute: number;
-   
   @ForeignKey(() => Imperium)
   @Column
   imperiumId: number;
 
   @BelongsTo(() => Imperium)
   imperium: Imperium;
-  
 }
