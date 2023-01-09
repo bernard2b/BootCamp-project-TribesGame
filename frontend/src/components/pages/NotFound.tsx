@@ -1,20 +1,25 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import Header from "../header/Header";
+import "./NotFound.scss";
 
 export default function NotFound() {
   return (
-    <div>
-      <h1>Stop your spaceship, traveller!</h1>
-      <br></br>
-      <h3>
-        This space station is under construction. You might want to come back
-        later, or travel in time to its completion.
-      </h3>
-      <h3>
-        Until then, please follow our patrol ships back to the closest space
-        station:
-      </h3>
-      <br></br>
-      <Link to="/">Back to the galaxy</Link>
+    <div className="NotFound">
+      <Header />
+      <div className="text">
+        <h2>Stop your spaceship, traveller!</h2>
+        <br />
+        <h3>This space station is under construction. You might want </h3>
+        <h3> to come back later, or travel in time to its completion.</h3>
+        <br />
+        <p>Until then, please follow our patrol ships </p>
+        <p> back to the closest space station:</p>
+        <br />
+        <div className="button">
+          <Link to="/">Back to the galaxy</Link>
+        </div>
+      </div>
     </div>
   );
 }
