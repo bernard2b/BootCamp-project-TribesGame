@@ -8,7 +8,7 @@ import {
 import * as helloService from '../services/helloService';
 
 export async function getHelloWorld(
-  req: Request<unknown, unknown, unknown, HelloWorldRequest>,
+  req: Request<unknown, unknown, unknown, HelloWorldRequest>, //body, param, querry, 
   res: Response<HelloWorldResponse>,
   next: NextFunction,
 ): Promise<void> {
