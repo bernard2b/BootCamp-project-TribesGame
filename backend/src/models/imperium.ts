@@ -1,4 +1,4 @@
-import { Table, Column, Model, AllowNull, BelongsTo, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, AllowNull, BelongsTo, HasMany, ForeignKey } from 'sequelize-typescript';
 import Building from './building';
 import User from './user';
 import Troop from './troop';
@@ -15,6 +15,10 @@ export default class Imperium extends Model {
 
   @Column
   coordinateY: number;
+
+  @ForeignKey(() => User)
+  @Column
+  userId: number;
 
   @BelongsTo(() => User)
   ruler: User;
