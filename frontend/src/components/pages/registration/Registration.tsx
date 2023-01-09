@@ -32,24 +32,23 @@ export default function Registration() {
   return(
     <div className="Registration">
       <Header />
-      <h1>Tribes of Strigops</h1>
-      <div className="registerForm">
         <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            backgroundColor: "#f8f9fa",
+            padding: 2,
+            borderRadius: 1,
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+            <h1 style={{color: "black"}}>SIGN UP</h1>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -94,12 +93,6 @@ export default function Registration() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -121,6 +114,5 @@ export default function Registration() {
       </Container>
     </ThemeProvider>
       </div>
-    </div>
   )
 }
