@@ -9,8 +9,8 @@ export default class Building extends Model {
   @Column
   type: string;
 
-  @Column
   @Default(1)
+  @Column
   level: number;
 
   @Column

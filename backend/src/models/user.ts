@@ -3,18 +3,18 @@ import Imperium from './imperium';
 
 @Table
 export default class User extends Model {
-  @Column
   @Unique
   @AllowNull(false)
+  @Column
   name: string;
 
-  @Column
   @AllowNull(false)
+  @Column
   password: string;
 
-  @Column
   @Unique
   @AllowNull(false)
+  @Column
   email: string;
 
   @HasOne(() => Imperium)

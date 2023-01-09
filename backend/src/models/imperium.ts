@@ -6,8 +6,8 @@ import Resource from './resource';
 
 @Table
 export default class Imperium extends Model {
-  @Column
   @AllowNull(false)
+  @Column
   name: string;
 
   @Column
