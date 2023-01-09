@@ -26,5 +26,5 @@ export default class Imperium extends Model {
   troops: Troop[];
 
   @HasMany(() => Resource)
-  resource: Resource[];
+  resources: Resource[];
 }

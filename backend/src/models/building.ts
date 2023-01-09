@@ -1,4 +1,4 @@
-import { Table, Column, Model, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Table, Column, Model, ForeignKey, BelongsTo, Default } from 'sequelize-typescript';
 import Imperium from './imperium';
 
 @Table
@@ -10,8 +10,8 @@ export default class Building extends Model {
   type: string;
 
   @Column
+  @Default(1)
   level: number;
-  defaultValue: 1;
 
   @Column
   mineralCost: number;
@@ -20,7 +20,7 @@ export default class Building extends Model {
   timeCost: number;
 
   @Column
-  goldPerMinute: number;
+  mineralPerMinute: number;
 
   @Column
   foodPerMinute: number;
@@ -30,6 +30,5 @@ export default class Building extends Model {
   imperiumId: number;
 
   @BelongsTo(() => Imperium)
-  imperium: Imperium;
-  
+  imperium: Imperium; 
 }

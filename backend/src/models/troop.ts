@@ -1,8 +1,8 @@
-import { Table, Column, Model, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Table, Column, Model, ForeignKey, BelongsTo, Default } from 'sequelize-typescript';
 import Imperium from './imperium';
 
 @Table
-export default class Troops extends Model {
+export default class Troop extends Model {
   @Column
   name: string;
 
@@ -10,8 +10,8 @@ export default class Troops extends Model {
   type: string;
 
   @Column
+  @Default(1)
   level: number;
-  defaultValue: 1;
 
   @Column
   attack: number;
