@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 export default function NotFound() {
   return (
     <div>
-      <h1>Halt! You seem to be lost.</h1>
+      <h1>Stop your spaceship, traveller!</h1>
       <h3>
-        This road is still under construction, please come back to check again
-        later.
+        This space station is under construction. You might want to come back
+        later, or travel in time to its completion.
       </h3>
-      <p>Until then please follow us back to the safe path:</p>
-      <Link to="/">Home</Link>
+      <p>
+        Until then, please follow our patrol ships back to the closest space
+        station:
+      </p>
+      <Link to="/">Back to the galaxy</Link>
     </div>
   );
 }
