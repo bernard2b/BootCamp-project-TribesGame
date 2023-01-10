@@ -81,7 +81,7 @@ export default function Registration() {
                   name="email"
                   autoComplete="email"
                 />
-              </Grid>
+                </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
