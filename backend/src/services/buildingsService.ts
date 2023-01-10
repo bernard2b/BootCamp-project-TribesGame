@@ -1,7 +1,7 @@
 import Building from "../models/building";
 import { NotFoundError } from '../errors';
 import * as buildingsRepo from "../repositories/buildingsRepo";
-import { GetAllBuildingsResponse } from "../interfaces/buildings";
+import { GetAllBuildingsResponse, GetOneBuildingResponse } from "../interfaces/buildings";
 
 
 export async function getAllBuildings(): Promise<GetAllBuildingsResponse> {
@@ -10,6 +10,17 @@ export async function getAllBuildings(): Promise<GetAllBuildingsResponse> {
 
   if (buildings) {
     return { buildings: buildings }
+  } else {
+    throw new NotFoundError();
+  }
+}
+
+export async function getOneBuilding(id: number): Promise<GetOneBuildingResponse> {
+  
+  const building = await buildingsRepo.getOneBuilding(id)
+
+  if (building) {
+    return { building: building }
   } else {
     throw new NotFoundError();
   }
