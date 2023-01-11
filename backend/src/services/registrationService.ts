@@ -65,15 +65,9 @@ export async function isEmailUsed(
 
 
 /*
-Scenario 7:
-Given the POST /api/register endpoint.
-When I send a request to it with a good username and password without a kingdom name.
-Then I get back the userId, username and kingdomId.
 And my kingdom name should be "<username>'s kingdom."
-
 Request e.g.:
 {  "username" : "kiscica",  "password" : "password123",  "kingdomname" : "Dependency Injection"}
-
 Response e.g.:
 {  "id" : 1,  "username" : "kiscica",  "kingdomId" : 1}
 */
