@@ -5,3 +5,11 @@ export interface createUser {
   password: string;
   email: string;
 }
+
+export interface checkName {
+  name: string;
+}
+
+export interface checkEmail {
+  email: string;
+}

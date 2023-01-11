@@ -1,6 +1,6 @@
 import User from '../models/user';
 import * as registrationRepo from '../repositories/registrationRepo';
-import { createUser } from '../interfaces/registration';
+import * as registrationInterface from '../interfaces/registration';
 import { ParameterError } from '../errors';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
@@ -9,7 +9,7 @@ export async function createUser(
   name: string,
   password: string,
   email: string
-): Promise<createUser> {
+): Promise<registrationInterface.createUser> {
   if (!password) {
     throw new ParameterError('Password is required.');
   } else if (!name) {
@@ -19,9 +19,14 @@ export async function createUser(
   } else if (password.length < 8) {
     throw new ParameterError('Password must be 8 characters.');
   }
+
+  isUsernameFree(name);
+  isEmailUsed(email);
+
   password = encryptPassword(password);
 
-  const newUser = await registrationRepo.createUser(name, password, email);
+  const newUser = await registrationRepo.createUser(name, password, email, `${name}'s Imperium`);
+  console.log('JGHGTHJGFHGFRTYHGFTHGFRTHGDFRT',newUser);
 
   if (newUser) {
     return newUser;
@@ -36,12 +41,30 @@ function encryptPassword(password: string) {
   return password;
 }
 
-/*
-Scenario 4: Then I get an error message: "Username is already taken."
-Scenario 6:
-When I send a request to it with a good username and password and optionally a kingdom name.
-Then I get back the userId, username and kingdomId.
+export async function isUsernameFree(
+  name: string
+): Promise<registrationInterface.checkName> {
+  const UserName = await registrationRepo.getUserByName(name);
+  if (UserName) {
+    throw new ParameterError('Username is already taken.');
+  } else {
+    return;
+  }
+}
 
+export async function isEmailUsed(
+  email: string
+): Promise<registrationInterface.checkEmail> {
+  const UserEmail = await registrationRepo.getUserByName(email);
+  if (UserEmail) {
+    throw new ParameterError('This email already is assigned to a kingdom.');
+  } else {
+    return;
+  }
+}
+
+
+/*
 Scenario 7:
 Given the POST /api/register endpoint.
 When I send a request to it with a good username and password without a kingdom name.
