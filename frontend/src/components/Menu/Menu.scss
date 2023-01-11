@@ -1,18 +1,45 @@
 
 .section{
   margin-top: 1%;
-  background-color: rgba(251, 251, 251, 0.404);
-  border: 1px solid black;
-  border-radius: 30px;
-  max-width: fit-content;
-  height: 120px;
+  background-color: rgb(207, 206, 206);
+  border-radius: 10px;
+  width: fit-content;
+  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: 2%;
 }
 
 .section img{
   padding: 10px;
   margin: 10px;
-  width: 100px;
+  width: 60px;
+}
+
+.section img:before{
+    content: attr(data-hover);
+      visibility: hidden;
+      opacity: 0;
+      width: 140px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 5px 0;
+      transition: opacity 1s ease-in-out;
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 110%;
+}
+
+.section img:hover:before{
+  opacity: 1;
+  visibility: visible;
+}
+
+.section img:hover{
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
 }

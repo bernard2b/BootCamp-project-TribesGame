@@ -4,6 +4,34 @@ import "./Buildings.scss";
 import fetchBuildings from "../../api/buildings";
 import buildingsInterface from "./../../interfaces/buildingsInterface";
 
+
+const buildingsData = [
+  {
+    id: "1",
+    title: "Townhall",
+    level: "1",
+    img: require("./buildings-pictures/townhall.png"),
+  },
+  {
+    id: "2",
+    title: "Academy",
+    level: "1",
+    img: require("./buildings-pictures/addacademy.png"),
+  },
+  {
+    id: "3",
+    title: "Farm",
+    level: "1",
+    img: require("./buildings-pictures/farm.png"),
+  },
+  {
+    id: "4",
+    title: "Mine",
+    level: "1",
+    img: require("./buildings-pictures/mine.png"),
+  }
+];
+
 function Buildings() {
   const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
 
