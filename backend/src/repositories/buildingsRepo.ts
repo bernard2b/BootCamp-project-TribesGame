@@ -4,6 +4,6 @@ export function getAllBuildings(): Promise<Building[]> {
   return Building.findAll();
 }
 
-export function getOneBuilding(id: number): Promise<Building> {
+export function getOneBuildingById(id: number): Promise<Building | null> {
   return Building.findByPk(id);
 }

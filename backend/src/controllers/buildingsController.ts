@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
-import { GetAllBuildingsResponse, GetOneBuildingRequest, GetOneBuildingResponse } from '../interfaces/buildings';
+import {  GetAllBuildingsResponse, GetOneBuildingByIdRequest, GetOneBuildingByIdResponse,  } from '../interfaces/buildings';
 import * as buildingsService from '../services/buildingsService';
 
 export async function getAllBuildings(
@@ -17,17 +17,22 @@ export async function getAllBuildings(
   }
 }
 
-export async function getOneBuilding(
-  req: Request<unknown, unknown, unknown, GetOneBuildingRequest>,
-  res: Response<GetOneBuildingResponse>,
-  next: NextFunction
+export async function getOneBuildingById(
+  req: Request<GetOneBuildingByIdRequest, unknown, unknown, unknown>,
+  res: Response<GetOneBuildingByIdResponse>,
+  next: NextFunction,
 ): Promise<void> {
-  const buidlingId = Number(req.query.id)
+  const buidlingId = Number(req.params.buildingId)
 
   try {
-    const data = await buildingsService.getOneBuilding(buidlingId)
+    const data = await buildingsService.getOneBuildingById(buidlingId)
     res.send(data);
   } catch (error) {
-    next(new HttpError(status.NOT_FOUND));
+    if (error instanceof ParameterError) {
+      next(new HttpError(status.BAD_REQUEST, error.message));
+    }
+    if (error instanceof NotFoundError) {
+      next(new HttpError(status.NOT_FOUND));
+    }
   }
 }
