@@ -19,25 +19,21 @@ export async function createUser(
   } else if (password.length < 8) {
     throw new ParameterError('Password must be 8 characters.');
   }
-  //console.log('jelszOOOOOOO', password)
-  //hashPassword(password);
+  password = encryptPassword(password);
 
   const newUser = await registrationRepo.createUser(name, password, email);
 
   if (newUser) {
-    console.log(newUser);
     return newUser;
   } else {
-    throw new ParameterError('Username is already taken.');
+    throw new ParameterError('Username or email is already taken.');
   }
 }
 
-
-function hashPassword(password: string) {
-  bcrypt.genSalt(saltRounds, function (err, salt) {
-    bcrypt.hash(password, salt, function (err, hash) {
-    });
-  });
+function encryptPassword(password: string) {
+  const salt = bcrypt.genSaltSync(saltRounds);
+  password = bcrypt.hashSync(password, salt);
+  return password;
 }
 
 /*
