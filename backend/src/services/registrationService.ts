@@ -2,6 +2,8 @@ import User from '../models/user';
 import * as registrationRepo from '../repositories/registrationRepo';
 import { createUser } from '../interfaces/registration';
 import { ParameterError } from '../errors';
+import bcrypt from 'bcrypt';
+const saltRounds = 10;
 
 export async function createUser(
   name: string,
@@ -12,13 +14,13 @@ export async function createUser(
     throw new ParameterError('Password is required.');
   } else if (!name) {
     throw new ParameterError('Username is required.');
-  }
-  else if (!name && !password) {
-    throw new ParameterError ('Username and password are required.');
-  }
-  else if (password.length < 8) {
+  } else if (!name && !password) {
+    throw new ParameterError('Username and password are required.');
+  } else if (password.length < 8) {
     throw new ParameterError('Password must be 8 characters.');
   }
+  //console.log('jelszOOOOOOO', password)
+  //hashPassword(password);
 
   const newUser = await registrationRepo.createUser(name, password, email);
 
@@ -28,6 +30,14 @@ export async function createUser(
   } else {
     throw new ParameterError('Username is already taken.');
   }
+}
+
+
+function hashPassword(password: string) {
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    bcrypt.hash(password, salt, function (err, hash) {
+    });
+  });
 }
 
 /*
