@@ -1,4 +1,3 @@
-/*!!! IN EVERY LINE CHANGE tribes.* TO mydatabase.* !!!*/
 ALTER TABLE `tribes`.`users` 
 CHANGE COLUMN `createdAt` `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 CHANGE COLUMN `updatedAt` `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ;
