@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './Header.scss';
+import { Link } from "react-router-dom";
+import Menu from "../Menu/Menu";
 
 
 
@@ -36,6 +38,7 @@ export default function Header() {
         <div className="logo">
           <h1 className="kingdomName"><a href="/">My Kingdom</a></h1>
         </div>
+          <Menu />
         <div className="navigation">
             <h3>{settingsButton}</h3>
             <h3>{LogoutButton}</h3>

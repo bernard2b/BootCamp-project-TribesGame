@@ -9,9 +9,22 @@ export default function Landing() {
   return (
     <div className="Landing">
       <Header />
-      <Menu />
       <Resources />
       <Main />
+        <div className="leftMenu">
+            <Header />
+          <div className="container">
+          {/* 
+          <Menu />
+          */} 
+          {/*
+          <div className="resources">
+            Resources
+          </div>
+          */}
+        </div>
+        <Main />
+        </div> 
     </div>
   );
 }

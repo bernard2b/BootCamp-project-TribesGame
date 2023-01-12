@@ -1,43 +1,25 @@
+.Menu{
+  align-items: center;
+}
 
 .section{
-  margin-top: 1%;
-  background-color: rgb(207, 206, 206);
+  margin-top: 2%;
   border-radius: 10px;
-  width: 100%;
-  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 7%;
+  width: 100%;
+  height: 50px;
 }
 
 .section img{
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
-  width: 60px;
+  width: 30px;
+  align-items: center;
+  align-self: center;
 }
 
-.section img:before{
-    content: attr(data-hover);
-      visibility: hidden;
-      opacity: 0;
-      width: 140px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 5px 0;
-      transition: opacity 1s ease-in-out;
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      top: 110%;
-}
-
-.section img:hover:before{
-  opacity: 1;
-  visibility: visible;
-}
 
 .section img:hover{
   background-color: rgb(255, 255, 255);
