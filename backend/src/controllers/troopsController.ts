@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
-import { HttpError, NotFoundError, ParameterError } from '../errors';
-import { TroopRequest, GetAllTroopsResponse } from '../interfaces/troops';
+import { HttpError } from '../errors';
+import { GetAllTroopsResponse } from '../interfaces/troops';
 import * as troopsService from '../services/troopsService';
 
 export async function getAllTroops(
