@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Building from "../../../../backend/src/models/building";
-import { GetAllBuildingsResponse } from "../../interfaces/buildings";
 import "./Buildings.scss";
+import fetchBuildings from "../../api/buildings";
+import buildingsInterface from "./../../interfaces/buildingsInterface";
 
 function Buildings() {
-  const [buildingsData, setBuildingsData] = useState<any[]>([]);
+  const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/buildings")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBuildingsData(data.buildings);
-      });
+    fetchBuildings().then((buildingsData) => {
+      setBuildingsData(buildingsData.buildings);
+    });
   }, []);
 
   return (
