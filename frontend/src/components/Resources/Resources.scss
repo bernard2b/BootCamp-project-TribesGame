@@ -1,0 +1,59 @@
+.resources {
+  margin-left: 3%;
+  padding: 1%;
+  border: 1px solid black;
+  margin-top: 1%;
+  max-width: 10%;
+  height: fit-content;
+  background-color: rgba(155, 153, 153, 0.192);
+}
+
+.res-type {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  margin-bottom: 10%;
+}
+
+.title {
+  display: flex;
+  margin: 1%;
+  flex-direction: column;
+}
+
+.resourceImage {
+  float: left;
+  height: 50px;
+  width: 50px;
+}
+
+.amount {
+  float: right;
+  margin-left: 4%;
+  font-size: 1.5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: gray;
+}
+
+.bread {
+  margin-left: 2%;
+  width: 25px;
+  height: 25px;
+}
+
+.title-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container p {
+  margin-top: 3px;
+  margin-left: 2px;
+  font-size: 10px;
+  font-weight: bold;
+}
