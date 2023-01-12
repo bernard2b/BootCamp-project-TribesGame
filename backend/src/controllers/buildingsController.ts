@@ -31,8 +31,11 @@ export async function getOneBuildingById(
     if (error instanceof ParameterError) {
       next(new HttpError(status.BAD_REQUEST, error.message));
     }
-    if (error instanceof NotFoundError) {
+    else if (error instanceof NotFoundError) {
       next(new HttpError(status.NOT_FOUND));
+    } 
+    else {
+      next(new HttpError(status.INTERNAL_SERVER_ERROR))
     }
   }
 }
