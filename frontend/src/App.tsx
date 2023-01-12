@@ -6,11 +6,13 @@ import Battle from "./components/pages/Battle";
 import Buildings from "./components/pages/Buildings";
 import Landing from "./components/landing/Landing";
 import NotFound from "./components/pages/NotFound";
+import Registration from "./components/pages/registration/Registration";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/register" element={<Registration />} />
         <Route path="/kingdom/battle" element={<Battle />} />
         <Route path="/kingdom/buildings" element={<Buildings />} />
         <Route path="/kingdom/leaderboard" element={<Leaderboard />} />

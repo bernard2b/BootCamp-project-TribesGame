@@ -1,0 +1,61 @@
+.Registration{
+  background-image: url("../../../../../docs/background/bg3-01.png");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.Registration h1{
+  margin-top: 3%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.registerForm{
+  margin-top: 4%;
+}
+
+.registerForm form{
+  margin: auto;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.842);
+  padding: 50px;
+}
+
+input{
+  left: 0;
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 100%;
+  border-width: 0 0 2px;
+  border-color: #009687;
+  outline: 0;
+  background-color: transparent;
+}
+
+input::placeholder{
+  color: black;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+input[type=submit]{
+  width: 70px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  padding: 10px;
+  margin-top: 25px;
+  margin-left: auto;
+  cursor: pointer;
+  border: 1px solid rgba(128, 128, 128, 0.384);
+  border-collapse: collapse;
+  border-radius: 6px;
+}
