@@ -5,3 +5,23 @@
     height: 100vh;
     overflow-y: hidden;
 }
+
+.container{
+  display: flex;
+  flex-direction: row;
+}
+
+.resources{
+    margin-top: 0.2%;
+    background-color: rgb(207, 206, 206);
+    border-radius: 10px;
+    width: 20%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 12%;
+}
+.leftMenu{
+
+}
