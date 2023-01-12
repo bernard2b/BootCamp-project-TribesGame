@@ -20,7 +20,7 @@ export default function Header() {
     <div className="container">
       <div className="header">
         <div className="logo">
-          <h1 className="kingdomName">My Kingdom</h1>
+          <h1 className="kingdomName"><a href="/">My Kingdom</a></h1>
         </div>
         <div className="navigation">
           <h3>{ settingsButton }</h3>
