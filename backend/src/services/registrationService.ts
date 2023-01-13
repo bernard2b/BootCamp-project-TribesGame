@@ -1,7 +1,7 @@
 import User from '../models/user';
 import * as registrationRepo from '../repositories/registrationRepo';
 import * as registrationInterface from '../interfaces/registration';
-import { ParameterError } from '../errors';
+import { NotFoundError, ParameterError } from '../errors';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
@@ -20,19 +20,14 @@ export async function createUser(
     throw new ParameterError('Password must be 8 characters.');
   }
 
-  isUsernameFree(name);
-  isEmailUsed(email);
+  // isUsernameFree(name);
+  // isEmailUsed(email);
 
   password = encryptPassword(password);
 
   const newUser = await registrationRepo.createUser(name, password, email, `${name}'s Imperium`);
-  console.log('JGHGTHJGFHGFRTYHGFTHGFRTHGDFRT',newUser);
-
-  if (newUser) {
     return newUser;
-  } else {
-    throw new ParameterError('Username or email is already taken.');
-  }
+  
 }
 
 function encryptPassword(password: string) {
@@ -43,10 +38,10 @@ function encryptPassword(password: string) {
 
 export async function isUsernameFree(
   name: string
-): Promise<registrationInterface.checkName> {
+): Promise<registrationInterface.checkName | registrationInterface.checkEmail> {
   const UserName = await registrationRepo.getUserByName(name);
   if (UserName) {
-    throw new ParameterError('Username is already taken.');
+    return
   } else {
     return;
   }
@@ -55,9 +50,9 @@ export async function isUsernameFree(
 export async function isEmailUsed(
   email: string
 ): Promise<registrationInterface.checkEmail> {
-  const UserEmail = await registrationRepo.getUserByName(email);
+  const UserEmail = await registrationRepo.getUserByEmail(email);
   if (UserEmail) {
-    throw new ParameterError('This email already is assigned to a kingdom.');
+    throw new ParameterError('Invalid personId');
   } else {
     return;
   }

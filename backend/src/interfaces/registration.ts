@@ -7,9 +7,9 @@ export interface createUser {
 }
 
 export interface checkName {
-  name: string;
+  nameError: string;
 }
 
 export interface checkEmail {
-  email: string;
+  emailError: string;
 }
