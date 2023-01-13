@@ -22,15 +22,17 @@ export async function postNewUser(
     res.send(data);
   } catch (error) {
     if (error instanceof ParameterError) {
+      console.log("PARAMETER", error)
       next(new HttpError(status.BAD_REQUEST, error.message));
     }
-    if (error instanceof NotFoundError) {
+    else if (error instanceof NotFoundError) {
       next(new HttpError(status.NOT_FOUND));
     } 
-    if (error.errors[0].path === 'name') {
+    else if (error.errors[0].path === 'name') {
+      console.log("ERROOOOOR",error)
       next(new HttpError(status.CONFLICT, `This name is already in use, please choose a different one.`));
     }
-    if (error.errors[0].path === 'email') {
+    else if (error.errors[0].path === 'email') {
       next(new HttpError(status.CONFLICT, `This email is already assigned to another imperium.`));
     }
     else next(new HttpError(status.INTERNAL_SERVER_ERROR));

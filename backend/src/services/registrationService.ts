@@ -9,20 +9,26 @@ export async function createUser(
   password: string,
   email: string
 ): Promise<registrationInterface.createUser> {
-  if (!password) {
+  if (!name && !password) {
+    throw new ParameterError('Username and password are required.');
+  } else if (!password) {
     throw new ParameterError('Password is required.');
   } else if (!name) {
     throw new ParameterError('Username is required.');
-  } else if (!name && !password) {
-    throw new ParameterError('Username and password are required.');
+  } else if (!email) {
+    throw new ParameterError('Email is required.');
   } else if (password.length < 8) {
     throw new ParameterError('Password must be 8 characters.');
   }
   password = encryptPassword(password);
 
-  const newUser = await registrationRepo.createUser(name, password, email, `${name}'s Imperium`);
-    return newUser;
-  
+  const newUser = await registrationRepo.createUser(
+    name,
+    password,
+    email,
+    `${name}'s Imperium`
+  );
+  return newUser;
 }
 
 function encryptPassword(password: string) {
