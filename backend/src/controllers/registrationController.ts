@@ -22,7 +22,7 @@ export async function postNewUser(
     res.send(data);
   } catch (error) {
     if (error instanceof ParameterError) {
-      next(new HttpError(status.BAD_REQUEST, error.name));
+      next(new HttpError(status.BAD_REQUEST, error.message));
     }
     if (error instanceof NotFoundError) {
       next(new HttpError(status.NOT_FOUND));
@@ -31,7 +31,7 @@ export async function postNewUser(
       next(new HttpError(status.CONFLICT, `This name is already in use, please choose a different one.`));
     }
     if (error.errors[0].path === 'email') {
-      next(new HttpError(status.CONFLICT, `This email is already assigned to another emperror.`));
+      next(new HttpError(status.CONFLICT, `This email is already assigned to another imperium.`));
     }
     else next(new HttpError(status.INTERNAL_SERVER_ERROR));
   }
