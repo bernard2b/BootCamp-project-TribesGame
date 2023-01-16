@@ -5384,6 +5384,7 @@
   "resolved" "file:frontend"
   "version" "0.1.0"
   dependencies:
+    "@hookform/resolvers" "^2.9.10"
     "@testing-library/jest-dom" "^5.16.5"
     "@testing-library/react" "^13.4.0"
     "@testing-library/user-event" "^13.5.0"
@@ -5393,11 +5394,13 @@
     "@types/react-dom" "^18.0.9"
     "react" "^18.2.0"
     "react-dom" "^18.2.0"
+    "react-hook-form" "^7.41.5"
     "react-router-dom" "^6.4.5"
     "react-scripts" "5.0.1"
     "sass" "^1.56.2"
     "typescript" "^4.9.4"
     "web-vitals" "^2.1.4"
+    "zod" "^3.20.2"
 
 "fs-extra@^10.0.0":
   "integrity" "sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ=="
