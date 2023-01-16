@@ -30,7 +30,6 @@ export default function Resources() {
           <p style={{ color: breadCounter > 0 ? "green" : "red" }}>{breadCounter}/minute</p>
         </div>
       </div>
-
       <div className="res-type">
         <img className="resourceImage" src={require("./img/academy.jpg")} />
         <div className="container">

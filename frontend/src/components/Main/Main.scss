@@ -1,15 +1,26 @@
-.Main{
-    margin-top: 1%;
-    background-color: rgb(207, 206, 206);
-    border-radius: 10px;
-    height: 86vh;
-    display: flex;
-    flex-direction: row;
-    margin-left: 5%;
-    width: 130vh;
-  }
-
-.container{
+.container {
   display: flex;
   flex-direction: row;
+  width: 100%;
+}
+
+.Main {
+  margin-top: 1%;
+  background-color: rgb(207, 206, 206);
+  border-radius: 10px;
+  height: 85vh;
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+  width: 120vh;
+  float: left;
+}
+
+.sideBar {
+  width: 100vh;
+  display: flex;
+  flex-direction: column;
+  float: right;
+  align-items: flex-end;
+  margin-right: 5%;
 }
