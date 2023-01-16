@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "./Buildings.scss";
 import fetchBuildings from "../../api/buildings";
@@ -43,16 +43,6 @@ function Buildings() {
 
   return (
     <div className="buildingPage">
-      <div className="buildingHeader">
-        <div className="logo">
-          <h1 className="kingdomName">My Kingdom</h1>
-        </div>
-        <div className="navigation">
-          <h3>
-            <Link to="/">HOME</Link>
-          </h3>
-        </div>
-      </div>
       <section className="buildingsContainer">
         <ul className="buildingList">
           {buildingsData.map((building) => {

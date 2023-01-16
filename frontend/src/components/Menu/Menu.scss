@@ -3,25 +3,26 @@
 }
 
 .section{
+  margin-left: 10%;
   margin-top: 2%;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
   height: 50px;
 }
 
-.section img{
+.section h4{
   padding: 5px;
-  margin: 10px;
-  width: 30px;
+  margin: 4px;
+  width: fit-content;
   align-items: center;
   align-self: center;
 }
 
 
-.section img:hover{
+.section h4:hover{
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
+  color: black;
 }
