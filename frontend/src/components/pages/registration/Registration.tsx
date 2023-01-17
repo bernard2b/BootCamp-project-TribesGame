@@ -68,11 +68,9 @@ export default function Registration() {
   }, [isSubmitSuccessful, reset]);
 
   const onSubmit = async () => {
-    setError("")
+    setError("");
     try {
-      const navigate = useNavigate();
       await fetchRegistration(data);
-      navigate("/home")
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
