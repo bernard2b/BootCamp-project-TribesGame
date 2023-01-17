@@ -40,8 +40,17 @@
 }
 
 .header h3 {
-  margin: 10px;
-  cursor: pointer;
+    padding: 5px;
+    margin: 4px;
+    width: fit-content;
+    align-items: center;
+    align-self: center;
+}
+
+.header h3:hover{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    color: black;
 }
 
 a:link {
@@ -61,4 +70,5 @@ a:visited {
   align-items: center;
   background-image: url("../../../../docs/background/bg3-01.png");
 }
+
 
