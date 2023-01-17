@@ -31,9 +31,6 @@ export async function postNewUser(
       next(new HttpError(status.CONFLICT, `This name is already in use, please choose a different one.`));
     }
     else if (error.errors[0].path === 'email') {
-      // return res.status(409).json ({
-      //   message: "This email is already assigned to another imperium.",
-      // })
       next(new HttpError(status.CONFLICT, `This email is already assigned to another imperium.`));
     }
     else next(new HttpError(status.INTERNAL_SERVER_ERROR));
