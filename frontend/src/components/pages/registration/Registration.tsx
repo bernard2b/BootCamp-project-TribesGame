@@ -17,13 +17,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { literal, object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegistrationInterface } from "../../../interfaces/registrationInterface";
+import fetchRegistration from "../../../api/registrationFetch";
+import { redirect, Routes, Route, useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const theme = createTheme();
 
   const registerSchema = object({
     firstName: string().nonempty("Name is required"),
-    lastName: string().nonempty("Name is required"),
     email: string().nonempty("Email is required").email("Email is invalid"),
     password: string()
       .nonempty("Password is required")
@@ -53,19 +54,38 @@ export default function Registration() {
     console.log(values);
   };
 
+  const [userName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const data: object = { name: userName, email, password };
+
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
 
-  const [userName, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const onSubmit = async () => {
+    setError("")
+    try {
+      const navigate = useNavigate();
+      await fetchRegistration(data);
+      navigate("/home")
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+        console.error(error.message);
+      }
+    }
+  };
 
-  const onSubmit = () => {
-    console.log(email, userName, password)
-  }
+  const errorStyle = {
+    color: "#c62828",
+    marginLeft: "27px",
+    fontSize: "13px",
+  };
 
   return (
     <div className="Registration">
@@ -107,10 +127,8 @@ export default function Registration() {
                     {...register("firstName")}
                     autoFocus
                     onChange={(e) => setUsername(e.target.value)}
-
                   />
                 </Grid>
-                
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -138,9 +156,9 @@ export default function Registration() {
                     }
                     {...register("password")}
                     onChange={(e) => setPassword(e.target.value)}
-
                   />
                 </Grid>
+                <p style={errorStyle}>{error}</p>
               </Grid>
               <Button
                 type="submit"
