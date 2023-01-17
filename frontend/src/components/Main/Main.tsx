@@ -16,6 +16,7 @@ export default function Main() {
    <div className="container">
       <div className="Main">
         <Routes>
+          <Route path="/" element={<Navigate to="/kingdom/buildings" />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/kingdom/battle" element={<Battle />} />
           <Route path="/kingdom/buildings" element={<Buildings />} />

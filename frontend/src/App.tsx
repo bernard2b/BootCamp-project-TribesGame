@@ -15,9 +15,8 @@ export default function App() {
   return (
     <BrowserRouter> 
       <Routes>
+        <Route path="/*" element={<Landing />} />
         <Route path="/not-found" element={<NotFound />} />
-
-      <Route path="/*" element={<Landing />} />
     </Routes>  
     </BrowserRouter>
   );
