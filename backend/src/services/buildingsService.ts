@@ -1,6 +1,6 @@
 import { NotFoundError, ParameterError } from '../errors';
 import * as buildingsRepo from "../repositories/buildingsRepo";
-import { GetAllBuildingsResponse, GetOneBuildingByIdResponse } from "../interfaces/buildings";
+import { GetAllBuildingsResponse, GetOneBuildingByIdResponse, NewBuildingRequest } from "../interfaces/buildings";
 
 
 export async function getAllBuildings(): Promise<GetAllBuildingsResponse> {
@@ -24,5 +24,16 @@ export async function getOneBuildingById(buildingId: number): Promise<GetOneBuil
     return { building: building }
   } else {
     throw new NotFoundError();
+  }
+}
+
+export async function addNewBuilding(
+  newBuilding: NewBuildingRequest
+): Promise<Get> {
+  await NewProductRequestValidator.parseAsync(newProduct);
+  const product = await productRepo.createProduct(newProduct);
+
+  if (product) {
+    return productResponse(product) as ProductResponse;
   }
 }
