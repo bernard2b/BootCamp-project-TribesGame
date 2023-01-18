@@ -1,39 +1,94 @@
 import { NotFoundError, ParameterError } from '../errors';
-import * as buildingsRepo from "../repositories/buildingsRepo";
-import { GetAllBuildingsResponse, GetOneBuildingByIdResponse, NewBuildingRequest } from "../interfaces/buildings";
-
+import * as buildingsRepo from '../repositories/buildingsRepo';
+import * as imperiumRepo from '../repositories/imperiumRepo';
+import {
+  AddBuildingResponse,
+  GetAllBuildingsResponse,
+  GetOneBuildingByIdResponse,
+} from '../interfaces/buildings';
+import Building from '../models/building';
+import { time } from 'console';
 
 export async function getAllBuildings(): Promise<GetAllBuildingsResponse> {
-
-  const buildings = await buildingsRepo.getAllBuildings()
+  const buildings = await buildingsRepo.getAllBuildings();
 
   if (buildings) {
-    return { buildings: buildings }
+    return { buildings: buildings };
   } else {
     throw new NotFoundError();
   }
 }
 
-export async function getOneBuildingById(buildingId: number): Promise<GetOneBuildingByIdResponse> {
+export async function getOneBuildingById(
+  buildingId: number
+): Promise<GetOneBuildingByIdResponse> {
   if (buildingId < 0 || !Number.isInteger(buildingId)) {
     throw new ParameterError('Invalid buildingId');
   }
   const building = await buildingsRepo.getOneBuildingById(buildingId);
 
   if (building) {
-    return { building: building }
+    return { building: building };
   } else {
     throw new NotFoundError();
   }
 }
 
 export async function addNewBuilding(
-  newBuilding: NewBuildingRequest
-): Promise<Get> {
-  await NewProductRequestValidator.parseAsync(newProduct);
-  const product = await productRepo.createProduct(newProduct);
-
-  if (product) {
-    return productResponse(product) as ProductResponse;
+  imperiumId: number,
+  name: string,
+  type: string
+): Promise<AddBuildingResponse> {
+  if (!imperiumId || !Number.isInteger(imperiumId)) {
+    throw new ParameterError('No imperium Id implemeted');
   }
+
+  const imperium = await imperiumRepo.getImperiumById(imperiumId);
+
+  console.log("heeeeeeeeeeeeeeeeeeeeeeeee")
+
+  if (!imperium) {
+    throw new NotFoundError();
+  }
+
+  let mineralCost: number = 0;
+  let timeCost: number = 0;
+  let mineralPerMinute: number = 0;
+  let foodPerMinute: number = 0;
+
+  if (type == 'Mine') {
+    mineralCost = 500;
+    timeCost = 5;
+    foodPerMinute = 0;
+    mineralPerMinute = 100;
+  } else if (type == 'Hydrofarm') {
+    mineralCost = 500;
+    timeCost = 5;
+    foodPerMinute = 100;
+    mineralPerMinute = 0;
+  } else if (type == 'Research Lab' || type == 'Military Academy') {
+    mineralCost = 1000;
+    timeCost = 10;
+    foodPerMinute = 0;
+    mineralPerMinute = 0;
+  }
+
+  const newBuilding = await buildingsRepo.addNewBuilding(
+    imperiumId,
+    name,
+    type,
+    mineralCost,
+    timeCost,
+    foodPerMinute,
+    mineralPerMinute
+  );
+    console.log(newBuilding)
+  const theBuilding = {
+    id: newBuilding.id,
+    name: newBuilding.name,
+    type: newBuilding.type,
+    level: newBuilding.level,
+  };
+
+  return theBuilding;
 }

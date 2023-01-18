@@ -15,6 +15,7 @@ router.get('/hello', helloController.getHelloWorld);
 router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/kingdom/troops', troopsController.getAllTroops);
+router.post('/imperiums/:imperiumId/buildings', buildingsController.addNewBuilding );
 
 
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));

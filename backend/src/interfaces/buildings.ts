@@ -14,6 +14,13 @@ export interface GetOneBuildingByIdResponse {
   building: Building;
 }
 
+export interface AddBuildingResponse {
+  id: number;
+  name: string;
+  type: string;
+  level: number;
+}
+
 export const newBuildingValidator = z.object({
   name: z.string().min(1, "Buildingname is required"),
   type: z.enum(['Mine', 'Hydrofarm', 'Research Lab', 'Military Academy'])
