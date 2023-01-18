@@ -1,7 +1,12 @@
-export interface RegistrationInterface {
+export interface createUserRequest {
   name: string;
+  password: string;
   email: string;
-  password: string;  
+  imperiumName: string;
 }
 
-export default RegistrationInterface;
+export interface createUserResponse {
+  id: number;
+  name: string;
+  imperiumId: string;
+}

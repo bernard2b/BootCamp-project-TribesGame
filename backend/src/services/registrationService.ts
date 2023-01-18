@@ -1,14 +1,16 @@
-import * as registrationRepo from '../repositories/registrationRepo';
-import * as registrationInterface from '../interfaces/registration';
-import { NotFoundError, ParameterError } from '../errors';
+import * as userRepo from '../repositories/userRepo';
+import * as imperiumRepo from '../repositories/imperiumRepo';
+import { createUserResponse } from '../interfaces/registration';
+import { ParameterError } from '../errors';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
-export async function createUser(
+export async function createUserWithImperium(
   name: string,
   password: string,
-  email: string
-): Promise<registrationInterface.createUser> {
+  email: string,
+  imperiumName: string
+): Promise<createUserResponse> {
   if (!name && !password) {
     throw new ParameterError('Username and password are required.');
   } else if (!password) {
@@ -22,13 +24,24 @@ export async function createUser(
   }
   password = encryptPassword(password);
 
-  const newUser = await registrationRepo.createUser(
-    name,
-    password,
-    email,
-    `${name}'s Imperium`
+  const newUser = await userRepo.createUser(name, password, email);
+
+  if (imperiumName === '') {
+    imperiumName = `${newUser.name}'s imperium`;
+  }
+
+  const newImperuim = await imperiumRepo.createImperium(
+    imperiumName,
+    newUser.id
   );
-  return newUser;
+
+  let response = {
+    id: newUser.id,
+    name: newUser.name,
+    imperiumId: newImperuim.id
+  };
+
+  return response;
 }
 
 function encryptPassword(password: string) {

@@ -17,7 +17,7 @@ router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/kingdom/troops', troopsController.getAllTroops);
 
-router.post('/registration', registrationController.postNewUser);
+router.post('/registration', registrationController.createUserWithImperium);
 
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));
 router.use(apiErrorHandler);

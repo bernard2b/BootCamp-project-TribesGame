@@ -16,15 +16,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { literal, object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegistrationInterface } from "../../../interfaces/registrationInterface";
 import fetchRegistration from "../../../api/registrationFetch";
-import { redirect, Routes, Route, useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const theme = createTheme();
 
   const registerSchema = object({
     firstName: string().nonempty("Name is required"),
+    imperiumName: string(),
     email: string().nonempty("Email is required").email("Email is invalid"),
     password: string()
       .nonempty("Password is required")
@@ -55,11 +54,12 @@ export default function Registration() {
   };
 
   const [userName, setUsername] = useState("");
+  const [imperiumName, setImperiumname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const data: object = { name: userName, email, password };
+  const data = { name: userName, email, password, imperiumName };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -125,6 +125,21 @@ export default function Registration() {
                     {...register("firstName")}
                     autoFocus
                     onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete=""
+                    fullWidth
+                    id="imperiumName"
+                    label="Imperium name (optional)"
+                    //error={!!errors["imperiumName"]}
+                    // helperText={
+                    //   errors["firstName"] ? errors["firstName"].message : ""
+                    // }
+                    {...register("imperiumName")}
+                    autoFocus
+                    onChange={(e) => setImperiumname(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>

@@ -1,4 +1,6 @@
-export async function fetchRegistration(data: any): Promise<any> {
+import { createUserRequest, createUserResponse } from "../interfaces/registrationInterface";
+
+export async function fetchRegistration(data: createUserRequest): Promise<void> {
   try {
     const response = await fetch(path, {
       method: "POST",
@@ -11,7 +13,7 @@ export async function fetchRegistration(data: any): Promise<any> {
     if (!response.ok) {
       throw new Error(dbResponse.message);
     }
-    return data;
+    return dbResponse;
   } catch (error) {
     if (error instanceof Error) throw new Error(error.message);
   }
