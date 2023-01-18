@@ -1,5 +1,5 @@
 import * as userRepo from '../repositories/userRepo';
-import * as imperiumRepo from '../repositories/imperiumRepo';
+import * as imperiumRepo from '../repositories/imperiaRepo';
 import { createUserResponse } from '../interfaces/registration';
 import { ParameterError } from '../errors';
 import bcrypt from 'bcrypt';
