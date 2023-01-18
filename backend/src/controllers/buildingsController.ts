@@ -59,7 +59,7 @@ export async function addNewBuilding(
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {
-      next(new HttpError(status.NOT_FOUND));
+      next(new HttpError(status.NOT_FOUND, error.message));
     } else if (error instanceof ZodError) {
       next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
     } else if (error instanceof ParameterError) {

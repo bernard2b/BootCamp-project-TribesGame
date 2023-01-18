@@ -23,7 +23,7 @@ export async function getOneBuildingById(
   buildingId: number
 ): Promise<GetOneBuildingByIdResponse> {
   if (buildingId < 0 || !Number.isInteger(buildingId)) {
-    throw new ParameterError('Invalid buildingId');
+    throw new ParameterError('Invalid building Id');
   }
   const building = await buildingsRepo.getOneBuildingById(buildingId);
 
@@ -51,42 +51,42 @@ export async function addNewBuilding(
   const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
   let amount: number = Number(resource[0].amount);
 
-  
   let mineralCost: number = 0;
   let timeCost: number = 0;
   let mineralPerMinute: number = 0;
   let foodPerMinute: number = 0;
-  
+
   if (type == 'Mine') {
     mineralCost = 500;
     timeCost = 5;
     foodPerMinute = 0;
     mineralPerMinute = 100;
-    amount -= 500;
   } else if (type == 'Hydrofarm') {
     mineralCost = 500;
     timeCost = 5;
     foodPerMinute = 100;
     mineralPerMinute = 0;
-    amount -= 500;
   } else if (type == 'Research Lab' || type == 'Military Academy') {
     mineralCost = 1000;
     timeCost = 10;
     foodPerMinute = 0;
     mineralPerMinute = 0;
-    amount -= 1000;
   }
-  
-  if(amount >= 500) {
+  if (amount >= 500) {
+    amount -= 500;
     resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
-  } else if (amount >= 1000 && type == 'Research Lab' || type == 'Military Academy') {
-    resourcesRepo.updateAmountByImperiumId(imperiumId, amount)
+  } else if (
+    (amount >= 1000 && type == 'Research Lab') ||
+    type == 'Military Academy'
+  ) {
+    amount -= 1000;
+    resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
   } else {
-    throw new ParameterError('Not enough forint')
+    throw new ParameterError("You don't have enough money");
   }
-  
+
   await newBuildingValidator.parseAsync({ name, type });
-  
+
   const newBuilding = await buildingsRepo.addNewBuilding(
     imperiumId,
     name,
