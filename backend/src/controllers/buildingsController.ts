@@ -62,6 +62,8 @@ export async function addNewBuilding(
       next(new HttpError(status.NOT_FOUND));
     } else if (error instanceof ZodError) {
       next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
+    } else if (error instanceof ParameterError) {
+        next(new HttpError(status.BAD_REQUEST, error.message));
     } else {
       next(new HttpError(status.INTERNAL_SERVER_ERROR));
     }

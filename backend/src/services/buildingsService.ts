@@ -51,11 +51,12 @@ export async function addNewBuilding(
   const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
   let amount: number = Number(resource[0].amount);
 
+  
   let mineralCost: number = 0;
   let timeCost: number = 0;
   let mineralPerMinute: number = 0;
   let foodPerMinute: number = 0;
-
+  
   if (type == 'Mine') {
     mineralCost = 500;
     timeCost = 5;
@@ -75,11 +76,17 @@ export async function addNewBuilding(
     mineralPerMinute = 0;
     amount -= 1000;
   }
-
-  resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
-
+  
+  if(amount >= 500) {
+    resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
+  } else if (amount >= 1000 && type == 'Research Lab' || type == 'Military Academy') {
+    resourcesRepo.updateAmountByImperiumId(imperiumId, amount)
+  } else {
+    throw new ParameterError('Not enough forint')
+  }
+  
   await newBuildingValidator.parseAsync({ name, type });
-
+  
   const newBuilding = await buildingsRepo.addNewBuilding(
     imperiumId,
     name,
