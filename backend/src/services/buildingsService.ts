@@ -5,9 +5,8 @@ import {
   AddBuildingResponse,
   GetAllBuildingsResponse,
   GetOneBuildingByIdResponse,
+  newBuildingValidator,
 } from '../interfaces/buildings';
-import Building from '../models/building';
-import { time } from 'console';
 
 export async function getAllBuildings(): Promise<GetAllBuildingsResponse> {
   const buildings = await buildingsRepo.getAllBuildings();
@@ -42,13 +41,10 @@ export async function addNewBuilding(
   if (!imperiumId || !Number.isInteger(imperiumId)) {
     throw new ParameterError('No imperium Id implemeted');
   }
-
   const imperium = await imperiumRepo.getImperiumById(imperiumId);
 
-  console.log("heeeeeeeeeeeeeeeeeeeeeeeee")
-
   if (!imperium) {
-    throw new NotFoundError();
+    throw new NotFoundError('No such Id');
   }
 
   let mineralCost: number = 0;
@@ -73,6 +69,8 @@ export async function addNewBuilding(
     mineralPerMinute = 0;
   }
 
+  await newBuildingValidator.parseAsync({ name, type });
+
   const newBuilding = await buildingsRepo.addNewBuilding(
     imperiumId,
     name,
@@ -82,7 +80,7 @@ export async function addNewBuilding(
     foodPerMinute,
     mineralPerMinute
   );
-    console.log(newBuilding)
+
   const theBuilding = {
     id: newBuilding.id,
     name: newBuilding.name,

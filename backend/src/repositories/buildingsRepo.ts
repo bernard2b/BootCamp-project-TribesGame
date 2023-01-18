@@ -13,5 +13,5 @@ export function getBuildingByName(name: string): Promise<Building | null> {
 }
 
 export function addNewBuilding(imperiumId: number, name: string, type: string, mineralCost: number, timeCost: number, foodPerMinute: number, mineralPerMinute: number): Promise<Building | null> {
-  return Building.create({where: {name: name, type: type, imperiumId: imperiumId, mineralCost: mineralCost, timeCost: timeCost, foodPerMinute: foodPerMinute, mineralPerMinute: mineralPerMinute }})
+  return Building.create({name: name, type: type, imperiumId: imperiumId, mineralCost: mineralCost, timeCost: timeCost, foodPerMinute: foodPerMinute, mineralPerMinute: mineralPerMinute })
 }

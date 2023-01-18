@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
+import { ZodError } from 'zod';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
 import {
   AddBuildingResponse,
@@ -9,6 +10,7 @@ import {
   NewBuildingRequest,
 } from '../interfaces/buildings';
 import * as buildingsService from '../services/buildingsService';
+import { fromZodError } from 'zod-validation-error';
 
 export async function getAllBuildings(
   req: Request,
@@ -52,14 +54,16 @@ export async function addNewBuilding(
   const imperiumId = Number(req.params.imperiumId);
   const name = req.body.name;
   const type = req.body.type;
-  console.log(imperiumId)
   try {
     const data = await buildingsService.addNewBuilding(imperiumId, name, type);
     res.send(data);
-    console.log(data)
   } catch (error) {
     if (error instanceof NotFoundError) {
       next(new HttpError(status.NOT_FOUND));
+    } else if (error instanceof ZodError) {
+      next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
+    } else {
+      next(new HttpError(status.INTERNAL_SERVER_ERROR));
     }
   }
 }

@@ -31,3 +31,4 @@ export const newBuildingValidator = z.object({
 }, 'Name is already taken')
 
 export type NewBuildingRequest = z.infer<typeof newBuildingValidator>
+
