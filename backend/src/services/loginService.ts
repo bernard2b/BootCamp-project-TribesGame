@@ -2,7 +2,8 @@ import User from '../models/user';
 import * as loginRepo from '../repositories/loginRepo';
 import { LoginResponse } from '../interfaces/login';
 import { NotFoundError, ParameterError } from '../errors';
-import jwt from 'jsonwebtoken';
+import * as jwt from "jsonwebtoken"
+import bcrypt from 'bcrypt';
 
 export async function getTokenByUserName(
   user: string,
