@@ -1,0 +1,27 @@
+import { Request, Response, NextFunction } from 'express';
+import status from 'http-status';
+import { HttpError, NotFoundError, ParameterError } from '../errors';
+import { LoginRequest, LoginResponse } from '../interfaces/login';
+import * as loginService from '../services/loginService';
+
+export async function login(
+  req: Request<unknown, unknown, LoginRequest, unknown>,
+  res: Response<LoginResponse>,
+  next: NextFunction
+): Promise<void> {
+  const userName = req.body.name;
+  const userPassword = req.body.password;
+  try {
+    const data = await loginService.getTokenByUserName(userName, userPassword);
+    res.cookie('auth-cookie', data.Token, { httpOnly: true})
+    res.send(data);
+  } catch (error) {
+    if (error instanceof ParameterError) {
+      next(new HttpError(status.BAD_REQUEST));
+    } else if (error instanceof NotFoundError) {
+      next(new HttpError(status.NOT_FOUND));
+    } else {
+      next(new HttpError(status.INTERNAL_SERVER_ERROR));
+    }
+  }
+}
