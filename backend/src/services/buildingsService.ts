@@ -1,6 +1,7 @@
 import { NotFoundError, ParameterError } from '../errors';
 import * as buildingsRepo from '../repositories/buildingsRepo';
 import * as imperiumRepo from '../repositories/imperiumRepo';
+import * as resourcesRepo from '../repositories/resourcesRepo';
 import {
   AddBuildingResponse,
   GetAllBuildingsResponse,
@@ -47,6 +48,9 @@ export async function addNewBuilding(
     throw new NotFoundError('No such Id');
   }
 
+  const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
+  let amount: number = Number(resource[0].amount);
+
   let mineralCost: number = 0;
   let timeCost: number = 0;
   let mineralPerMinute: number = 0;
@@ -57,17 +61,22 @@ export async function addNewBuilding(
     timeCost = 5;
     foodPerMinute = 0;
     mineralPerMinute = 100;
+    amount -= 500;
   } else if (type == 'Hydrofarm') {
     mineralCost = 500;
     timeCost = 5;
     foodPerMinute = 100;
     mineralPerMinute = 0;
+    amount -= 500;
   } else if (type == 'Research Lab' || type == 'Military Academy') {
     mineralCost = 1000;
     timeCost = 10;
     foodPerMinute = 0;
     mineralPerMinute = 0;
+    amount -= 1000;
   }
+
+  resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
 
   await newBuildingValidator.parseAsync({ name, type });
 
