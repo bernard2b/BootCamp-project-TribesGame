@@ -1,5 +1,5 @@
 import User from '../models/user';
-import * as loginRepo from '../repositories/loginRepo';
+import * as userRepo from '../repositories/userRepo';
 import { LoginResponse } from '../interfaces/login';
 import { NotFoundError, ParameterError } from '../errors';
 import * as jwt from "jsonwebtoken"
@@ -16,7 +16,7 @@ export async function getTokenByUserName(
   } else if (!user) {
     throw new ParameterError('Username required');
   }
-  const loggednInUser = await loginRepo.getUserByUserName(user);
+  const loggednInUser = await userRepo.getUserByUserName(user);
 
   if (!loggednInUser) {
     throw new NotFoundError('No such username...');

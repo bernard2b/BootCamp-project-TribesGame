@@ -7,3 +7,7 @@ export function createUser(
 ): Promise<User> {
   return User.create({ name, password, email });
 }
+
+export function getUserByUserName(username: string): Promise<User | null>{
+  return User.findOne({where: { name: username}})
+}
