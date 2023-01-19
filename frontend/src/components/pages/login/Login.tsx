@@ -14,34 +14,60 @@ import { useState } from "react";
 import fetchLogin from "../../../api/login";
 
 export default function Login() {
-  const [value, setValue] = useState("");
-  const [userName, setUsername] = useState("");
+  const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [nameFieldError, setNameFieldError] = useState(false);
+  const [passwordFieldError, setpasswordFieldError] = useState(false);
+  const [userError, setUserError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  
   const navigate = useNavigate();
   const linkToReg = () => {
     navigate("/register", { replace: true });
   };
-  
-  const data = { userName, password };
-  const onSubmit = async () => {
+
+  const data = { name, password };
+
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    setNameFieldError(false);
+    setpasswordFieldError(false);
+    setUserError("");
+    setPasswordError("");
+
+    if (name == "") {
+      setNameFieldError(true);
+      setUserError("Field is required")
+    }
+    if (password == "") {
+      setpasswordFieldError(true);
+      setPasswordError("Add some password as well...")
+    }
+
     try {
       await fetchLogin(data);
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
+        if (
+          error.message === "Password is required" ||
+          error.message === "Wrong username or password"
+        )
+          setPasswordError(error.message);
+        if (error.message === "No such username...")
+          setUserError(error.message);
       }
     }
   };
-  
+
   const paperStyle = {
     padding: 50,
     height: "70vh",
     width: 280,
     margin: "40px auto",
+    background: "rgba(255, 255, 255, 0.87)",
   };
-  
+
   return (
     <div className="background">
       <div className="container">
@@ -61,7 +87,10 @@ export default function Login() {
               fullWidth
               required
               onChange={(e) => setUsername(e.target.value)}
+              error={nameFieldError}
+              helperText={userError}
             />
+
             <TextField
               className="password"
               id="outlined-basic"
@@ -72,6 +101,8 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               fullWidth
               required
+              error={passwordFieldError}
+              helperText={passwordError}
             />
           </div>
           <div className="logInBtn">
@@ -80,7 +111,6 @@ export default function Login() {
               type="submit"
               variant="contained"
               color="primary"
-             
               fullWidth
             >
               Let's go!
@@ -92,7 +122,9 @@ export default function Login() {
               label="Stay in!"
             />
             <div className="psw">
-              <Link href="/">Forgot password</Link>
+              <Link href="/">
+                <p>Forgot password</p>
+              </Link>
             </div>
           </div>
           <div className="linkToReg">
