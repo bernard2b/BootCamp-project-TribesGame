@@ -16,3 +16,7 @@ export interface SetLocationRequest {
     coordinateX: number,
     coordinateY: number
 }
+
+export interface SetLocationResponse {
+    id: number;
+}

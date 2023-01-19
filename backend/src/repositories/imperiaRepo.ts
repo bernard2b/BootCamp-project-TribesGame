@@ -1,3 +1,4 @@
+import { SetLocationRequest, SetLocationResponse } from '../interfaces/imperia';
 import User from '../models/imperium';
 
 export function createImperium(name: string, userId: number): Promise<User> {
@@ -12,15 +13,15 @@ export function getAllImperia(): Promise<Imperium[]> {
 
 export function setImperiumLocationById(
   imperiumId: number,
-  coordinateX: number,
-  coordinateY: number
-) {
+  coordinates: SetLocationRequest
+): Promise<number[]> {
   return Imperium.update(
-    { coordinateX: coordinateX, 
-      coordinateY: coordinateY },
+    { ...coordinates
+     },
+
     {
       where: {
-        imperiumId: imperiumId,
+        id: imperiumId,
       },
     }
   );

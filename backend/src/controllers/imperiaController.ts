@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as imperiaService from "../services/imperiaService"
 import status from 'http-status';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
-import { GetAllImperiaResponse, SetLocationRequest } from "../interfaces/imperia";
+import { GetAllImperiaResponse, SetLocationRequest, SetLocationResponse } from "../interfaces/imperia";
 
 export async function getAllImperia(
     req: Request,
@@ -18,16 +18,15 @@ export async function getAllImperia(
     }
 
 export async function setImperiumLocationById(
-    req: Request<{ imperiumId: string}, unknown, SetLocationRequest, unknown>,
+    req: Request<{ imperiumId: number}, unknown, SetLocationRequest, unknown>,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<void> {
     const imperiumId = Number(req.params.imperiumId);
-    const coordinateX = req.body.coordinateX;
-    const coordinateY = req.body.coordinateY;
+    const coordinates = req.body;
 
     try {
-        const data = await imperiaService.setImperiumLocationById(imperiumId, coordinateX, coordinateY);
+        const data = await imperiaService.setImperiumLocationById(imperiumId, coordinates);
         res.send(data);
     } catch (error) {
         if (error instanceof NotFoundError) {

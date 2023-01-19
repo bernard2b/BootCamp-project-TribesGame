@@ -21,7 +21,7 @@ router.get("/imperium/map", imperiaController.getAllImperia)
 
 router.post('/registration', registrationController.createUserWithImperium);
 
-router.put("/imperium/map/register", imperiaController.setImperiumLocationById);
+router.put("/imperium/map/register/:imperiumId", imperiaController.setImperiumLocationById);
 
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));
 router.use(apiErrorHandler);

@@ -1,5 +1,5 @@
 import { NotFoundError, ParameterError } from '../errors';
-import { GetAllImperiaResponse } from '../interfaces/imperia';
+import { GetAllImperiaResponse, ImperiumInterface, SetLocationRequest } from '../interfaces/imperia';
 import Imperium from '../models/imperium';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 
@@ -22,27 +22,41 @@ export async function getAllImperia(): Promise<GetAllImperiaResponse> {
 
 export async function setImperiumLocationById(
   imperiumId: number,
-  coordinateX: number,
-  coordinateY: number
-): Promise<Imperium> {
+  coordinates: SetLocationRequest
+): Promise<ImperiumInterface> {
   if (!imperiumId || !Number.isInteger(imperiumId)) {
-    throw new ParameterError('No imperium Id implemeted');
+    throw new ParameterError("ImperiumId not a valid number!");
   }
   const imperium = await imperiaRepo.getImperiumById(imperiumId);
 
   if (!imperium) {
-    throw new NotFoundError('No such Id');
+    throw new NotFoundError("ImperiumId not found!");
   }
 
   if (
-    coordinateX >= 0 &&
-    coordinateX <= 100 &&
-    coordinateY >= 0 &&
-    coordinateY <= 100
+    coordinates.coordinateX >= 0 &&
+    coordinates.coordinateX <= 100 || 
+    coordinates.coordinateX === null &&
+    coordinates.coordinateY <= 100  &&
+    coordinates.coordinateY >= 0 ||
+    coordinates.coordinateY === null
   ) {
-    imperiaRepo.setImperiumLocationById(imperiumId, coordinateX, coordinateY);
+    await imperiaRepo.setImperiumLocationById(imperiumId, coordinates);
   } else {
     throw new ParameterError('Wrong coordinates!');
   }
-  return imperium;
+
+  const affectedrows= await imperiaRepo.setImperiumLocationById(imperiumId, coordinates);
+
+  
+  if (affectedrows[0] === 0) {
+    throw new NotFoundError();
+  } else {
+   let imperium={ 
+      id : imperiumId, 
+      ...coordinates
+    }
+    return imperium as ImperiumInterface;
+  }
+ 
 }
