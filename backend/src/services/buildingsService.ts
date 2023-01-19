@@ -1,6 +1,6 @@
 import { NotFoundError, ParameterError } from '../errors';
 import * as buildingsRepo from '../repositories/buildingsRepo';
-import * as imperiumRepo from '../repositories/imperiumRepo';
+import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
 import {
   AddBuildingResponse,
@@ -42,7 +42,7 @@ export async function addNewBuilding(
   if (!imperiumId || !Number.isInteger(imperiumId)) {
     throw new ParameterError('No imperium Id implemeted');
   }
-  const imperium = await imperiumRepo.getImperiumById(imperiumId);
+  const imperium = await imperiaRepo.getImperiumById(imperiumId);
 
   if (!imperium) {
     throw new NotFoundError('No such Id');
