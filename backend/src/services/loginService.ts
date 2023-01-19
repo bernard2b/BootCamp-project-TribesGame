@@ -1,7 +1,7 @@
 import User from '../models/user';
 import * as userRepo from '../repositories/userRepo';
 import { LoginResponse } from '../interfaces/login';
-import { NotFoundError, ParameterError } from '../errors';
+import { NotFoundError, ParameterError, AuthenticationError } from '../errors';
 import * as jwt from "jsonwebtoken"
 import bcrypt from 'bcrypt';
 
@@ -28,7 +28,7 @@ export async function getTokenByUserName(
   );
 
   if(!isPasswordCorrect) {
-    throw new NotFoundError('Wrong username or password')
+    throw new AuthenticationError('Wrong username or password')
   }
 
   const payload = {
