@@ -1,9 +1,12 @@
-import User from '../models/imperium';
+import Imperium from '../models/imperium';
+
+export function getImperiumById(id: number): Promise<Imperium | null> {
+  return Imperium.findByPk(id);
+}
 
 export function createImperium(
   name: string,
-  userId: number,
-
-): Promise<User> {
-  return User.create({ name, userId });
+  userId: number
+): Promise<Imperium> {
+  return Imperium.create({ name, userId });
 }

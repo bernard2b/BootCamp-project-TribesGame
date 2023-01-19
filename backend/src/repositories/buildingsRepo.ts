@@ -1,4 +1,4 @@
-import Building from "../models/building"
+import Building from '../models/building';
 
 export function getAllBuildings(): Promise<Building[]> {
   return Building.findAll();
@@ -6,4 +6,28 @@ export function getAllBuildings(): Promise<Building[]> {
 
 export function getOneBuildingById(id: number): Promise<Building | null> {
   return Building.findByPk(id);
+}
+
+export function getBuildingByName(name: string): Promise<Building | null> {
+  return Building.findOne({ where: { name: name } });
+}
+
+export function addNewBuilding(
+  imperiumId: number,
+  name: string,
+  type: string,
+  mineralCost: number,
+  timeCost: number,
+  foodPerMinute: number,
+  mineralPerMinute: number
+): Promise<Building | null> {
+  return Building.create({
+    name,
+    type,
+    imperiumId,
+    mineralCost,
+    timeCost,
+    foodPerMinute,
+    mineralPerMinute,
+  });
 }
