@@ -13,7 +13,7 @@ export async function login(
   const userPassword = req.body.password;
   try {
     const data = await loginService.getTokenByUserName(userName, userPassword);
-    res.cookie('auth-cookie', data.Token, { httpOnly: true})
+    res.cookie('auth-cookie', data.token, { httpOnly: true})
     res.send(data);
   } catch (error) {
     if (error instanceof ParameterError) {

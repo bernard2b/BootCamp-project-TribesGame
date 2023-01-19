@@ -23,8 +23,8 @@ export async function getTokenByUserName(
   }
 
   const isPasswordCorrect = await bcrypt.compare(
-    loggednInUser.password,
-    password
+    password,
+    loggednInUser.password
   );
 
   if(!isPasswordCorrect) {
@@ -40,6 +40,6 @@ export async function getTokenByUserName(
       expiresIn: '3000',
     });
 
-    return { Token: token };
+    return { token: token };
   }
 }
