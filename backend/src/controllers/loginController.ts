@@ -17,9 +17,9 @@ export async function login(
     res.send(data);
   } catch (error) {
     if (error instanceof ParameterError) {
-      next(new HttpError(status.BAD_REQUEST));
+      next(new HttpError(status.BAD_REQUEST, error.message));
     } else if (error instanceof NotFoundError) {
-      next(new HttpError(status.NOT_FOUND));
+      next(new HttpError(status.NOT_FOUND, error.message));
     } else {
       next(new HttpError(status.INTERNAL_SERVER_ERROR));
     }
