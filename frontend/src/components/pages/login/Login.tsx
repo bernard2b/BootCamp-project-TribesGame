@@ -9,12 +9,11 @@ import {
   Button,
   Link,
 } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import fetchLogin from "../../api/login";
+import fetchLogin from "../../../api/login";
 
-export function Login() {
+export default function Login() {
   const [value, setValue] = useState("");
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -81,7 +80,7 @@ export function Login() {
               type="submit"
               variant="contained"
               color="primary"
-              endIcon={<SendIcon />}
+             
               fullWidth
             >
               Let's go!

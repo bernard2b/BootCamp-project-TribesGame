@@ -7,6 +7,7 @@ import Buildings from "./components/pages/Buildings";
 import Landing from "./components/landing/Landing";
 import NotFound from "./components/pages/NotFound";
 import Registration from "./components/pages/registration/Registration";
+import Login from './components/pages/login/Login';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/kingdom/buildings" element={<Buildings />} />
         <Route path="/kingdom/leaderboard" element={<Leaderboard />} />
         <Route path="/kingdom/troops" element={<Troops />} />
+        <Route path ="/login" element={< Login/>} />
         <Route path="/" element={<Landing />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
