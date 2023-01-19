@@ -1,0 +1,60 @@
+.background{
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./login-pictures/bg3-01.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.avatar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar h2{
+  margin-top: 22px;
+  margin-bottom: 5px;
+}
+
+
+.input{
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input .username{
+  margin-top: 35px;
+
+}
+
+
+.input .password{
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.under{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logInBtn{
+  margin-bottom: 20px;
+}
+
+.linkToReg{
+  margin-top: 40px;
+}
+
+.psw{
+  margin-bottom: 2px;
+}
