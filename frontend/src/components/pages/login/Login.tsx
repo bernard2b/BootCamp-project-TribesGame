@@ -27,6 +27,7 @@ export default function Login() {
   };
 
   const data = { name, password };
+  
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -37,7 +38,7 @@ export default function Login() {
 
     if (name == "") {
       setNameFieldError(true);
-      setUserError("Field is required")
+      setUserError("Name is required")
     }
     if (password == "") {
       setpasswordFieldError(true);
@@ -46,6 +47,9 @@ export default function Login() {
 
     try {
       await fetchLogin(data);
+      if(data) {
+        navigate("/", { replace: true })
+      }
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
