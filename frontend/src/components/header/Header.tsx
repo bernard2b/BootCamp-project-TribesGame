@@ -8,7 +8,7 @@ import Menu from "../Menu/Menu";
 
 export default function Header() {
   const [settingsButton, setSettingsButton] = useState('');
-  const [LogoutButton, setLogoutButton] = useState('');
+  const [logoutButton, setLogoutButton] = useState('');
 
 
   const userData = [
@@ -41,7 +41,7 @@ export default function Header() {
           <Menu />
         <div className="navigation">
             <h3>{settingsButton}</h3>
-            <h3>{LogoutButton}</h3>
+            <h3>{logoutButton}</h3>
           {userData.map((user) => {
             return (
               <img src={user.img}  className="userImage"/>

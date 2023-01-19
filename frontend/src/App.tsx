@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Troops from "./components/pages/Troops";
-import Leaderboard from "./components/pages//Leaderboard";
+import Leaderboard from "./components/pages/Leaderboard";
 import Battle from "./components/pages/Battle";
 import Buildings from "./components/pages/Buildings";
 import Landing from "./components/landing/Landing";
