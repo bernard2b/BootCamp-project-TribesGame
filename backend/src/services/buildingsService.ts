@@ -50,42 +50,46 @@ export async function addNewBuilding(
 
   const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
   let amount: number = Number(resource[0].amount);
+  let amountToTake: number = 0;
 
   let mineralCost: number = 0;
   let timeCost: number = 0;
   let mineralPerMinute: number = 0;
   let foodPerMinute: number = 0;
+  await newBuildingValidator.parseAsync({ name, type });
 
   if (type == 'Mine') {
     mineralCost = 500;
+    amountToTake = mineralCost;
     timeCost = 5;
     foodPerMinute = 0;
     mineralPerMinute = 100;
   } else if (type == 'Hydrofarm') {
     mineralCost = 500;
+    amountToTake = mineralCost;
     timeCost = 5;
     foodPerMinute = 100;
     mineralPerMinute = 0;
   } else if (type == 'Research Lab' || type == 'Military Academy') {
     mineralCost = 1000;
+    amountToTake = mineralCost;
     timeCost = 10;
     foodPerMinute = 0;
     mineralPerMinute = 0;
   }
-  if (amount >= 500) {
-    amount -= 500;
+
+  if (amountToTake > amount) {
+    throw new ParameterError("You don't have enough money");
+  } else if (amountToTake >= 500) {
+    amount -= amountToTake;
     resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
   } else if (
     (amount >= 1000 && type == 'Research Lab') ||
     type == 'Military Academy'
   ) {
-    amount -= 1000;
+    amount -= amountToTake;
     resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
-  } else {
-    throw new ParameterError("You don't have enough money");
   }
-
-  await newBuildingValidator.parseAsync({ name, type });
 
   const newBuilding = await buildingsRepo.addNewBuilding(
     imperiumId,
