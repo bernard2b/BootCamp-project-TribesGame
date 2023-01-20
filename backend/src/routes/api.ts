@@ -8,7 +8,7 @@ from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
 import * as loginController from '../controllers/loginController'
-import authorizationHandler from '../middlewares/authprization';
+import authorizationHandler from '../middlewares/authorization';
 
 const router = express.Router();
 
