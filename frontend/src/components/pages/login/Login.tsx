@@ -10,7 +10,7 @@ import {
   Link,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import fetchLogin from "../../../api/login";
 
 export default function Login() {
@@ -27,9 +27,8 @@ export default function Login() {
   };
 
   const data = { name, password };
-  
 
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setNameFieldError(false);
     setpasswordFieldError(false);
@@ -38,17 +37,17 @@ export default function Login() {
 
     if (name == "") {
       setNameFieldError(true);
-      setUserError("Name is required")
+      setUserError("Name is required");
     }
     if (password == "") {
       setpasswordFieldError(true);
-      setPasswordError("Add some password as well...")
+      setPasswordError("Add some password as well...");
     }
 
     try {
       await fetchLogin(data);
-      if(data) {
-        navigate("/", { replace: true })
+      if (data) {
+        navigate("/", { replace: true });
       }
     } catch (error) {
       if (error instanceof Error) {
