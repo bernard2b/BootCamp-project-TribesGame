@@ -18,7 +18,7 @@ import { literal, object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import fetchRegistration from "../../../api/registrationFetch";
 import { useNavigate } from "react-router-dom";
-
+import loginAvatar from "/../../../../public/logo192.png"
 
 export default function Registration() {
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ export default function Registration() {
     setError("");
     try {
       await fetchRegistration(data);
-      navigate("/")
+      navigate("/register/map")
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -105,7 +105,7 @@ export default function Registration() {
               borderRadius: 1,
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+            <Avatar src="/../../../../public/logo192.png" sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
             <h1 style={{ color: "black" }}>SIGN UP</h1>
             <Box
               component="form"
@@ -136,12 +136,7 @@ export default function Registration() {
                     fullWidth
                     id="imperiumName"
                     label="Imperium name (optional)"
-                    //error={!!errors["imperiumName"]}
-                    // helperText={
-                    //   errors["firstName"] ? errors["firstName"].message : ""
-                    // }
                     {...register("imperiumName")}
-                    autoFocus
                     onChange={(e) => setImperiumname(e.target.value)}
                   />
                 </Grid>
