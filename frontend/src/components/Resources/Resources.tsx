@@ -3,10 +3,10 @@ import './Resources.scss';
 
 export default function Resources() {
 
-  const [goldAmount, setGoldAmount] = useState(500);
-  const [breadAmount, setBreadAmount] = useState(500);
-  const [goldCounter, setGoldCounter] = useState(5);
-  const [breadCounter, setBreadCounter] = useState(-3);
+  const [goldAmount, setGoldAmount] = useState(0);
+  const [breadAmount, setBreadAmount] = useState(0);
+  const [goldCounter, setGoldCounter] = useState(0);
+  const [breadCounter, setBreadCounter] = useState(0);
 
   useEffect(() => {
 
@@ -30,7 +30,6 @@ export default function Resources() {
           <p style={{ color: breadCounter > 0 ? "green" : "red" }}>{breadCounter}/minute</p>
         </div>
       </div>
-
       <div className="res-type">
         <img className="resourceImage" src={require("./img/academy.jpg")} />
         <div className="container">

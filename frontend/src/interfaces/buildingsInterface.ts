@@ -1,4 +1,5 @@
 export interface Buildings {
+  [x: string]: ReactNode;
   id: number;
   name: string;
   level: number;
