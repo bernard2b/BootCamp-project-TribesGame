@@ -17,10 +17,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { literal, object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import fetchRegistration from "../../../api/registrationFetch";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Registration() {
+  const navigate = useNavigate();
   const theme = createTheme();
-
   const registerSchema = object({
     firstName: string().nonempty("Name is required"),
     imperiumName: string(),
@@ -71,6 +73,7 @@ export default function Registration() {
     setError("");
     try {
       await fetchRegistration(data);
+      navigate("/")
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
