@@ -18,3 +18,14 @@ export function updateAmountByImperiumId(imperiumId: number, amount: number) {
     }
   );
 }
+
+export function updateGenerationByImperiumId(imperiumId: number, generation: number) {
+  return Resource.update(
+    { generation: generation },
+    {
+      where: {
+        imperiumId: imperiumId,
+      },
+    }
+  );
+}

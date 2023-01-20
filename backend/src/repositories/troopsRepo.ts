@@ -12,10 +12,32 @@ export function getTroopsByType(searchType: string): Promise<Troop[]> {
   });
 }
 
+export function getTroopByName(name: string): Promise<Troop | null> {
+  return Troop.findOne({ where: { name: name } });
+}
+
 export function getTroopById(id: number): Promise<Troop | null> {
   return Troop.findByPk(id);
 }
 
-export function createTroop(name: string): Promise<Troop> {
-  return Troop.create({ name });
+export function addNewTroop(
+  imperiumId: number,
+  type: string,
+  attack: number,
+  defense: number,
+  healthPoint: number,
+  mineralCost: number,
+  timeCost: number,
+  foodUpKeep: number
+): Promise< Troop | null> {
+  return Troop.create({
+    imperiumId,
+    type,
+    attack,
+    defense,
+    healthPoint,
+    mineralCost,
+    timeCost,
+    foodUpKeep
+  });
 }
