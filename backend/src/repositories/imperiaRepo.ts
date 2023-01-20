@@ -1,11 +1,16 @@
 import { SetLocationRequest, SetLocationResponse } from '../interfaces/imperia';
-import User from '../models/imperium';
+import Imperium from '../models/imperium';
 
-export function createImperium(name: string, userId: number): Promise<User> {
-  return User.create({ name, userId });
+export function getImperiumById(id: number): Promise<Imperium | null> {
+  return Imperium.findByPk(id);
 }
 
-import Imperium from '../models/imperium';
+export function createImperium(
+  name: string,
+  userId: number
+): Promise<Imperium> {
+  return Imperium.create({ name, userId });
+}
 
 export function getAllImperia(): Promise<Imperium[]> {
   return Imperium.findAll();
@@ -27,6 +32,3 @@ export function setImperiumLocationById(
   );
 }
 
-export function getImperiumById(id: number): Promise<Imperium | null> {
-  return Imperium.findByPk(id);
-}

@@ -7,8 +7,8 @@ import * as buildingsController
 from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
+import * as loginController from '../controllers/loginController'
 import * as imperiaController from "../controllers/imperiaController"
-
 const router = express.Router();
 
 router.use(express.json());
@@ -19,7 +19,11 @@ router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/imperium/troops', troopsController.getAllTroops);
 router.get("/imperium/map", imperiaController.getAllImperia)
 
+
+router.post('/login', loginController.login);
 router.post('/registration', registrationController.createUserWithImperium);
+router.post('/imperiums/:imperiumId/buildings', buildingsController.addNewBuilding );
+
 
 router.put("/imperium/map/register/:imperiumId", imperiaController.setImperiumLocationById);
 
