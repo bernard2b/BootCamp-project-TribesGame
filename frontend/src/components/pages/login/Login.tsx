@@ -1,7 +1,6 @@
 import "./Login.scss";
 import {
   Avatar,
-  Grid,
   Paper,
   TextField,
   FormControlLabel,
@@ -12,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { SyntheticEvent, useState } from "react";
 import fetchLogin from "../../../api/login";
+import loginPicture from "./login-pictures/logo192.jpg";
 
 export default function Login() {
   const [name, setUsername] = useState("");
@@ -76,7 +76,7 @@ export default function Login() {
       <div className="container">
         <Paper elevation={20} style={paperStyle}>
           <div className="avatar">
-            <Avatar>B</Avatar>
+            <Avatar alt="B" src={loginPicture} sx={{ width: 70, height: 70 }} />
             <h2>Sign in</h2>
             <p>using your TRIBES account</p>
           </div>
