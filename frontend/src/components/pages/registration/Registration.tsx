@@ -138,7 +138,6 @@ export default function Registration() {
                     //   errors["firstName"] ? errors["firstName"].message : ""
                     // }
                     {...register("imperiumName")}
-                    autoFocus
                     onChange={(e) => setImperiumname(e.target.value)}
                   />
                 </Grid>
