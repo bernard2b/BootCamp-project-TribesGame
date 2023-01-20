@@ -19,13 +19,15 @@ export function updateAmountByImperiumId(imperiumId: number, amount: number) {
   );
 }
 
-export function updateGenerationByImperiumId(imperiumId: number, generation: number) {
+export function updateFoodGenerationByImperiumId(imperiumId: number, generation: number) {
   return Resource.update(
     { generation: generation },
     {
       where: {
         imperiumId: imperiumId,
+        name: "food"
       },
+      
     }
   );
 }

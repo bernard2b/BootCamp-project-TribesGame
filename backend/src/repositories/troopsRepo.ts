@@ -28,8 +28,9 @@ export function addNewTroop(
   healthPoint: number,
   mineralCost: number,
   timeCost: number,
-  foodUpKeep: number
+  foodUpkeep: number
 ): Promise< Troop | null> {
+  console.log(foodUpkeep)
   return Troop.create({
     imperiumId,
     type,
@@ -38,6 +39,6 @@ export function addNewTroop(
     healthPoint,
     mineralCost,
     timeCost,
-    foodUpKeep
+    foodUpkeep
   });
 }

@@ -20,7 +20,7 @@ export async function addNewTroop(
   healthPoint?: number,
   mineralCost?: number,
   timeCost?:number ,
-  foodUpKeep?: number
+  foodUpkeep?: number
 ): Promise<AddTroopResponse> {
   if (!imperiumId || !Number.isInteger(imperiumId)) {
     throw new ParameterError('No imperium Id implemeted');
@@ -38,7 +38,7 @@ export async function addNewTroop(
   let foodGeneration: number = resource[1].generation
   let foodConsumption: number = 0;
   
-  await newTroopValidator.parseAsync( { type, attack, defense, healthPoint, mineralCost, timeCost, foodUpKeep });
+  await newTroopValidator.parseAsync( { type, attack, defense, healthPoint, mineralCost, timeCost, foodUpkeep });
 
   if (type === "melee") {
     attack = 10;
@@ -47,8 +47,8 @@ export async function addNewTroop(
     mineralCost = 100;
     mineralToTake = mineralCost;
     timeCost = 6;
-    foodUpKeep = 5
-    foodConsumption = foodUpKeep;
+    foodUpkeep = 5;
+    foodConsumption = foodUpkeep;
   } else if (type === "ranged") {
     attack = 10;
     defense = 20;
@@ -56,8 +56,8 @@ export async function addNewTroop(
     mineralCost = 150;
     mineralToTake = mineralCost;
     timeCost = 9;
-    foodUpKeep = 10;
-    foodConsumption = foodUpKeep;
+    foodUpkeep = 10;
+    foodConsumption = foodUpkeep;
   } else if (type === "mounted") {
     attack = 25;
     defense = 5;
@@ -65,17 +65,17 @@ export async function addNewTroop(
     mineralCost = 200;
     mineralToTake = mineralCost;
     timeCost = 15;
-    foodUpKeep = 20;
-    foodConsumption = foodUpKeep;
+    foodUpkeep = 20;
+    foodConsumption = foodUpkeep;
   }
 
-  if (mineralToTake > mineralAmount || foodAmount <= 0) {
+  if (mineralToTake > mineralAmount || foodAmount <= 0 || foodGeneration < foodConsumption) {
     throw new ParameterError("You don't have enough resources!");
   } else {
     mineralAmount -= mineralToTake;
     resourcesRepo.updateAmountByImperiumId(imperiumId, mineralAmount);
     foodGeneration -= foodConsumption
-    resourcesRepo.updateGenerationByImperiumId(imperiumId, foodConsumption)
+    resourcesRepo.updateFoodGenerationByImperiumId(imperiumId, foodGeneration)
   }
 
 
@@ -87,7 +87,7 @@ export async function addNewTroop(
     healthPoint,
     mineralCost,
     timeCost,
-    foodUpKeep
+    foodUpkeep
   );
 
   return newTroop as AddTroopResponse;
