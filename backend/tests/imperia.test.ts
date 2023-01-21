@@ -2,7 +2,6 @@ import request from 'supertest';
 import status from 'http-status';
 import app from '../src/app';
 import Imperium from '../src/models/imperium';
-import * as imperiaRepo from '../src/repositories/imperiaRepo';
 
 describe('GET /api/imperium/map', () => {
   it('returns all imperia', async () => {
@@ -17,7 +16,6 @@ describe('GET /api/imperium/map', () => {
     expect(result.statusCode).toEqual(status.OK);
 
     const imperiaData = result.body;
-    console.log(imperiaData[0])
 
     expect(imperiaData.imperia[0].name).toEqual('imperium1');
     expect(imperiaData.imperia[0].coordinateX).toBeGreaterThan(-1);
