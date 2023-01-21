@@ -1,3 +1,4 @@
+import { UpgradeTroopRequest } from '../interfaces/troops';
 import Troop from '../models/troop';
 
 export function getAllTroops(): Promise<Troop[]> {
@@ -7,16 +8,16 @@ export function getAllTroops(): Promise<Troop[]> {
 export function getAllTroopsByImperiumId(imperiumId: number): Promise<Troop[]> {
   return Troop.findAll({
     where: {
-      imperiumId: imperiumId
-    }
+      imperiumId: imperiumId,
+    },
   });
 }
 
 export function getTroopsByType(searchType: string): Promise<Troop[]> {
   return Troop.findAll({
     where: {
-      type: searchType
-    }
+      type: searchType,
+    },
   });
 }
 
@@ -37,8 +38,7 @@ export function addNewTroop(
   mineralCost: number,
   timeCost: number,
   foodUpkeep: number
-): Promise< Troop | null> {
-  console.log(foodUpkeep)
+): Promise<Troop | null> {
   return Troop.create({
     imperiumId,
     type,
@@ -47,6 +47,40 @@ export function addNewTroop(
     healthPoint,
     mineralCost,
     timeCost,
-    foodUpkeep
+    foodUpkeep,
   });
+}
+
+export function upgradeTroopById(
+  id: number,
+  type: string,
+  level: number,
+  attack: number,
+  defense: number,
+  healthPoint: number,
+  mineralCost: number,
+  timeCost: number,
+  foodUpkeep: number,
+  imperiumId: number
+): Promise<number[]> {
+  return Troop.update(
+    {
+      id, 
+      type,
+      level,
+      attack,
+      defense,
+      healthPoint,
+      mineralCost,
+      timeCost,
+      foodUpkeep,
+      imperiumId,
+    },
+
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
 }

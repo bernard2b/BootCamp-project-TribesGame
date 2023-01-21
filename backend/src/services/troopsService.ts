@@ -1,4 +1,3 @@
-import Troops from '../models/troop';
 import { NotFoundError, ParameterError } from '../errors';
 import * as troopsRepo from '../repositories/troopsRepo';
 import { AddTroopResponse, GetAllTroopsResponse, newTroopValidator } from '../interfaces/troops';
@@ -57,7 +56,7 @@ export async function addNewTroop(
     healthPoint = 100;
     mineralCost = 100;
     mineralToTake = mineralCost;
-    timeCost = 6;
+    timeCost = 5;
     foodUpkeep = 5;
     foodConsumption = foodUpkeep;
   } else if (type === "ranged") {

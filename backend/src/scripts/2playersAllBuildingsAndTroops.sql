@@ -57,7 +57,7 @@ CHANGE COLUMN `createdAt` `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAM
 CHANGE COLUMN `updatedAt` `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 
 INSERT into tribes.troops (name, type, attack, defense, healthPoint, mineralCost, timeCost, foodUpkeep, imperiumId)
-VALUES ("", "melee", 10, 10, 100, 100, 6, 5, 1);
+VALUES ("", "melee", 10, 10, 100, 100, 5, 5, 1);
 
 INSERT into tribes.troops (name, type, attack, defense, healthPoint, mineralCost, timeCost, foodUpkeep, imperiumId)
 VALUES ("", "ranged", 10, 20, 75, 150, 9, 10, 1);
