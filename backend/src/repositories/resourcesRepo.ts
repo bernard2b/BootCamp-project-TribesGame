@@ -14,6 +14,7 @@ export function updateAmountByImperiumId(imperiumId: number, amount: number) {
     {
       where: {
         imperiumId: imperiumId,
+        name: "mineral"
       },
     }
   );
