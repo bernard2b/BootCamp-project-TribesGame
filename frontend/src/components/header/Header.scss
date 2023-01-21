@@ -4,37 +4,53 @@
   top: 0;
 }
 
-.header {
-  height: 70px;
-  background-color: #009687;
+.header{
+  margin-top: 0.5%;
+  height: 50px;
+  background-color: #016e63;
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
+  border-radius: 10px;
+  align-items: center;
 }
 
-.logo {
-  margin-top: 1%;
-  margin-left: 5%;
-  width: 50%;
+.logo{
+  margin-left: 1%;
 }
 
 .header .kingdomName {
   color: white;
   float: left;
+  font-size: 20px;
+  align-items: center;
+  align-content: center;
+  margin-top: 3%;
 }
 
 .header .navigation {
-  width: 50%;
+  width: 10%;
   display: flex;
   flex-direction: row;
-  margin-left: 55%;
-  margin-top: 1%;
+  margin-left: 40%;
   color: white;
+  align-items: center;
 }
 
 .header h3 {
-  margin: 10px;
-  cursor: pointer;
+    padding: 5px;
+    margin: 4px;
+    width: fit-content;
+    align-items: center;
+    align-self: center;
+}
+
+.header h3:hover{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    color: black;
 }
 
 a:link {
@@ -45,3 +61,14 @@ a:visited {
   color: white;
   text-decoration: none;
 }
+.navigation img{
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 5px;
+  align-items: center;
+  background-image: url("../../../../docs/background/bg3-01.png");
+}
+
+
