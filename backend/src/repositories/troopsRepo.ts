@@ -4,6 +4,14 @@ export function getAllTroops(): Promise<Troop[]> {
   return Troop.findAll();
 }
 
+export function getAllTroopsByImperiumId(imperiumId: number): Promise<Troop[]> {
+  return Troop.findAll({
+    where: {
+      imperiumId: imperiumId
+    }
+  });
+}
+
 export function getTroopsByType(searchType: string): Promise<Troop[]> {
   return Troop.findAll({
     where: {

@@ -12,6 +12,17 @@ export async function getAllTroops(): Promise<GetAllTroopsResponse> {
   return { troops: troops };
 }
 
+export async function getAllTroopsByImperiumId(
+  imperiumId: number): Promise<GetAllTroopsResponse> {
+  const troops = await troopsRepo.getAllTroopsByImperiumId(imperiumId);
+  if (troops) {
+    return { troops: troops };
+  } else {
+    throw new NotFoundError();
+  }
+}
+
+
 export async function addNewTroop(
   imperiumId: number,
   type: string,

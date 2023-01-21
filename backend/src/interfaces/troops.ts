@@ -3,13 +3,10 @@ import Troops from "../models/troop";
 import * as troopsRepo from '../repositories/troopsRepo'
 
 
- export interface GetAllTroopsResponse {
+export interface GetAllTroopsResponse {
    troops: Troops[]
  }
-
-
-
- export interface AddTroopResponse {
+export interface AddTroopResponse {
   id: number,
   type: string,
   attack: number,

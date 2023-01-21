@@ -19,6 +19,21 @@ export async function getAllTroops(
   }
 }
 
+export async function getAllTroopsByImperiumId(
+  req: Request<{ imperiumId: string }, unknown, unknown, unknown>,
+  res: Response<GetAllTroopsResponse>,
+  next: NextFunction
+): Promise<void> {
+
+  const imperiumId = Number(req.params.imperiumId)
+  try {
+    const data = await troopsService.getAllTroopsByImperiumId(imperiumId);
+    res.send(data);
+  } catch (error) {
+    next(new HttpError(status.INTERNAL_SERVER_ERROR));
+  }
+}
+
 export async function addNewTroop(
   req: Request<{ imperiumId: string }, unknown, NewTroopRequest, unknown>,
   res: Response<AddTroopResponse>,
