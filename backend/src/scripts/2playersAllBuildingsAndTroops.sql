@@ -66,7 +66,7 @@ INSERT into tribes.troops (name, type, attack, defense, healthPoint, mineralCost
 VALUES ("", "mounted", 25, 5, 200, 200, 15, 20, 1);
 
 INSERT into tribes.troops (name, type, attack, defense, healthPoint, mineralCost, timeCost, foodUpkeep, imperiumId)
-VALUES ("", "melee", 10, 10, 100, 100, 6, 5, 2);
+VALUES ("", "melee", 10, 10, 100, 100, 5, 5, 2);
 
 INSERT into tribes.troops (name, type, attack, defense, healthPoint, mineralCost, timeCost, foodUpkeep, imperiumId)
 VALUES ("", "ranged", 10, 20, 75, 150, 9, 10, 2);
@@ -79,13 +79,13 @@ CHANGE COLUMN `createdAt` `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAM
 CHANGE COLUMN `updatedAt` `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 
 INSERT into tribes.resources (name, amount, generation, imperiumId)
-VALUES ("mineral", 0, 0, 1);
+VALUES ("mineral", 10000, 10000, 1);
 
 INSERT into tribes.resources (name, amount, generation, imperiumId)
-VALUES ("food", 0, 0, 1);
+VALUES ("food", 10000, 10000, 1);
 
 INSERT into tribes.resources (name, amount, generation, imperiumId)
-VALUES ("mineral", 0, 0, 2);
+VALUES ("mineral", 10000, 10000, 2);
 
 INSERT into tribes.resources (name, amount, generation, imperiumId)
-VALUES ("food", 0, 0, 2);
+VALUES ("food", 10000, 10000, 2);

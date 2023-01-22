@@ -3,7 +3,7 @@ import status from 'http-status';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
-import { AddTroopResponse, GetAllTroopsResponse, NewTroopRequest, UpgradeTroopRequest, UpgradeTroopResponse } from '../interfaces/troops';
+import { AddTroopResponse, GetAllTroopsResponse, NewTroopRequest, UpgradeTroopResponse } from '../interfaces/troops';
 import * as troopsService from '../services/troopsService';
 import * as troopsUpgradeService from '../services/troopsUpgradeService';
 
@@ -60,17 +60,15 @@ export async function addNewTroop(
 }
 
 export async function upgradeTroopById(
-  req: Request<{ imperiumId: string, id: string }, unknown, UpgradeTroopRequest, unknown>,
+  req: Request<{ imperiumId: string, id: string }, unknown, unknown, unknown>,
   res: Response<UpgradeTroopResponse>,
   next: NextFunction
 ): Promise<void> {
   const imperiumId = Number(req.params.imperiumId);
   const id = Number(req.params.id)
-  const type = req.body.type;
-  const level = req.body.level;
 
   try {
-    const data = await troopsUpgradeService.upgradeTroopById(imperiumId, id, type, level);
+    const data = await troopsUpgradeService.upgradeTroopById(imperiumId, id);
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {

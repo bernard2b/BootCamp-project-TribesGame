@@ -1,4 +1,3 @@
-import { UpgradeTroopRequest } from '../interfaces/troops';
 import Troop from '../models/troop';
 
 export function getAllTroops(): Promise<Troop[]> {
@@ -53,28 +52,19 @@ export function addNewTroop(
 
 export function upgradeTroopById(
   id: number,
-  type: string,
   level: number,
   attack: number,
   defense: number,
   healthPoint: number,
-  mineralCost: number,
   timeCost: number,
-  foodUpkeep: number,
-  imperiumId: number
 ): Promise<number[]> {
   return Troop.update(
-    {
-      id, 
-      type,
+    { 
       level,
       attack,
       defense,
       healthPoint,
-      mineralCost,
-      timeCost,
-      foodUpkeep,
-      imperiumId,
+      timeCost
     },
 
     {

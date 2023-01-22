@@ -1,115 +1,85 @@
 import { NotFoundError, ParameterError } from '../errors';
 import * as troopsRepo from '../repositories/troopsRepo';
-import {
-  UpgradeTroopResponse,
-  upgradeTroopValidator,
-} from '../interfaces/troops';
+import { UpgradedTroop, UpgradeTroopResponse } from '../interfaces/troops';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
+import { AfterFind, Not } from 'sequelize-typescript';
+import Troop from '../models/troop';
 
 export async function upgradeTroopById(
   imperiumId: number,
   id: number,
-  type: string,
-  level: number,
+  level?: number,
   attack?: number,
   defense?: number,
   healthPoint?: number,
   mineralCost?: number,
-  timeCost?: number,
-  foodUpkeep?: number,
-): Promise<UpgradeTroopResponse> {
+  timeCost?: number
+): Promise<UpgradedTroop> {
   if (imperiumId < 0 || !Number.isInteger(imperiumId)) {
     throw new ParameterError('ImperiumId is not a valid number!');
   }
   const imperium = await imperiaRepo.getImperiumById(imperiumId);
 
   if (!imperium) {
-    throw new NotFoundError('ImperiumId not found!');
+    throw new NotFoundError('Imperium by ImperiumId not found!');
   }
 
   const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
-  let mineralAmount: number = resource[0].amount;
-  let mineralToTake: number = 0;
-  let unitAttack: number = 0;
-  let unitDefense: number = 0;
-  let unitHP: number = 0;
-  let trainTime: number = 0;
 
-  await upgradeTroopValidator.parseAsync({
-    type,
-    level,
-    attack,
-    defense,
-    healthPoint,
-    mineralCost,
-    timeCost,
-    foodUpkeep,
-  });
-
-  if (type === 'melee') {
-    attack = 10;
-    unitAttack = attack + 5;
-    defense = 10;
-    unitDefense = defense;
-    healthPoint = 100;
-    unitHP = healthPoint;
-    mineralCost = 100;
-    mineralToTake = mineralCost;
-    timeCost = 5;
-    trainTime = timeCost - 2;
-    foodUpkeep = 5;
-  } else if (type === 'ranged') {
-    attack = 10;
-    unitAttack = attack;
-    defense = 20;
-    unitDefense = defense + 10;
-    healthPoint = 75;
-    unitHP = healthPoint;
-    mineralCost = 150;
-    mineralToTake = mineralCost;
-    timeCost = 9;
-    trainTime = timeCost - 3;
-    foodUpkeep = 10;
-  } else if (type === 'mounted') {
-    attack = 25;
-    unitAttack = attack;
-    defense = 5;
-    unitDefense = defense;
-    healthPoint = 200;
-    unitHP = healthPoint + 100;
-    mineralCost = 200;
-    mineralToTake = mineralCost;
-    timeCost = 15;
-    trainTime = timeCost - 5;
-    foodUpkeep = 20;
+  if (!resource) {
+    throw new NotFoundError('Resources of ImperiumId not found!');
   }
-  
+  const unit = await troopsRepo.getTroopById(id);
+
+  if (!unit) {
+    throw new NotFoundError('Unit of troop.id not found!');
+  }
+
+  let mineralAmount: number = resource[0].amount;
+  let mineralToTake: number = unit.mineralCost;
+
+  if (unit.level >= 3) {
+    throw new ParameterError("Unit is at max level!")
+  }
+
+  if (unit.type === 'melee') {
+    unit.level++;
+    unit.attack += 5;
+    unit.timeCost -= 2;
+  } else if (unit.type === 'ranged') {
+    unit.level++;
+    unit.defense += 10;
+    unit.timeCost -= 3;
+  } else if (unit.type === 'mounted') {
+    unit.level++;
+    unit.healthPoint += 100;
+    unit.timeCost -= 5;
+  }
+
   if (mineralToTake > mineralAmount) {
     throw new ParameterError("You don't have enough resources!");
   } else {
     mineralAmount -= mineralToTake;
-    resourcesRepo.updateAmountByImperiumId(imperiumId, mineralAmount);
+    await resourcesRepo.updateAmountByImperiumId(imperiumId, mineralAmount);
+    await troopsRepo.upgradeTroopById(
+      id,
+      unit.level,
+      unit.attack,
+      unit.defense,
+      unit.healthPoint,
+      unit.timeCost
+    );
   }
 
-
-    const affectedrows = await troopsRepo.upgradeTroopById(
+  let upgradedTroop = {
     id,
-    type,
-    level++,
-    unitAttack,
-    unitDefense,
-    unitHP,
-    mineralCost,
-    trainTime,
-    foodUpkeep,
-    imperiumId
-  );
-
-  let returnObject = {
-    response: id, type, level, unitAttack, unitDefense, unitHP
-
+    level,
+    attack,
+    defense,
+    healthPoint,
+    timeCost,
   };
 
-  return returnObject as unknown as UpgradeTroopResponse;
+  return upgradedTroop as UpgradedTroop;
 }

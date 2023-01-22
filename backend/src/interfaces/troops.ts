@@ -24,22 +24,18 @@ export interface AddTroopResponse {
 
 export type NewTroopRequest = z.infer<typeof newTroopValidator>
 
+
+
 export interface UpgradeTroopResponse {
+  id: number;
+}
+
+export interface UpgradedTroop {
   id: number,
   type: string,
   level: number,
   attack: number,
   defense: number,
   healthPoint: number,
-  mineralCost: number,
   timeCost: number,
-  foodUpkeep: number,
-  imperiumId: number
- }
-
- export const upgradeTroopValidator = z.object({
-  type: z.enum(["melee", "ranged", "mounted"]),
-  level: z.number().min(1).max(3)
- })
-
-export type UpgradeTroopRequest = z.infer<typeof upgradeTroopValidator>
+}
