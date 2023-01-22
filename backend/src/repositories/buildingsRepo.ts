@@ -29,3 +29,20 @@ export function addNewBuilding(
     mineralPerMinute
   });
 }
+
+export function upgradeBuildingById(
+  id: number,
+  level: number,
+): Promise<number[]> {
+  return Building.update(
+    {
+      level
+    },
+
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+}

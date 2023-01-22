@@ -22,6 +22,8 @@ router.post('/imperia/:imperiumId/buildings', buildingsController.addNewBuilding
 router.post('/login', loginController.login);
 router.post('/registration', registrationController.createUserWithImperium);
 
+router.put('/imperia/:imperiumId/buildings/:id', buildingsController.upgradeBuildingById)
+
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));
 router.use(apiErrorHandler);
 

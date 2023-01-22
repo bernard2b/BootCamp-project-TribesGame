@@ -40,8 +40,8 @@ export async function addNewBuilding(
   type: string,
   mineralCost?: number,
   timeCost?: number,
+  mineralPerMinute?: number,
   foodPerMinute?: number,
-  mineralPerMinute?: number
 ): Promise<AddBuildingResponse> {
   if (!imperiumId || !Number.isInteger(imperiumId)) {
     throw new ParameterError('No imperium Id implemeted');

@@ -27,3 +27,15 @@ export const newBuildingValidator = z.object({
 
 export type NewBuildingRequest = z.infer<typeof newBuildingValidator>
 
+export interface UpgradeBuildingResponse {
+  id: number;
+}
+
+export interface UpgradedBuilding {
+  id: number,
+  level: number,
+  mineralCost: number,
+  timeCost: number,
+  mineralPerMinute: number
+  foodPerMinute: number,
+}
