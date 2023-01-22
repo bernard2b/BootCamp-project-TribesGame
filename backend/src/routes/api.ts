@@ -17,8 +17,8 @@ router.get('/hello', helloController.getHelloWorld);
 router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/kingdom/troops', troopsController.getAllTroops);
-router.post('/imperiums/:imperiumId/buildings', buildingsController.addNewBuilding );
 
+router.post('/imperia/:imperiumId/buildings', buildingsController.addNewBuilding );
 router.post('/login', loginController.login);
 router.post('/registration', registrationController.createUserWithImperium);
 

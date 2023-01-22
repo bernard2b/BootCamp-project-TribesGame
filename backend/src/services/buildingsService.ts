@@ -8,6 +8,7 @@ import {
   GetOneBuildingByIdResponse,
   newBuildingValidator,
 } from '../interfaces/buildings';
+import Building from '../models/building';
 
 export async function getAllBuildings(): Promise<GetAllBuildingsResponse> {
   const buildings = await buildingsRepo.getAllBuildings();
@@ -36,8 +37,11 @@ export async function getOneBuildingById(
 
 export async function addNewBuilding(
   imperiumId: number,
-  name: string,
-  type: string
+  type: string,
+  mineralCost?: number,
+  timeCost?: number,
+  foodPerMinute?: number,
+  mineralPerMinute?: number
 ): Promise<AddBuildingResponse> {
   if (!imperiumId || !Number.isInteger(imperiumId)) {
     throw new ParameterError('No imperium Id implemeted');
@@ -48,52 +52,48 @@ export async function addNewBuilding(
     throw new NotFoundError('No such Id');
   }
 
+  await newBuildingValidator.parseAsync({ type });
+
   const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
-  let amount: number = Number(resource[0].amount);
-  let amountToTake: number = 0;
+  let mineralAmount: number = resource[0].amount;
+  let mineralToTake: number = 0;
+  let mineralGeneration: number = resource[0].generation;
+  let foodGeneration: number = resource[1].generation;
 
-  let mineralCost: number = 0;
-  let timeCost: number = 0;
-  let mineralPerMinute: number = 0;
-  let foodPerMinute: number = 0;
-  await newBuildingValidator.parseAsync({ name, type });
-
-  if (type == 'Mine') {
+  if (type === 'mine') {
     mineralCost = 500;
-    amountToTake = mineralCost;
+    mineralToTake = mineralCost;
     timeCost = 5;
-    foodPerMinute = 0;
     mineralPerMinute = 100;
-  } else if (type == 'Hydrofarm') {
-    mineralCost = 500;
-    amountToTake = mineralCost;
-    timeCost = 5;
-    foodPerMinute = 100;
-    mineralPerMinute = 0;
-  } else if (type == 'Research Lab' || type == 'Military Academy') {
-    mineralCost = 1000;
-    amountToTake = mineralCost;
-    timeCost = 10;
+    mineralGeneration += mineralPerMinute;
     foodPerMinute = 0;
+  } else if (type === 'farm') {
+    mineralCost = 500;
+    mineralToTake = mineralCost;
+    timeCost = 5;
     mineralPerMinute = 0;
+    foodPerMinute = 100;
+    foodGeneration += foodPerMinute;
+  } else if (type === 'lab' || type === 'barracks') {
+    mineralCost = 1000;
+    mineralToTake = mineralCost;
+    timeCost = 10;
+    mineralPerMinute = 0;
+    foodPerMinute = 0;
   }
 
-  if (amountToTake > amount) {
-    throw new ParameterError("You don't have enough money");
-  } else if (amountToTake >= 500) {
-    amount -= amountToTake;
-    resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
-  } else if (
-    (amount >= 1000 && type == 'Research Lab') ||
-    type == 'Military Academy'
-  ) {
-    amount -= amountToTake;
-    resourcesRepo.updateAmountByImperiumId(imperiumId, amount);
+  if (mineralToTake > mineralAmount) {
+    throw new ParameterError('Not enough minerals!');
+  } else {
+    mineralAmount -= mineralToTake;
+    resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount);
+    resourcesRepo.updateFoodGenerationByImperiumId(imperiumId, foodGeneration);
+    resourcesRepo.updateMineralGenerationByImperiumId(imperiumId, mineralGeneration);
+
   }
 
   const newBuilding = await buildingsRepo.addNewBuilding(
     imperiumId,
-    name,
     type,
     mineralCost,
     timeCost,
@@ -101,12 +101,5 @@ export async function addNewBuilding(
     mineralPerMinute
   );
 
-  const theBuilding = {
-    id: newBuilding.id,
-    name: newBuilding.name,
-    type: newBuilding.type,
-    level: newBuilding.level,
-  };
-
-  return theBuilding;
+  return newBuilding as AddBuildingResponse;
 }

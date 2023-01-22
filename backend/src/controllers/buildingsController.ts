@@ -52,10 +52,9 @@ export async function addNewBuilding(
   next: NextFunction
 ): Promise<void> {
   const imperiumId = Number(req.params.imperiumId);
-  const name = req.body.name;
   const type = req.body.type;
   try {
-    const data = await buildingsService.addNewBuilding(imperiumId, name, type);
+    const data = await buildingsService.addNewBuilding(imperiumId, type);
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {
