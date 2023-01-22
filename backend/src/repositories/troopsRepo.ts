@@ -56,15 +56,15 @@ export function upgradeTroopById(
   attack: number,
   defense: number,
   healthPoint: number,
-  timeCost: number,
+  timeCost: number
 ): Promise<number[]> {
   return Troop.update(
-    { 
+    {
       level,
       attack,
       defense,
       healthPoint,
-      timeCost
+      timeCost,
     },
 
     {

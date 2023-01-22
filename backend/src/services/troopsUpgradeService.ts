@@ -1,6 +1,6 @@
 import { NotFoundError, ParameterError } from '../errors';
 import * as troopsRepo from '../repositories/troopsRepo';
-import { UpgradedTroop, UpgradeTroopResponse } from '../interfaces/troops';
+import { UpgradedTroop } from '../interfaces/troops';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
 import { AfterFind, Not } from 'sequelize-typescript';
@@ -40,7 +40,7 @@ export async function upgradeTroopById(
   let mineralToTake: number = unit.mineralCost;
 
   if (unit.level >= 3) {
-    throw new ParameterError("Unit is at max level!")
+    throw new ParameterError('Unit is at max level!');
   }
 
   if (unit.type === 'melee') {

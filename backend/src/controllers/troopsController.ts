@@ -3,7 +3,12 @@ import status from 'http-status';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
-import { AddTroopResponse, GetAllTroopsResponse, NewTroopRequest, UpgradeTroopResponse } from '../interfaces/troops';
+import {
+  AddTroopResponse,
+  GetAllTroopsResponse,
+  NewTroopRequest,
+  UpgradeTroopResponse,
+} from '../interfaces/troops';
 import * as troopsService from '../services/troopsService';
 import * as troopsUpgradeService from '../services/troopsUpgradeService';
 
@@ -25,8 +30,7 @@ export async function getAllTroopsByImperiumId(
   res: Response<GetAllTroopsResponse>,
   next: NextFunction
 ): Promise<void> {
-
-  const imperiumId = Number(req.params.imperiumId)
+  const imperiumId = Number(req.params.imperiumId);
   try {
     const data = await troopsService.getAllTroopsByImperiumId(imperiumId);
     res.send(data);
@@ -42,7 +46,7 @@ export async function addNewTroop(
 ): Promise<void> {
   const imperiumId = Number(req.params.imperiumId);
   const type = req.body.type;
-  
+
   try {
     const data = await troopsService.addNewTroop(imperiumId, type);
     res.send(data);
@@ -52,7 +56,7 @@ export async function addNewTroop(
     } else if (error instanceof ZodError) {
       next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
     } else if (error instanceof ParameterError) {
-        next(new HttpError(status.BAD_REQUEST, error.message));
+      next(new HttpError(status.BAD_REQUEST, error.message));
     } else {
       next(new HttpError(status.INTERNAL_SERVER_ERROR));
     }
@@ -60,12 +64,12 @@ export async function addNewTroop(
 }
 
 export async function upgradeTroopById(
-  req: Request<{ imperiumId: string, id: string }, unknown, unknown, unknown>,
+  req: Request<{ imperiumId: string; id: string }, unknown, unknown, unknown>,
   res: Response<UpgradeTroopResponse>,
   next: NextFunction
 ): Promise<void> {
   const imperiumId = Number(req.params.imperiumId);
-  const id = Number(req.params.id)
+  const id = Number(req.params.id);
 
   try {
     const data = await troopsUpgradeService.upgradeTroopById(imperiumId, id);
@@ -76,7 +80,7 @@ export async function upgradeTroopById(
     } else if (error instanceof ZodError) {
       next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
     } else if (error instanceof ParameterError) {
-        next(new HttpError(status.BAD_REQUEST, error.message));
+      next(new HttpError(status.BAD_REQUEST, error.message));
     } else {
       next(new HttpError(status.INTERNAL_SERVER_ERROR));
     }
