@@ -12,7 +12,7 @@ import {
 } from '../interfaces/buildings';
 import * as buildingsService from '../services/buildingsService';
 import { fromZodError } from 'zod-validation-error';
-import * as buildingsUpgradeService from '../services/buildingsUpgradeService';
+
 
 export async function getAllBuildings(
   req: Request,
@@ -80,7 +80,7 @@ export async function upgradeBuildingById(
   const id = Number(req.params.id);
 
   try {
-    const data = await buildingsUpgradeService.upgradeBuildingById(imperiumId, id);
+    const data = await buildingsService.upgradeBuildingById(imperiumId, id);
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {
