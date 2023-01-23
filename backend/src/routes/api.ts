@@ -18,6 +18,7 @@ router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/imperia/troops', troopsController.getAllTroops);
 router.get('/imperia/:imperiumId/troops', troopsController.getAllTroopsByImperiumId);
+router.get('/imperia/map/', imperiaController.getAllImperia)
 
 router.post('/imperia/:imperiumId/buildings', buildingsController.addNewBuilding);
 router.post('/imperia/:imperiumId/troops', troopsController.addNewTroop)
