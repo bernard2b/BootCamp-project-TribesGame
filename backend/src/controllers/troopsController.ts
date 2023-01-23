@@ -10,7 +10,7 @@ import {
   UpgradeTroopResponse,
 } from '../interfaces/troops';
 import * as troopsService from '../services/troopsService';
-import * as troopsUpgradeService from '../services/troopsUpgradeService';
+
 
 export async function getAllTroops(
   req: Request,
@@ -72,7 +72,7 @@ export async function upgradeTroopById(
   const id = Number(req.params.id);
 
   try {
-    const data = await troopsUpgradeService.upgradeTroopById(imperiumId, id);
+    const data = await troopsService.upgradeTroopById(imperiumId, id);
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {
