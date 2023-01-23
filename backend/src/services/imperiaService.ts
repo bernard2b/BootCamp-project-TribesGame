@@ -37,12 +37,10 @@ export async function setImperiumLocationById(
   }
 
   if (
-    (coordinates.coordinateX >= 0 && 
-      coordinates.coordinateX <= 100) ||
-    (coordinates.coordinateX === null &&
-      coordinates.coordinateY <= 100 &&
-      coordinates.coordinateY >= 0) ||
-    coordinates.coordinateY === null
+    coordinates.coordinateX >= 0 &&
+    coordinates.coordinateX <= 100 &&
+    coordinates.coordinateY <= 100 &&
+    coordinates.coordinateY >= 0
   ) {
     await imperiaRepo.setImperiumLocationById(imperiumId, coordinates);
   } else {
