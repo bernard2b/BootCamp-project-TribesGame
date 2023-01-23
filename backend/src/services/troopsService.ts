@@ -91,7 +91,7 @@ export async function addNewTroop(
     throw new ParameterError("You don't have enough resources!");
   } else {
     mineralAmount -= mineralToTake;
-    resourcesRepo.updateAmountByImperiumId(imperiumId, mineralAmount);
+    resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount);
     foodGeneration -= foodConsumption;
     resourcesRepo.updateFoodGenerationByImperiumId(imperiumId, foodGeneration);
   }
@@ -161,7 +161,7 @@ export async function upgradeTroopById(
     throw new ParameterError("You don't have enough resources!");
   } else {
     mineralAmount -= mineralToTake;
-    await resourcesRepo.updateAmountByImperiumId(imperiumId, mineralAmount);
+    await resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount);
     await troopsRepo.upgradeTroopById(
       id,
       unit.level,

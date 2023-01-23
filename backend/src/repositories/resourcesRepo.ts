@@ -8,7 +8,7 @@ export function getResourcesByImperiumId(imperiumId: number) {
   });
 }
 
-export function updateAmountByImperiumId(imperiumId: number, amount: number) {
+export function updateMineralAmountByImperiumId(imperiumId: number, amount: number) {
   return Resource.update(
     { amount: amount },
     {
@@ -20,6 +20,19 @@ export function updateAmountByImperiumId(imperiumId: number, amount: number) {
   );
 }
 
+export function updateFoodAmountByImperiumId(imperiumId: number, amount: number) {
+  return Resource.update(
+    { amount: amount },
+    {
+      where: {
+        imperiumId: imperiumId,
+        name: "food"
+      },
+    }
+  );
+}
+
+
 export function updateFoodGenerationByImperiumId(imperiumId: number, generation: number) {
   return Resource.update(
     { generation: generation },
@@ -28,7 +41,20 @@ export function updateFoodGenerationByImperiumId(imperiumId: number, generation:
         imperiumId: imperiumId,
         name: "food"
       },
-      
+
+    }
+  );
+}
+
+export function updateMineralGenerationByImperiumId(imperiumId: number, generation: number) {
+  return Resource.update(
+    { generation: generation },
+    {
+      where: {
+        imperiumId: imperiumId,
+        name: "mineral"
+      },
+
     }
   );
 }

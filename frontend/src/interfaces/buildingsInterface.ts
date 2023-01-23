@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 export interface Buildings {
   [x: string]: ReactNode;
   id: number;
