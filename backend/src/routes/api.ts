@@ -8,6 +8,7 @@ from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
 import * as loginController from '../controllers/loginController'
+import * as updateController from '../controllers/updateController'
 import authenticationHandler from '../middlewares/authentication';
 
 import * as imperiaController from "../controllers/imperiaController"
@@ -24,6 +25,7 @@ router.get('/imperia/map/', imperiaController.getAllImperia)
 
 router.post('/imperia/:imperiumId/buildings', buildingsController.addNewBuilding);
 router.post('/imperia/:imperiumId/troops', troopsController.addNewTroop)
+router.put('/userupdate/:id', updateController.updateUser)
 router.post('/login', loginController.login);
 router.post('/registration', registrationController.createUserWithImperium);
 

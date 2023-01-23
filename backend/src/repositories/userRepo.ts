@@ -1,4 +1,5 @@
 import { where } from 'sequelize';
+import { userSettingsRequest } from '../interfaces/userSettings';
 import User from '../models/user';
 
 export function createUser(
@@ -15,12 +16,14 @@ export function getUserByUserName(username: string): Promise<User | null> {
 
 export function updateUser(
   userId: number,
-  name: string,
-  email: string,
-  password: string
-) {
+  userSettings: userSettingsRequest
+): Promise<number[] | null> {
   return User.update(
-    { name, email, password },
+    {...userSettings},
     { where: { id: userId } }
   );
+}
+
+export function getUserById(id: number): Promise<User | null> {
+  return User.findByPk(id)
 }
