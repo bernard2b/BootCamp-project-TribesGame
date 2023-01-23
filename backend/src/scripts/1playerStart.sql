@@ -29,3 +29,4 @@ VALUES ("mineral", 500, 50, 1);
 
 INSERT into tribes.resources (name, amount, generation, imperiumId)
 VALUES ("food", 500, 50, 1);
+
