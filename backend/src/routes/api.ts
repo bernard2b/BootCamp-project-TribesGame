@@ -8,7 +8,7 @@ from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
 import * as loginController from '../controllers/loginController'
-
+import * as imperiaController from "../controllers/imperiaController"
 const router = express.Router();
 
 router.use(express.json());
