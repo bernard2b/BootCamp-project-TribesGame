@@ -1,5 +1,5 @@
 import { where } from 'sequelize';
-import { userSettingsRequest } from '../interfaces/userSettings';
+import { userSettingsRequest } from '../interfaces/user';
 import User from '../models/user';
 
 export function createUser(

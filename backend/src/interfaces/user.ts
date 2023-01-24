@@ -14,3 +14,8 @@ export interface userSettingsResponse{
   email: string,
   password: string
 }
+
+export interface getUserDetailsResponse{
+  name: string,
+  email: string
+}

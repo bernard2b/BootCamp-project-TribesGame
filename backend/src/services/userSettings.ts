@@ -2,7 +2,7 @@ import * as userRepo from '../repositories/userRepo';
 import {
   userSettingsRequest,
   userSettingsResponse,
-} from '../interfaces/userSettings';
+} from '../interfaces/user';
 import { encryptPassword } from './registrationService';
 import { NotFoundError, ParameterError, AuthenticationError } from '../errors';
 import bcrypt from 'bcrypt';

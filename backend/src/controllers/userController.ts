@@ -7,11 +7,13 @@ import {
   AuthenticationError,
 } from '../errors';
 import {
+  getUserDetailsResponse,
   userIdRequest,
   userSettingsRequest,
   userSettingsResponse,
-} from '../interfaces/userSettings';
-import * as userSettings from '../services/userSettings';
+} from '../interfaces/user';
+import * as userSettings from '../services/userSettings'
+import * as getUserDetails from '../services/getUserDetails'
 
 export async function updateUser(
   req: Request<userIdRequest, unknown, userSettingsRequest, unknown>,
@@ -36,3 +38,25 @@ export async function updateUser(
     }
   }
 }
+
+
+export async function getUserDetail(
+  req: Request<userIdRequest, unknown, unknown, unknown>,
+  res: Response<getUserDetailsResponse>,
+  next: NextFunction
+): Promise<void> {
+  const id = Number(req.params.id);
+  try {
+    const data = await getUserDetails.getUserById(id);
+    res.send(data);
+  } catch (error) {
+    if (error instanceof ParameterError) {
+      next(new HttpError(status.BAD_REQUEST, error.message));
+    } else if (error instanceof NotFoundError) {
+      next(new HttpError(status.NOT_FOUND));
+    } else {
+      next(new HttpError(status.INTERNAL_SERVER_ERROR));
+    }
+  }
+}
+
