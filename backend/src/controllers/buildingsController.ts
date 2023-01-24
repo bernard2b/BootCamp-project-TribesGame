@@ -8,9 +8,11 @@ import {
   GetOneBuildingByIdRequest,
   GetOneBuildingByIdResponse,
   NewBuildingRequest,
+  UpgradeBuildingResponse,
 } from '../interfaces/buildings';
 import * as buildingsService from '../services/buildingsService';
 import { fromZodError } from 'zod-validation-error';
+
 
 export async function getAllBuildings(
   req: Request,
@@ -52,10 +54,9 @@ export async function addNewBuilding(
   next: NextFunction
 ): Promise<void> {
   const imperiumId = Number(req.params.imperiumId);
-  const name = req.body.name;
   const type = req.body.type;
   try {
-    const data = await buildingsService.addNewBuilding(imperiumId, name, type);
+    const data = await buildingsService.addNewBuilding(imperiumId, type);
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {
@@ -64,6 +65,30 @@ export async function addNewBuilding(
       next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
     } else if (error instanceof ParameterError) {
         next(new HttpError(status.BAD_REQUEST, error.message));
+    } else {
+      next(new HttpError(status.INTERNAL_SERVER_ERROR));
+    }
+  }
+}
+
+export async function upgradeBuildingById(
+  req: Request<{ imperiumId: string; id: string }, unknown, unknown, unknown>,
+  res: Response<UpgradeBuildingResponse>,
+  next: NextFunction
+): Promise<void> {
+  const imperiumId = Number(req.params.imperiumId);
+  const id = Number(req.params.id);
+
+  try {
+    const data = await buildingsService.upgradeBuildingById(imperiumId, id);
+    res.send(data);
+  } catch (error) {
+    if (error instanceof NotFoundError) {
+      next(new HttpError(status.NOT_FOUND, error.message));
+    } else if (error instanceof ZodError) {
+      next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
+    } else if (error instanceof ParameterError) {
+      next(new HttpError(status.BAD_REQUEST, error.message));
     } else {
       next(new HttpError(status.INTERNAL_SERVER_ERROR));
     }
