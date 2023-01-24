@@ -2,6 +2,7 @@ import { NotFoundError, ParameterError } from '../errors';
 import * as troopsRepo from '../repositories/troopsRepo';
 import {
   AddTroopResponse,
+  BattleResponse,
   GetAllTroopsResponse,
   newTroopValidator,
   UpgradedTroop,
@@ -182,4 +183,53 @@ export async function upgradeTroopById(
   };
 
   return upgradedTroop as UpgradedTroop;
+}
+
+
+export async function battle(
+  imperiumId: number,
+  threatLevel: string
+): Promise<BattleResponse> {
+  if (imperiumId < 0 || !Number.isInteger(imperiumId)) {
+    throw new ParameterError('ImperiumId is not a valid number!');
+  }
+  const imperium = await imperiaRepo.getImperiumById(imperiumId);
+
+  if (!imperium) {
+    throw new NotFoundError('Imperium by ImperiumId not found!');
+  }
+
+  const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
+
+  if (!resource) {
+    throw new NotFoundError('Resources of ImperiumId not found!');
+}
+
+  const army = await troopsRepo.getAllTroopsByImperiumId(imperiumId);
+
+  if(!army) {
+    throw new NotFoundError("Imperium don't have any units!")
+  }
+
+let myArmyPower = 0;
+let enemyArmyPower = 0;
+army.forEach(unit => myArmyPower += (unit.attack * unit.defense * unit.healthPoint))
+
+if (threatLevel === "low") {
+  enemyArmyPower = 100000
+} else if (threatLevel === "medium") {
+  enemyArmyPower = 200000
+} else if (threatLevel === "high") {
+  enemyArmyPower = 400000
+}
+
+
+
+let battleResult = {
+  result: "",
+  destroyedUnits: [],
+  loot: ""
+}
+
+return battleResult as BattleResponse
 }

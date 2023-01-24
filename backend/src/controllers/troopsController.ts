@@ -5,6 +5,8 @@ import { fromZodError } from 'zod-validation-error';
 import { HttpError, NotFoundError, ParameterError } from '../errors';
 import {
   AddTroopResponse,
+  BattleRequest,
+  BattleResponse,
   GetAllTroopsResponse,
   NewTroopRequest,
   UpgradeTroopResponse,
@@ -73,6 +75,30 @@ export async function upgradeTroopById(
 
   try {
     const data = await troopsService.upgradeTroopById(imperiumId, id);
+    res.send(data);
+  } catch (error) {
+    if (error instanceof NotFoundError) {
+      next(new HttpError(status.NOT_FOUND, error.message));
+    } else if (error instanceof ZodError) {
+      next(new HttpError(status.BAD_REQUEST, fromZodError(error).message));
+    } else if (error instanceof ParameterError) {
+      next(new HttpError(status.BAD_REQUEST, error.message));
+    } else {
+      next(new HttpError(status.INTERNAL_SERVER_ERROR));
+    }
+  }
+}
+
+export async function battle(
+  req: Request<{ imperiumId: string}, unknown, BattleRequest, unknown>,
+  res: Response<BattleResponse>,
+  next: NextFunction
+): Promise<void> {
+  const imperiumId = Number(req.params.imperiumId);
+  const threatLevel = req.body.threatLevel;
+
+  try {
+    const data = await troopsService.battle(imperiumId, threatLevel);
     res.send(data);
   } catch (error) {
     if (error instanceof NotFoundError) {

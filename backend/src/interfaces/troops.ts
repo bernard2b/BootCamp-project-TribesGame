@@ -34,3 +34,13 @@ export interface UpgradedTroop {
   healthPoint: number;
   timeCost: number;
 }
+
+export interface BattleRequest {
+  threatLevel: string
+}
+
+export interface BattleResponse {
+  result: string,
+  destroyedUnits: string[],
+  loot: string
+}
