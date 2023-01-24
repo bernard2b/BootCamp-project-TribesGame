@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import fetchTroops from '../../api/troops';
-import troops from './../../interfaces/troopsInterface';
+import troops from '../../interfaces/troopsInterface';
+import userEvent from '@testing-library/user-event';
 
 function Troops() {
   const [troopsData, setTroopsData] = useState<troops[]>([]);
@@ -23,7 +24,7 @@ function Troops() {
                   <h4 className="buildingTitle">{troops.type}</h4>
                 </div>
                 <div className="buildingLevel">
-                  <p className="buildingLevel">Building Level: {troops.level}</p>
+                  <p className="buildingLevel">{troops.level}</p>
                 </div>
                 <div className="mineralCost">
                   <p>Mineral Cost: {troops.mineralCost}</p>
