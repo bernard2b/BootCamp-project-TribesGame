@@ -13,15 +13,9 @@ export default function App() {
   return (
     <BrowserRouter> 
       <Routes>
+        <Route path="/*" element={<Landing />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/kingdom/battle" element={<Battle />} />
-        <Route path="/kingdom/buildings" element={<Buildings />} />
-        <Route path="/kingdom/leaderboard" element={<Leaderboard />} />
-        <Route path="/kingdom/troops" element={<Troops />} />
         <Route path ="/login" element={< Login/>} />
-        <Route path="/" element={<Landing />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/not-found" element={<NotFound />} />
     </Routes>  
     </BrowserRouter>
   );
