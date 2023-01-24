@@ -52,13 +52,7 @@ export default function Login() {
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
-        if (
-          error.message === "Password is required" ||
-          error.message === "Wrong username or password"
-        )
-          setPasswordError(error.message);
-        if (error.message === "No such username...")
-          setUserError(error.message);
+        if (error.message) setPasswordError(error.message);
       }
     }
   };
