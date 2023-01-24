@@ -6,9 +6,9 @@ import { accessTokenPayload } from '../interfaces/accessToken';
 
 declare global {
   namespace Express {
-      interface Request {
-          userId?: number;
-      }
+    interface Request {
+      userId?: number;
+    }
   }
 }
 
@@ -20,19 +20,23 @@ export default function authenticationHandler(
   const bearerToken = req.headers['authorization'];
 
   if (!bearerToken) {
-    next(new HttpError(status.UNAUTHORIZED, 'Not Bearer token inplemented'));
+    next(new HttpError(status.UNAUTHORIZED, 'Not Bearer token included'));
   }
 
   const bearer = bearerToken.split(' ')[1];
-  jwt.verify(bearer, process.env.JWT_SECRET, (err: Error, payload: accessTokenPayload) => {
-    if (err) {
-      res
-        .status(status.UNAUTHORIZED)
-        .send({ message: 'Access denied. Token is not verified.' });
-      return;
-    } else {
-      req.userId = payload.id;
-      next();
+  jwt.verify(
+    bearer,
+    process.env.JWT_SECRET,
+    (err: Error, payload: accessTokenPayload) => {
+      if (err) {
+        next(
+          new HttpError(status.UNAUTHORIZED, 'Acces denied. Token is not valid')
+        );
+        return;
+      } else {
+        req.userId = payload.id;
+        next();
+      }
     }
-  });
+  );
 }
