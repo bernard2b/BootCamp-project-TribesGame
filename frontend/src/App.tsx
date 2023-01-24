@@ -21,7 +21,6 @@ export default function App() {
         <Route path ="/login" element={< Login/>} />
         <Route path="/" element={<Landing />} />
         <Route path="*" element={<NotFound />} />
-        {/* <Route path="/*" element={<Landing />} /> */}
         <Route path="/not-found" element={<NotFound />} />
     </Routes>  
     </BrowserRouter>
