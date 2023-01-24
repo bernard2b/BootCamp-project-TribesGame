@@ -8,6 +8,8 @@ from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
 import * as loginController from '../controllers/loginController'
+import authenticationHandler from '../middlewares/authentication';
+
 import * as imperiaController from "../controllers/imperiaController"
 const router = express.Router();
 

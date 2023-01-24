@@ -9,9 +9,10 @@ import NotFound from "./components/pages/NotFound";
 import Registration from "./components/pages/registration/Registration";
 import Login from "./components/pages/login/Login"
 
+
 export default function App() {
   return (
-    <BrowserRouter> 
+    <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Landing />} />
         <Route path="/register" element={<Registration />} />

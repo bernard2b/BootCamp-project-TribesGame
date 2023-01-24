@@ -21,6 +21,7 @@
     "url": "git+https://github.com/green-fox-academy/dusicyon-viridian-tribes-react.git"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "concurrently": "^7.6.0",
