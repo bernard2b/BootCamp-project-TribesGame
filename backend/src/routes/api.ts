@@ -8,14 +8,14 @@ from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
 import * as loginController from '../controllers/loginController'
-import authorizationHandler from '../middlewares/authorization';
+import authenticationHandler from '../middlewares/authentication';
 
 const router = express.Router();
 
 router.use(express.json());
 
 router.get('/hello', helloController.getHelloWorld);
-router.get('/buildings', authorizationHandler, buildingsController.getAllBuildings);
+router.get('/buildings', authenticationHandler, buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/kingdom/troops', troopsController.getAllTroops);
 router.post('/imperiums/:imperiumId/buildings', buildingsController.addNewBuilding );

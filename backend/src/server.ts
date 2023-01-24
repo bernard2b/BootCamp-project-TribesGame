@@ -7,6 +7,6 @@ const port = process.env.PORT || 4000;
 app.listen(port, async () => {
   logger.info(`Listening on port ${port}`);
 
-  await db.sync({ alter: true });
+  await db.sync({ alter: false });
   logger.info('DB has been initialized');
 });

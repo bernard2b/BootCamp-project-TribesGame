@@ -2,8 +2,17 @@ import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
 import jwt from 'jsonwebtoken';
 import { HttpError } from '../errors';
+import { accessTokenPayload } from '../interfaces/accessToken';
 
-export default function authorizationHandler(
+declare global {
+  namespace Express {
+      interface Request {
+          userId?: number;
+      }
+  }
+}
+
+export default function authenticationHandler(
   req: Request,
   res: Response,
   next: NextFunction
@@ -15,13 +24,14 @@ export default function authorizationHandler(
   }
 
   const bearer = bearerToken.split(' ')[1];
-  jwt.verify(bearer, process.env.JWT_SECRET, (err: Error) => {
+  jwt.verify(bearer, process.env.JWT_SECRET, (err: Error, payload: accessTokenPayload) => {
     if (err) {
       res
         .status(status.UNAUTHORIZED)
         .send({ message: 'Access denied. Token is not verified.' });
       return;
     } else {
+      req.userId = payload.id;
       next();
     }
   });
