@@ -48,6 +48,20 @@ export async function getOneBuildingById(
   }
 }
 
+export async function getAllBuildingsByImperiumId(
+  req: Request<{ imperiumId: string }, unknown, unknown, unknown>,
+  res: Response<GetAllBuildingsResponse>,
+  next: NextFunction
+): Promise<void> {
+  const imperiumId = Number(req.params.imperiumId);
+  try {
+    const data = await buildingsService.getAllBuildingsByImperiumId(imperiumId);
+    res.send(data);
+  } catch (error) {
+    next(new HttpError(status.INTERNAL_SERVER_ERROR));
+  }
+}
+
 export async function addNewBuilding(
   req: Request<unknown, unknown, NewBuildingRequest, unknown>,
   res: Response<AddBuildingResponse>,
