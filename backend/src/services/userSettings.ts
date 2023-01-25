@@ -30,9 +30,9 @@ export async function updateUser(
     throw new AuthenticationError('Invalid password');
   }
   
-  // if (userSettingsRequest.newPassword.length < 8) {
-  //   throw new ParameterError('Password must be 8 characters.')
-  // }
+  if (userSettingsRequest.newPassword.length < 8) {
+    throw new ParameterError('New Password must be 8 characters.')
+  }
 
   let newPsw = !userSettingsRequest.newPassword
     ? user.password
