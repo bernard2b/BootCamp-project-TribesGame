@@ -6,6 +6,7 @@ import {
 import { encryptPassword } from './registrationService';
 import { NotFoundError, ParameterError, AuthenticationError } from '../errors';
 import bcrypt from 'bcrypt';
+import { getUserDetailsResponse } from '../interfaces/user';
 
 export async function updateUser(
   userId: number,
@@ -30,7 +31,7 @@ export async function updateUser(
     throw new AuthenticationError('Invalid password');
   }
   
-  if (userSettingsRequest.newPassword.length < 8) {
+  if (userSettingsRequest.newPassword !== undefined && userSettingsRequest.newPassword.length < 8) {
     throw new ParameterError('New Password must be 8 characters.')
   }
 
@@ -51,4 +52,20 @@ export async function updateUser(
     email: userSettingsRequest.email,
     password: userSettingsRequest.newPassword,
   };
+}
+
+
+export async function getUserById(
+  userIdRequest
+): Promise<getUserDetailsResponse> {
+  if (userIdRequest < 0 || !Number.isInteger(userIdRequest)) {
+    throw new ParameterError('Invalid user Id');
+  }
+  const user = await userRepo.getUserById(userIdRequest);
+
+  if (user) {
+    return user
+  } else {
+    throw new NotFoundError("No user found");
+  }
 }
