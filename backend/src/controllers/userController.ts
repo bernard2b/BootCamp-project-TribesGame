@@ -33,7 +33,6 @@ export async function updateUser(
       next(new HttpError(status.NOT_FOUND, error.message));
     else {
       next(new HttpError(status.INTERNAL_SERVER_ERROR, error.message));
-      console.log(error)
     }
   }
 }

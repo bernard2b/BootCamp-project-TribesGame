@@ -15,21 +15,21 @@ import {
 import fetchUserDetails from "../../../api/userDetails";
 import fetchUserSettings from "../../../api/userUpdate";
 import { useNavigate } from "react-router-dom";
-import avatar from "../user-settings/pictures/logo192.jpg"
-
+import avatar from "../user-settings/pictures/logo192.jpg";
 
 export default function UserSettings() {
   const [currentName, setCurrentName] = useState("");
   const [currenEmail, setCurrentEmail] = useState("");
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [fieldError, setFieldError] = useState(true)
-  
-  const [open, setOpen] = useState(false)
+  const [pswConfirmError, setPswConfirmError] = useState("");
+  const [fieldError, setFieldError] = useState(false);
 
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchUserDetails().then((user) => {
@@ -44,22 +44,37 @@ export default function UserSettings() {
     navigate("/*", { replace: true });
   };
 
-  let data = {};
-
   const onSubmit = async (e: SyntheticEvent) => {
+    
+    setError("");
+    setFieldError(false);
 
-    setError("")
-    setFieldError(false)
+    const data: {
+      name?: string;
+      email?: string;
+      newPassword?: string;
+      oldPassword: string;
+    } = {
+      oldPassword,
+    };
 
-    if(name == "" && email == "") {
-      data = {password: password, oldPassword: oldPassword}
-    } else if (email == "" && password == "") {
-      data = { name: name, oldPassword: oldPassword}
-    } else if (name == "" && password == "") {
-      data = { email: email, oldPassword: oldPassword}
-    } else if ( name == "" && email == "" && password == "") {
-      data = {oldPassword: oldPassword}
-      setError('No fields are implemented')
+    if (!oldPassword) {
+      setFieldError(true);
+      setError("Please add your password");
+      return;
+    }
+
+    if (name) {
+      data.name = name;
+    }
+    if (email) {
+      data.email = email;
+    }
+    if (password !== confirmPassword) {
+      setPswConfirmError("Passwords do not match");
+      return;
+    } else if (password){
+      data.newPassword = password;
     }
 
     try {
@@ -90,8 +105,7 @@ export default function UserSettings() {
     color: "white",
     padding: 20,
     margin: "40px auto",
-
-  }
+  };
 
   return (
     <div className="background">
@@ -100,66 +114,62 @@ export default function UserSettings() {
           <div className="avatar">
             <Avatar alt="B" src={avatar} sx={{ width: 70, height: 70 }} />
             <h2>{currentName}</h2>
-            <p>{currenEmail}</p>
+            <h3>{currenEmail}</h3>
           </div>
           <div className="input">
-            <p>Here You can change your account</p>
+            <h5>Here You can change your account</h5>
             <TextField
               className="username"
               id="outlined-basic"
-              label="Username"
+              label="New Username"
               variant="outlined"
-              placeholder="new username"
+              placeholder="Add New Username"
               fullWidth
               onChange={(e) => setUsername(e.target.value)}
-              // error={nameFieldError}
-              // helperText={userError}
             />
 
             <TextField
               className="email"
               id="outlined-basic"
-              label="Email"
+              label="New Email"
               variant="outlined"
-              placeholder="new email"
+              placeholder="Add New Email"
               type="email"
               fullWidth
               onChange={(e) => setEmail(e.target.value)}
-              // error={passwordFieldError}
-              // helperText={passwordError}
             />
 
             <TextField
               className="newPassword"
               id="outlined-basic"
-              label="Password"
+              label="New Password"
               variant="outlined"
-              placeholder="New Password"
+              placeholder="Add New Password"
               type="password"
               fullWidth
-              // error={passwordFieldError}
-              // helperText={passwordError}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
 
             <TextField
               className="confirmNewPassword"
               id="outlined-basic"
-              label="Password"
+              label="New Password"
               variant="outlined"
-              placeholder="Confirm new password"
+              placeholder="Confirm New password"
               type="password"
               fullWidth
               onChange={(e) => setPassword(e.target.value)}
-              // error={passwordFieldError}
-              // helperText={passwordError}
+              helperText={pswConfirmError}
             />
+            <h5>To verify, need your old password</h5>
             <TextField
               className="oldPassword"
               id="outlined-basic"
-              label="Password"
+              label="Old Password"
               variant="outlined"
               placeholder="Old Password"
               type="password"
+              required
               fullWidth
               onChange={(e) => setOldPassword(e.target.value)}
               error={fieldError}
@@ -177,8 +187,7 @@ export default function UserSettings() {
               SUBMIT CHANGES
             </Button>
           </div>
-          <div className="under">
-          </div>
+          <div className="under"></div>
           <div className="linkToReg">
             <Button
               onClick={linkToReg}

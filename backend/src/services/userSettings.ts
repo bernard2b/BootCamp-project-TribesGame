@@ -16,6 +16,7 @@ export async function updateUser(
   }
 
   const user = await userRepo.getUserById(userId);
+  
   const isPasswordCorrect = await bcrypt.compare(
     userSettingsRequest.oldPassword,
     user.password
@@ -28,10 +29,15 @@ export async function updateUser(
   if (!isPasswordCorrect) {
     throw new AuthenticationError('Invalid password');
   }
+  
+  // if (userSettingsRequest.newPassword.length < 8) {
+  //   throw new ParameterError('Password must be 8 characters.')
+  // }
 
   let newPsw = !userSettingsRequest.newPassword
     ? user.password
     : encryptPassword(userSettingsRequest.newPassword);
+
 
   const newUser = {
     name: userSettingsRequest.name,
