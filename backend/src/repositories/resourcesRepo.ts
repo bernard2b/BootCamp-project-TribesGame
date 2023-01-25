@@ -33,18 +33,6 @@ export function updateFoodAmountByImperiumId(imperiumId: number, amount: number)
 }
 
 
-export function updateFoodGenerationByImperiumId(imperiumId: number, generation: number) {
-  return Resource.update(
-    { generation: generation },
-    {
-      where: {
-        imperiumId: imperiumId,
-        name: "food"
-      },
-
-    }
-  );
-}
 
 export function updateMineralGenerationByImperiumId(imperiumId: number, generation: number) {
   return Resource.update(
@@ -54,7 +42,19 @@ export function updateMineralGenerationByImperiumId(imperiumId: number, generati
         imperiumId: imperiumId,
         name: "mineral"
       },
-
+      
     }
-  );
-}
+    );
+  }
+  export function updateFoodGenerationByImperiumId(imperiumId: number, generation: number) {
+    return Resource.update(
+      { generation: generation },
+      {
+        where: {
+          imperiumId: imperiumId,
+          name: "food"
+        },
+  
+      }
+    );
+  }

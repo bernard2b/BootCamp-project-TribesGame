@@ -74,3 +74,11 @@ export function upgradeTroopById(
     }
   );
 }
+
+export function deleteTroopById(id: number): Promise<number> {
+  return Troop.destroy({
+    where: {
+      id: id,
+    },
+  });
+}
