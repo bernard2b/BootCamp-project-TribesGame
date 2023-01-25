@@ -22,7 +22,7 @@ function Buildings() {
             return (
               <li className="oneBuilding" key={building.id}>
                 <div className="buildingTitle">
-                  <h4 className="buildingTitle">{building.name}</h4>
+                  <h4 className="buildingTitle">{building.type}</h4>
                 </div>
                 <div className="buildingLevel">
                   <p className="buildingLevel">Building Level: {building.level}</p>
