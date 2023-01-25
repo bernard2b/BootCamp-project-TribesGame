@@ -9,6 +9,7 @@ import {
 } from '../interfaces/troops';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
+import Troops from '../models/troop';
 
 export async function getAllTroops(): Promise<GetAllTroopsResponse> {
   const troops = await troopsRepo.getAllTroops();
@@ -142,8 +143,6 @@ export async function upgradeTroopById(
     throw new ParameterError('Unit is at max level!');
   }
 
-
-
   if (unit.type === 'melee') {
     unit.level++;
     unit.attack += 5;
@@ -162,7 +161,10 @@ export async function upgradeTroopById(
     throw new ParameterError("You don't have enough resources!");
   } else {
     mineralAmount -= mineralToTake;
-    await resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount);
+    await resourcesRepo.updateMineralAmountByImperiumId(
+      imperiumId,
+      mineralAmount
+    );
     await troopsRepo.upgradeTroopById(
       id,
       unit.level,
@@ -179,12 +181,11 @@ export async function upgradeTroopById(
     attack: unit.attack,
     defense: unit.defense,
     healthPoint: unit.healthPoint,
-    timeCost: unit.timeCost
+    timeCost: unit.timeCost,
   };
 
   return upgradedTroop as UpgradedTroop;
 }
-
 
 export async function battle(
   imperiumId: number,
@@ -203,33 +204,75 @@ export async function battle(
 
   if (!resource) {
     throw new NotFoundError('Resources of ImperiumId not found!');
-}
+  }
 
   const army = await troopsRepo.getAllTroopsByImperiumId(imperiumId);
 
-  if(!army) {
-    throw new NotFoundError("Imperium don't have any units!")
+  if (!army) {
+    throw new NotFoundError("Imperium don't have any units!");
   }
 
-let myArmyPower = 0;
-let enemyArmyPower = 0;
-army.forEach(unit => myArmyPower += (unit.attack * unit.defense * unit.healthPoint))
+  let myArmyPower: number = 0;
+  let enemyArmyPower: number = 0;
+  let casualities: number = 0;
+  let resultMessage: string = '';
+  let battleRNG: number = Math.floor(-20 + Math.random() * 41);
+  let mineralAmount: number = resource[0].amount;
+  let foodGeneration: number = resource[1].generation;
+  let loot: string = '';
+  let rewardMineral: number = 0;
+  let rewardXP: number = 0;
+  let rewardScore: number = 0;
+  let unitsLost: Troops[] = [];
 
-if (threatLevel === "low") {
-  enemyArmyPower = 100000
-} else if (threatLevel === "medium") {
-  enemyArmyPower = 200000
-} else if (threatLevel === "high") {
-  enemyArmyPower = 400000
-}
+  army.forEach(
+    unit => (myArmyPower += unit.attack * unit.defense * unit.healthPoint)
+  );
 
+  if (threatLevel === 'low') {
+    enemyArmyPower = 50000 * (1 + battleRNG / 100);
+  } else if (threatLevel === 'medium') {
+    enemyArmyPower = 100000 * (1 + battleRNG / 100);
+  } else if (threatLevel === 'high') {
+    enemyArmyPower = 200000 * (1 + battleRNG / 100);
+  }
 
+  let result = Math.floor(myArmyPower - enemyArmyPower);
+  if (result <= 0) {
+    resultMessage = 'Defeated! You have lost all of your troops!';
+    unitsLost = army
+    loot = "F"
+    
+    army.forEach(unit => {
+      resourcesRepo.updateFoodGenerationByImperiumId(imperiumId,foodGeneration += unit.foodUpkeep);
+      troopsRepo.deleteTroopById(unit.id)})
+  } else {
+    casualities = Math.floor(100 - (result / myArmyPower) * 100);
+    resultMessage = `Victory! You have lost ${casualities}% of your army!`;
+    let numberOfunitsToDelete = Math.round((army.length * casualities) / 100);
+    for (let i = 0; i < numberOfunitsToDelete; i++) {
+      let randomUnit = Math.random() * (numberOfunitsToDelete - i);
+      let deletedUnit = army.splice(randomUnit, 1)[0];
 
-let battleResult = {
-  result: "",
-  destroyedUnits: [],
-  loot: ""
-}
+      unitsLost.push(deletedUnit);
+    }
 
-return battleResult as BattleResponse
+    unitsLost.forEach(unit => {
+      resourcesRepo.updateFoodGenerationByImperiumId(imperiumId,foodGeneration += unit.foodUpkeep);
+      rewardMineral += (unit.mineralCost * 0,75 * unit.level);  
+      resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount += rewardMineral)
+      rewardXP += (unit.level * 250)
+      rewardScore += (unit.level * 505)
+      troopsRepo.deleteTroopById(unit.id);
+    });
+    loot = `Your reward is : ${rewardMineral} Mineral & ${rewardXP} XP & ${rewardScore} Score!`;
+  }
+
+  let battleResult = {
+    result: resultMessage,
+    destroyedUnits: unitsLost,
+    reward: loot,
+  };
+
+  return battleResult as BattleResponse;
 }

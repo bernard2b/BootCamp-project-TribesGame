@@ -41,6 +41,6 @@ export interface BattleRequest {
 
 export interface BattleResponse {
   result: string,
-  destroyedUnits: string[],
-  loot: string
+  destroyedUnits: Troops[],
+  reward: string
 }
