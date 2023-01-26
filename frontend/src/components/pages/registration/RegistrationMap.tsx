@@ -15,21 +15,6 @@ function mapSelector() {
   const imperiumId = 1;
   const navigate = useNavigate();
 
-  // const handleImg = e => {
-  //   setImage(e.blueSpaceship);
-  // };
-
-  function randomButton() {
-    randomCoordinates(0, 600);
-  }
-
-  function randomCoordinates(min: number, max: number): number {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    coordinates = Math.floor(Math.random() * (max - min + 1) + min);
-    return coordinates;
-  }
-
   function selected() {
     setImage;
   }
@@ -42,19 +27,13 @@ function mapSelector() {
     $("#theDiv").prepend('<img id="ownSpaceship" src="blueSpaceship.png" />');
   });
 
-  $("map").click(function () {
-    $(this).css("opacity", function (i, o) {
-      return parseFloat(o).toFixed(1) === "0.6" ? 1 : 0.6;
-    });
-  });
-
   const confirmButton = async () => {
     setError("");
     try {
       const data = { imperiumId, coordinates };
       console.log(data);
       await fetchMap(data);
-      // navigate("/register/map");
+      //  navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -63,10 +42,22 @@ function mapSelector() {
     }
   };
 
+  function randomButton() {
+   coordinates = randomCoordinates(0, 600);
+   console.log(coordinates)
+  }
+
+  function randomCoordinates(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    const result = Number(Math.floor(Math.random() * (max - min + 1) + min));
+    console.log(result)
+    return result;
+  }
+
   return (
     <div className="RegistrationMap">
       <h1 className="imperiumName">Choose a place in space to colonize it!</h1>{" "}
-      {/* to be fetched from backend */}
       <div className="MapGridContainer">
         <div className="map">
           <img id="1" src={blueSpaceship} />
