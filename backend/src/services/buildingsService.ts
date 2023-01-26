@@ -64,7 +64,7 @@ export async function addNewBuilding(
     throw new NotFoundError('User not found!');
   }
 
-  const resource = await resourcesRepo.getResourcesByImperiumId(userId);
+  const resource = await resourcesRepo.getResourcesByImperiumId(user.imperium.id);
 
   if (!resource) {
     throw new NotFoundError('Resources for this Imperium not found!');
