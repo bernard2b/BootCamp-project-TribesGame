@@ -5,8 +5,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import CssBaseline from "@mui/material/CssBaseline";
 import fetchMap from "../../../api/mapFetch";
 import $ from "jquery";
+import blueSpaceship from "./blueSpaceship.png";
 
 function mapSelector() {
+  const [opacity, setOpacity] = useState(0);
+  const [imgage, setImage] = useState();
+
+  const handleImg = e => {
+    setImage(e.blueSpaceship);
+  };
+
   let coordinateX = 0;
   let coordinateY = 0;
   const navigate = useNavigate();
@@ -15,7 +23,7 @@ function mapSelector() {
     coordinateX = Math.ceil(Math.random() * 100);
     coordinateY = Math.ceil(Math.random() * 100);
     navigate("/");
-    // write to database;
+    // write to database here;
   }
 
   function confirm() {
@@ -23,622 +31,1819 @@ function mapSelector() {
   }
 
   function selected() {
-    console.log("click");
+    setImage;
   }
 
   $(document.body).click(function (evt) {
     const clicked = evt.target;
     const currentID = clicked.id || "No ID!";
     // $(clicked).html(currentID);
-    console.log(currentID)
-    $('#theDiv').prepend('<img id="theImg" src="../../../../../docs/Strigops new pictures/Spaceship/spaceships.png" />')
+    console.log(currentID);
+    $("#theDiv").prepend('<img id="ownSpaceship" src="blueSpaceship.png" />');
   });
 
   return (
     <div className="RegistrationMap">
       <h1 className="imperiumName">Choose a place in space to colonize it!</h1>{" "}
       {/* to be fetched from backend */}
-      <div className="MapGridContainer" onClick={selected}>
-        <div className="map" id="1"></div>
-        <div className="map" id="2"></div>
-        <div className="map" id="3"></div>
-        <div className="map" id="4"></div>
-        <div className="map" id="5"></div>
-        <div className="map" id="6"></div>
-        <div className="map" id="7"></div>
-        <div className="map" id="8"></div>
-        <div className="map" id="9"></div>
-        <div className="map" id="10"></div>
-        <div className="map" id="11"></div>
-        <div className="map" id="12"></div>
-        <div className="map" id="13"></div>
-        <div className="map" id="14"></div>
-        <div className="map" id="15"></div>
-        <div className="map" id="16"></div>
-        <div className="map" id="17"></div>
-        <div className="map" id="18"></div>
-        <div className="map" id="19"></div>
-        <div className="map" id="20"></div>
-        <div className="map" id="21"></div>
-        <div className="map" id="22"></div>
-        <div className="map" id="23"></div>
-        <div className="map" id="24"></div>
-        <div className="map" id="25"></div>
-        <div className="map" id="26"></div>
-        <div className="map" id="27"></div>
-        <div className="map" id="28"></div>
-        <div className="map" id="29"></div>
-        <div className="map" id="30"></div>
-        <div className="map" id="31"></div>
-        <div className="map" id="32"></div>
-        <div className="map" id="33"></div>
-        <div className="map" id="34"></div>
-        <div className="map" id="35"></div>
-        <div className="map" id="36"></div>
-        <div className="map" id="37"></div>
-        <div className="map" id="38"></div>
-        <div className="map" id="39"></div>
-        <div className="map" id="40"></div>
-        <div className="map" id="41"></div>
-        <div className="map" id="42"></div>
-        <div className="map" id="43"></div>
-        <div className="map" id="44"></div>
-        <div className="map" id="45"></div>
-        <div className="map" id="46"></div>
-        <div className="map" id="47"></div>
-        <div className="map" id="48"></div>
-        <div className="map" id="49"></div>
-        <div className="map" id="50"></div>
-        <div className="map" id="51"></div>
-        <div className="map" id="52"></div>
-        <div className="map" id="53"></div>
-        <div className="map" id="54"></div>
-        <div className="map" id="55"></div>
-        <div className="map" id="56"></div>
-        <div className="map" id="57"></div>
-        <div className="map" id="58"></div>
-        <div className="map" id="59"></div>
-        <div className="map" id="60"></div>
-        <div className="map" id="61"></div>
-        <div className="map" id="62"></div>
-        <div className="map" id="63"></div>
-        <div className="map" id="64"></div>
-        <div className="map" id="65"></div>
-        <div className="map" id="66"></div>
-        <div className="map" id="67"></div>
-        <div className="map" id="68"></div>
-        <div className="map" id="69"></div>
-        <div className="map" id="70"></div>
-        <div className="map" id="71"></div>
-        <div className="map" id="72"></div>
-        <div className="map" id="73"></div>
-        <div className="map" id="74"></div>
-        <div className="map" id="75"></div>
-        <div className="map" id="76"></div>
-        <div className="map" id="77"></div>
-        <div className="map" id="78"></div>
-        <div className="map" id="79"></div>
-        <div className="map" id="80"></div>
-        <div className="map" id="81"></div>
-        <div className="map" id="82"></div>
-        <div className="map" id="83"></div>
-        <div className="map" id="84"></div>
-        <div className="map" id="85"></div>
-        <div className="map" id="86"></div>
-        <div className="map" id="87"></div>
-        <div className="map" id="88"></div>
-        <div className="map" id="89"></div>
-        <div className="map" id="90"></div>
-        <div className="map" id="91"></div>
-        <div className="map" id="92"></div>
-        <div className="map" id="93"></div>
-        <div className="map" id="94"></div>
-        <div className="map" id="95"></div>
-        <div className="map" id="96"></div>
-        <div className="map" id="97"></div>
-        <div className="map" id="98"></div>
-        <div className="map" id="99"></div>
-        <div className="map" id="100"></div>
-        <div className="map" id="101"></div>
-        <div className="map" id="102"></div>
-        <div className="map" id="103"></div>
-        <div className="map" id="104"></div>
-        <div className="map" id="105"></div>
-        <div className="map" id="106"></div>
-        <div className="map" id="107"></div>
-        <div className="map" id="108"></div>
-        <div className="map" id="109"></div>
-        <div className="map" id="110"></div>
-        <div className="map" id="111"></div>
-        <div className="map" id="112"></div>
-        <div className="map" id="113"></div>
-        <div className="map" id="114"></div>
-        <div className="map" id="115"></div>
-        <div className="map" id="116"></div>
-        <div className="map" id="117"></div>
-        <div className="map" id="118"></div>
-        <div className="map" id="119"></div>
-        <div className="map" id="120"></div>
-        <div className="map" id="121"></div>
-        <div className="map" id="122"></div>
-        <div className="map" id="123"></div>
-        <div className="map" id="124"></div>
-        <div className="map" id="125"></div>
-        <div className="map" id="126"></div>
-        <div className="map" id="127"></div>
-        <div className="map" id="128"></div>
-        <div className="map" id="129"></div>
-        <div className="map" id="130"></div>
-        <div className="map" id="131"></div>
-        <div className="map" id="132"></div>
-        <div className="map" id="133"></div>
-        <div className="map" id="134"></div>
-        <div className="map" id="135"></div>
-        <div className="map" id="136"></div>
-        <div className="map" id="137"></div>
-        <div className="map" id="138"></div>
-        <div className="map" id="139"></div>
-        <div className="map" id="140"></div>
-        <div className="map" id="141"></div>
-        <div className="map" id="142"></div>
-        <div className="map" id="143"></div>
-        <div className="map" id="144"></div>
-        <div className="map" id="145"></div>
-        <div className="map" id="146"></div>
-        <div className="map" id="147"></div>
-        <div className="map" id="148"></div>
-        <div className="map" id="149"></div>
-        <div className="map" id="150"></div>
-        <div className="map" id="151"></div>
-        <div className="map" id="152"></div>
-        <div className="map" id="153"></div>
-        <div className="map" id="154"></div>
-        <div className="map" id="155"></div>
-        <div className="map" id="156"></div>
-        <div className="map" id="157"></div>
-        <div className="map" id="158"></div>
-        <div className="map" id="159"></div>
-        <div className="map" id="160"></div>
-        <div className="map" id="161"></div>
-        <div className="map" id="162"></div>
-        <div className="map" id="163"></div>
-        <div className="map" id="164"></div>
-        <div className="map" id="165"></div>
-        <div className="map" id="166"></div>
-        <div className="map" id="167"></div>
-        <div className="map" id="168"></div>
-        <div className="map" id="169"></div>
-        <div className="map" id="170"></div>
-        <div className="map" id="171"></div>
-        <div className="map" id="172"></div>
-        <div className="map" id="173"></div>
-        <div className="map" id="174"></div>
-        <div className="map" id="175"></div>
-        <div className="map" id="176"></div>
-        <div className="map" id="177"></div>
-        <div className="map" id="178"></div>
-        <div className="map" id="179"></div>
-        <div className="map" id="180"></div>
-        <div className="map" id="181"></div>
-        <div className="map" id="182"></div>
-        <div className="map" id="183"></div>
-        <div className="map" id="184"></div>
-        <div className="map" id="185"></div>
-        <div className="map" id="186"></div>
-        <div className="map" id="187"></div>
-        <div className="map" id="188"></div>
-        <div className="map" id="189"></div>
-        <div className="map" id="190"></div>
-        <div className="map" id="191"></div>
-        <div className="map" id="192"></div>
-        <div className="map" id="193"></div>
-        <div className="map" id="194"></div>
-        <div className="map" id="195"></div>
-        <div className="map" id="196"></div>
-        <div className="map" id="197"></div>
-        <div className="map" id="198"></div>
-        <div className="map" id="199"></div>
-        <div className="map" id="200"></div>
-        <div className="map" id="201"></div>
-        <div className="map" id="202"></div>
-        <div className="map" id="203"></div>
-        <div className="map" id="204"></div>
-        <div className="map" id="205"></div>
-        <div className="map" id="206"></div>
-        <div className="map" id="207"></div>
-        <div className="map" id="208"></div>
-        <div className="map" id="209"></div>
-        <div className="map" id="210"></div>
-        <div className="map" id="211"></div>
-        <div className="map" id="212"></div>
-        <div className="map" id="213"></div>
-        <div className="map" id="214"></div>
-        <div className="map" id="215"></div>
-        <div className="map" id="216"></div>
-        <div className="map" id="217"></div>
-        <div className="map" id="218"></div>
-        <div className="map" id="219"></div>
-        <div className="map" id="220"></div>
-        <div className="map" id="221"></div>
-        <div className="map" id="222"></div>
-        <div className="map" id="223"></div>
-        <div className="map" id="224"></div>
-        <div className="map" id="225"></div>
-        <div className="map" id="226"></div>
-        <div className="map" id="227"></div>
-        <div className="map" id="228"></div>
-        <div className="map" id="229"></div>
-        <div className="map" id="230"></div>
-        <div className="map" id="231"></div>
-        <div className="map" id="232"></div>
-        <div className="map" id="233"></div>
-        <div className="map" id="234"></div>
-        <div className="map" id="235"></div>
-        <div className="map" id="236"></div>
-        <div className="map" id="237"></div>
-        <div className="map" id="238"></div>
-        <div className="map" id="239"></div>
-        <div className="map" id="240"></div>
-        <div className="map" id="241"></div>
-        <div className="map" id="242"></div>
-        <div className="map" id="243"></div>
-        <div className="map" id="244"></div>
-        <div className="map" id="245"></div>
-        <div className="map" id="246"></div>
-        <div className="map" id="247"></div>
-        <div className="map" id="248"></div>
-        <div className="map" id="249"></div>
-        <div className="map" id="250"></div>
-        <div className="map" id="251"></div>
-        <div className="map" id="252"></div>
-        <div className="map" id="253"></div>
-        <div className="map" id="254"></div>
-        <div className="map" id="255"></div>
-        <div className="map" id="256"></div>
-        <div className="map" id="257"></div>
-        <div className="map" id="258"></div>
-        <div className="map" id="259"></div>
-        <div className="map" id="260"></div>
-        <div className="map" id="261"></div>
-        <div className="map" id="262"></div>
-        <div className="map" id="263"></div>
-        <div className="map" id="264"></div>
-        <div className="map" id="265"></div>
-        <div className="map" id="266"></div>
-        <div className="map" id="267"></div>
-        <div className="map" id="268"></div>
-        <div className="map" id="269"></div>
-        <div className="map" id="270"></div>
-        <div className="map" id="271"></div>
-        <div className="map" id="272"></div>
-        <div className="map" id="273"></div>
-        <div className="map" id="274"></div>
-        <div className="map" id="275"></div>
-        <div className="map" id="276"></div>
-        <div className="map" id="277"></div>
-        <div className="map" id="278"></div>
-        <div className="map" id="279"></div>
-        <div className="map" id="280"></div>
-        <div className="map" id="281"></div>
-        <div className="map" id="282"></div>
-        <div className="map" id="283"></div>
-        <div className="map" id="284"></div>
-        <div className="map" id="285"></div>
-        <div className="map" id="286"></div>
-        <div className="map" id="287"></div>
-        <div className="map" id="288"></div>
-        <div className="map" id="289"></div>
-        <div className="map" id="290"></div>
-        <div className="map" id="291"></div>
-        <div className="map" id="292"></div>
-        <div className="map" id="293"></div>
-        <div className="map" id="294"></div>
-        <div className="map" id="295"></div>
-        <div className="map" id="296"></div>
-        <div className="map" id="297"></div>
-        <div className="map" id="298"></div>
-        <div className="map" id="299"></div>
-        <div className="map" id="300"></div>
-        <div className="map" id="301"></div>
-        <div className="map" id="302"></div>
-        <div className="map" id="303"></div>
-        <div className="map" id="304"></div>
-        <div className="map" id="305"></div>
-        <div className="map" id="306"></div>
-        <div className="map" id="307"></div>
-        <div className="map" id="308"></div>
-        <div className="map" id="309"></div>
-        <div className="map" id="310"></div>
-        <div className="map" id="311"></div>
-        <div className="map" id="312"></div>
-        <div className="map" id="313"></div>
-        <div className="map" id="314"></div>
-        <div className="map" id="315"></div>
-        <div className="map" id="316"></div>
-        <div className="map" id="317"></div>
-        <div className="map" id="318"></div>
-        <div className="map" id="319"></div>
-        <div className="map" id="320"></div>
-        <div className="map" id="321"></div>
-        <div className="map" id="322"></div>
-        <div className="map" id="323"></div>
-        <div className="map" id="324"></div>
-        <div className="map" id="325"></div>
-        <div className="map" id="326"></div>
-        <div className="map" id="327"></div>
-        <div className="map" id="328"></div>
-        <div className="map" id="329"></div>
-        <div className="map" id="330"></div>
-        <div className="map" id="331"></div>
-        <div className="map" id="332"></div>
-        <div className="map" id="333"></div>
-        <div className="map" id="334"></div>
-        <div className="map" id="335"></div>
-        <div className="map" id="336"></div>
-        <div className="map" id="337"></div>
-        <div className="map" id="338"></div>
-        <div className="map" id="339"></div>
-        <div className="map" id="340"></div>
-        <div className="map" id="341"></div>
-        <div className="map" id="342"></div>
-        <div className="map" id="343"></div>
-        <div className="map" id="344"></div>
-        <div className="map" id="345"></div>
-        <div className="map" id="346"></div>
-        <div className="map" id="347"></div>
-        <div className="map" id="348"></div>
-        <div className="map" id="349"></div>
-        <div className="map" id="350"></div>
-        <div className="map" id="351"></div>
-        <div className="map" id="352"></div>
-        <div className="map" id="353"></div>
-        <div className="map" id="354"></div>
-        <div className="map" id="355"></div>
-        <div className="map" id="356"></div>
-        <div className="map" id="357"></div>
-        <div className="map" id="358"></div>
-        <div className="map" id="359"></div>
-        <div className="map" id="360"></div>
-        <div className="map" id="361"></div>
-        <div className="map" id="362"></div>
-        <div className="map" id="363"></div>
-        <div className="map" id="364"></div>
-        <div className="map" id="365"></div>
-        <div className="map" id="366"></div>
-        <div className="map" id="367"></div>
-        <div className="map" id="368"></div>
-        <div className="map" id="369"></div>
-        <div className="map" id="370"></div>
-        <div className="map" id="371"></div>
-        <div className="map" id="372"></div>
-        <div className="map" id="373"></div>
-        <div className="map" id="374"></div>
-        <div className="map" id="375"></div>
-        <div className="map" id="376"></div>
-        <div className="map" id="377"></div>
-        <div className="map" id="378"></div>
-        <div className="map" id="379"></div>
-        <div className="map" id="380"></div>
-        <div className="map" id="381"></div>
-        <div className="map" id="382"></div>
-        <div className="map" id="383"></div>
-        <div className="map" id="384"></div>
-        <div className="map" id="385"></div>
-        <div className="map" id="386"></div>
-        <div className="map" id="387"></div>
-        <div className="map" id="388"></div>
-        <div className="map" id="389"></div>
-        <div className="map" id="390"></div>
-        <div className="map" id="391"></div>
-        <div className="map" id="392"></div>
-        <div className="map" id="393"></div>
-        <div className="map" id="394"></div>
-        <div className="map" id="395"></div>
-        <div className="map" id="396"></div>
-        <div className="map" id="397"></div>
-        <div className="map" id="398"></div>
-        <div className="map" id="399"></div>
-        <div className="map" id="400"></div>
-        <div className="map" id="401"></div>
-        <div className="map" id="402"></div>
-        <div className="map" id="403"></div>
-        <div className="map" id="404"></div>
-        <div className="map" id="405"></div>
-        <div className="map" id="406"></div>
-        <div className="map" id="407"></div>
-        <div className="map" id="408"></div>
-        <div className="map" id="409"></div>
-        <div className="map" id="410"></div>
-        <div className="map" id="411"></div>
-        <div className="map" id="412"></div>
-        <div className="map" id="413"></div>
-        <div className="map" id="414"></div>
-        <div className="map" id="415"></div>
-        <div className="map" id="416"></div>
-        <div className="map" id="417"></div>
-        <div className="map" id="418"></div>
-        <div className="map" id="419"></div>
-        <div className="map" id="420"></div>
-        <div className="map" id="421"></div>
-        <div className="map" id="422"></div>
-        <div className="map" id="423"></div>
-        <div className="map" id="424"></div>
-        <div className="map" id="425"></div>
-        <div className="map" id="426"></div>
-        <div className="map" id="427"></div>
-        <div className="map" id="428"></div>
-        <div className="map" id="429"></div>
-        <div className="map" id="430"></div>
-        <div className="map" id="431"></div>
-        <div className="map" id="432"></div>
-        <div className="map" id="433"></div>
-        <div className="map" id="434"></div>
-        <div className="map" id="435"></div>
-        <div className="map" id="436"></div>
-        <div className="map" id="437"></div>
-        <div className="map" id="438"></div>
-        <div className="map" id="439"></div>
-        <div className="map" id="440"></div>
-        <div className="map" id="441"></div>
-        <div className="map" id="442"></div>
-        <div className="map" id="443"></div>
-        <div className="map" id="444"></div>
-        <div className="map" id="445"></div>
-        <div className="map" id="446"></div>
-        <div className="map" id="447"></div>
-        <div className="map" id="448"></div>
-        <div className="map" id="449"></div>
-        <div className="map" id="450"></div>
-        <div className="map" id="451"></div>
-        <div className="map" id="452"></div>
-        <div className="map" id="453"></div>
-        <div className="map" id="454"></div>
-        <div className="map" id="455"></div>
-        <div className="map" id="456"></div>
-        <div className="map" id="457"></div>
-        <div className="map" id="458"></div>
-        <div className="map" id="459"></div>
-        <div className="map" id="460"></div>
-        <div className="map" id="461"></div>
-        <div className="map" id="462"></div>
-        <div className="map" id="463"></div>
-        <div className="map" id="464"></div>
-        <div className="map" id="465"></div>
-        <div className="map" id="466"></div>
-        <div className="map" id="467"></div>
-        <div className="map" id="468"></div>
-        <div className="map" id="469"></div>
-        <div className="map" id="470"></div>
-        <div className="map" id="471"></div>
-        <div className="map" id="472"></div>
-        <div className="map" id="473"></div>
-        <div className="map" id="474"></div>
-        <div className="map" id="475"></div>
-        <div className="map" id="476"></div>
-        <div className="map" id="477"></div>
-        <div className="map" id="478"></div>
-        <div className="map" id="479"></div>
-        <div className="map" id="480"></div>
-        <div className="map" id="481"></div>
-        <div className="map" id="482"></div>
-        <div className="map" id="483"></div>
-        <div className="map" id="484"></div>
-        <div className="map" id="485"></div>
-        <div className="map" id="486"></div>
-        <div className="map" id="487"></div>
-        <div className="map" id="488"></div>
-        <div className="map" id="489"></div>
-        <div className="map" id="490"></div>
-        <div className="map" id="491"></div>
-        <div className="map" id="492"></div>
-        <div className="map" id="493"></div>
-        <div className="map" id="494"></div>
-        <div className="map" id="495"></div>
-        <div className="map" id="496"></div>
-        <div className="map" id="497"></div>
-        <div className="map" id="498"></div>
-        <div className="map" id="499"></div>
-        <div className="map" id="500"></div>
-        <div className="map" id="501"></div>
-        <div className="map" id="502"></div>
-        <div className="map" id="503"></div>
-        <div className="map" id="504"></div>
-        <div className="map" id="505"></div>
-        <div className="map" id="506"></div>
-        <div className="map" id="507"></div>
-        <div className="map" id="508"></div>
-        <div className="map" id="509"></div>
-        <div className="map" id="510"></div>
-        <div className="map" id="511"></div>
-        <div className="map" id="512"></div>
-        <div className="map" id="513"></div>
-        <div className="map" id="514"></div>
-        <div className="map" id="515"></div>
-        <div className="map" id="516"></div>
-        <div className="map" id="517"></div>
-        <div className="map" id="518"></div>
-        <div className="map" id="519"></div>
-        <div className="map" id="520"></div>
-        <div className="map" id="521"></div>
-        <div className="map" id="522"></div>
-        <div className="map" id="523"></div>
-        <div className="map" id="524"></div>
-        <div className="map" id="525"></div>
-        <div className="map" id="526"></div>
-        <div className="map" id="527"></div>
-        <div className="map" id="528"></div>
-        <div className="map" id="529"></div>
-        <div className="map" id="530"></div>
-        <div className="map" id="531"></div>
-        <div className="map" id="532"></div>
-        <div className="map" id="533"></div>
-        <div className="map" id="534"></div>
-        <div className="map" id="535"></div>
-        <div className="map" id="536"></div>
-        <div className="map" id="537"></div>
-        <div className="map" id="538"></div>
-        <div className="map" id="539"></div>
-        <div className="map" id="540"></div>
-        <div className="map" id="541"></div>
-        <div className="map" id="542"></div>
-        <div className="map" id="543"></div>
-        <div className="map" id="544"></div>
-        <div className="map" id="545"></div>
-        <div className="map" id="546"></div>
-        <div className="map" id="547"></div>
-        <div className="map" id="548"></div>
-        <div className="map" id="549"></div>
-        <div className="map" id="550"></div>
-        <div className="map" id="551"></div>
-        <div className="map" id="552"></div>
-        <div className="map" id="553"></div>
-        <div className="map" id="554"></div>
-        <div className="map" id="555"></div>
-        <div className="map" id="556"></div>
-        <div className="map" id="557"></div>
-        <div className="map" id="558"></div>
-        <div className="map" id="559"></div>
-        <div className="map" id="560"></div>
-        <div className="map" id="561"></div>
-        <div className="map" id="562"></div>
-        <div className="map" id="563"></div>
-        <div className="map" id="564"></div>
-        <div className="map" id="565"></div>
-        <div className="map" id="566"></div>
-        <div className="map" id="567"></div>
-        <div className="map" id="568"></div>
-        <div className="map" id="569"></div>
-        <div className="map" id="570"></div>
-        <div className="map" id="571"></div>
-        <div className="map" id="572"></div>
-        <div className="map" id="573"></div>
-        <div className="map" id="574"></div>
-        <div className="map" id="575"></div>
-        <div className="map" id="576"></div>
-        <div className="map" id="577"></div>
-        <div className="map" id="578"></div>
-        <div className="map" id="579"></div>
-        <div className="map" id="580"></div>
-        <div className="map" id="581"></div>
-        <div className="map" id="582"></div>
-        <div className="map" id="583"></div>
-        <div className="map" id="584"></div>
-        <div className="map" id="585"></div>
-        <div className="map" id="586"></div>
-        <div className="map" id="587"></div>
-        <div className="map" id="588"></div>
-        <div className="map" id="589"></div>
-        <div className="map" id="590"></div>
-        <div className="map" id="591"></div>
-        <div className="map" id="592"></div>
-        <div className="map" id="593"></div>
-        <div className="map" id="594"></div>
-        <div className="map" id="595"></div>
-        <div className="map" id="596"></div>
-        <div className="map" id="597"></div>
-        <div className="map" id="598"></div>
-        <div className="map" id="599"></div>
-        <div className="map" id="600"></div>
+      <div className="MapGridContainer" onClick={handleImg}>
+        <div className="map">
+          <img id="1" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="2" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="3" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="4" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="5" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="6" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="7" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="8" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="9" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="10" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="11" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="12" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="13" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="14" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="15" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="16" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="17" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="18" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="19" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="20" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="21" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="22" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="23" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="24" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="25" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="26" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="27" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="28" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="29" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="30" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="31" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="32" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="33" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="34" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="35" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="36" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="37" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="38" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="39" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="40" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="41" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="42" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="43" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="44" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="45" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="46" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="47" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="48" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="49" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="50" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="51" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="52" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="53" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="54" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="55" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="56" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="57" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="58" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="59" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="60" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="61" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="62" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="63" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="64" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="65" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="66" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="67" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="68" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="69" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="70" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="71" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="72" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="73" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="74" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="75" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="76" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="77" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="78" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="79" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="80" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="81" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="82" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="83" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="84" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="85" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="86" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="87" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="88" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="89" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="90" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="91" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="92" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="93" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="94" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="95" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="96" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="97" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="98" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="99" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="100" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="101" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="102" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="103" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="104" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="105" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="106" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="107" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="108" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="109" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="110" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="111" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="112" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="113" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="114" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="115" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="116" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="117" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="118" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="119" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="120" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="121" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="122" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="123" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="124" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="125" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="126" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="127" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="128" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="129" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="130" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="131" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="132" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="133" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="134" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="135" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="136" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="137" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="138" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="139" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="140" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="141" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="142" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="143" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="144" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="145" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="146" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="147" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="148" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="149" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="150" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="151" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="152" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="153" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="154" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="155" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="156" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="157" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="158" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="159" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="160" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="161" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="162" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="163" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="164" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="165" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="166" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="167" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="168" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="169" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="170" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="171" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="172" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="173" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="174" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="175" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="176" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="177" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="178" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="179" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="180" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="181" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="182" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="183" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="184" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="185" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="186" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="187" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="188" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="189" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="190" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="191" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="192" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="193" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="194" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="195" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="196" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="197" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="198" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="199" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="200" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="201" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="202" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="203" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="204" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="205" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="206" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="207" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="208" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="209" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="210" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="211" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="212" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="213" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="214" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="215" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="216" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="217" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="218" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="219" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="220" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="221" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="222" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="223" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="224" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="225" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="226" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="227" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="228" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="229" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="230" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="231" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="232" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="233" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="234" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="235" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="236" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="237" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="238" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="239" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="240" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="241" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="242" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="243" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="244" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="245" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="246" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="247" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="248" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="249" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="250" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="251" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="252" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="253" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="254" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="255" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="256" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="257" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="258" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="259" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="260" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="261" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="262" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="263" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="264" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="265" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="266" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="267" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="268" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="269" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="270" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="271" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="272" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="273" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="274" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="275" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="276" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="277" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="278" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="279" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="280" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="281" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="282" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="283" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="284" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="285" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="286" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="287" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="288" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="289" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="290" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="291" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="292" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="293" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="294" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="295" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="296" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="297" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="298" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="299" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="300" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="301" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="302" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="303" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="304" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="305" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="306" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="307" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="308" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="309" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="310" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="311" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="312" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="313" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="314" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="315" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="316" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="317" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="318" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="319" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="320" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="321" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="322" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="323" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="324" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="325" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="326" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="327" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="328" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="329" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="330" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="331" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="332" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="333" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="334" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="335" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="336" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="337" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="338" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="339" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="340" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="341" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="342" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="343" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="344" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="345" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="346" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="347" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="348" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="349" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="350" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="351" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="352" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="353" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="354" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="355" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="356" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="357" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="358" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="359" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="360" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="361" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="362" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="363" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="364" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="365" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="366" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="367" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="368" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="369" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="370" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="371" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="372" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="373" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="374" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="375" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="376" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="377" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="378" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="379" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="380" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="381" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="382" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="383" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="384" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="385" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="386" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="387" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="388" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="389" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="390" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="391" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="392" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="393" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="394" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="395" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="396" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="397" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="398" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="399" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="400" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="401" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="402" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="403" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="404" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="405" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="406" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="407" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="408" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="409" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="410" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="411" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="412" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="413" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="414" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="415" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="416" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="417" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="418" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="419" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="420" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="421" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="422" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="423" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="424" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="425" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="426" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="427" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="428" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="429" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="430" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="431" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="432" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="433" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="434" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="435" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="436" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="437" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="438" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="439" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="440" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="441" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="442" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="443" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="444" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="445" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="446" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="447" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="448" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="449" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="450" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="451" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="452" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="453" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="454" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="455" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="456" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="457" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="458" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="459" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="460" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="461" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="462" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="463" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="464" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="465" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="466" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="467" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="468" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="469" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="470" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="471" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="472" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="473" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="474" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="475" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="476" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="477" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="478" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="479" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="480" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="481" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="482" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="483" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="484" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="485" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="486" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="487" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="488" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="489" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="490" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="491" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="492" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="493" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="494" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="495" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="496" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="497" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="498" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="499" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="500" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="501" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="502" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="503" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="504" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="505" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="506" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="507" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="508" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="509" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="510" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="511" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="512" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="513" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="514" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="515" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="516" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="517" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="518" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="519" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="520" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="521" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="522" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="523" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="524" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="525" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="526" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="527" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="528" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="529" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="530" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="531" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="532" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="533" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="534" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="535" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="536" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="537" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="538" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="539" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="540" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="541" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="542" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="543" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="544" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="545" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="546" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="547" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="548" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="549" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="550" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="551" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="552" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="553" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="554" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="555" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="556" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="557" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="558" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="559" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="560" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="561" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="562" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="563" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="564" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="565" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="566" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="567" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="568" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="569" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="570" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="571" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="572" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="573" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="574" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="575" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="576" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="577" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="578" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="579" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="580" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="581" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="582" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="583" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="584" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="585" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="586" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="587" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="588" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="589" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="590" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="591" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="592" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="593" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="594" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="595" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="596" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="597" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="598" src={blueSpaceship} />
+        </div>
+        <div className="map">
+          <img id="599" src={blueSpaceship} />
+        </div>{" "}
       </div>
       <div className="buttons">
         <button className="button" onClick={randomCoordinates}>
