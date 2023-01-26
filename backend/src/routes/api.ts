@@ -21,9 +21,8 @@ router.use(express.json());
 router.get('/hello', helloController.getHelloWorld);
 router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
-router.get('/imperia/:imperiumId/buildings', buildingsController.getAllBuildingsByImperiumId)
 router.get('/user', authenticationHandler, userController.getUserDetail)
-router.get('/imperia/:imperiumId/buildings', buildingsController.getAllBuildingsByImperiumId)
+router.get('/imperia/buildings', authenticationHandler, buildingsController.getAllBuildingsByImperiumId)
 router.get('/imperia/troops', troopsController.getAllTroops);
 router.get('/imperia/:imperiumId/troops',  troopsController.getAllTroopsByImperiumId);
 router.get('/imperia/map/', imperiaController.getAllImperia)

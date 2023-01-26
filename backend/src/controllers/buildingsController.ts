@@ -49,13 +49,12 @@ export async function getOneBuildingById(
 }
 
 export async function getAllBuildingsByImperiumId(
-  req: Request<{ imperiumId: string }, unknown, unknown, unknown>,
+  req: Request<unknown, unknown, unknown, unknown>,
   res: Response<GetAllBuildingsResponse>,
   next: NextFunction
 ): Promise<void> {
-  const imperiumId = Number(req.params.imperiumId);
   try {
-    const data = await buildingsService.getAllBuildingsByImperiumId(imperiumId);
+    const data = await buildingsService.getAllBuildingsByImperiumId(req.userId);
     res.send(data);
   } catch (error) {
     next(new HttpError(status.INTERNAL_SERVER_ERROR));
