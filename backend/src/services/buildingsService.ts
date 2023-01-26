@@ -2,6 +2,7 @@ import { NotFoundError, ParameterError } from '../errors';
 import * as buildingsRepo from '../repositories/buildingsRepo';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
+import * as userRepo from "../repositories/userRepo"
 
 import {
   AddBuildingResponse,
@@ -37,19 +38,19 @@ export async function getOneBuildingById(
 }
 
 export async function addNewBuilding(
-  imperiumId: number,
+  userId: number,
   type: string
 ): Promise<AddBuildingResponse> {
-  if (imperiumId < 0 || !Number.isInteger(imperiumId)) {
-    throw new ParameterError('ImperiumId is not a valid number!');
+  if (userId < 0 || !Number.isInteger(userId)) {
+    throw new ParameterError('User Id is not a valid number!');
   }
-  const imperium = await imperiaRepo.getImperiumById(imperiumId);
+  const user = await userRepo.getUserById(userId);
 
-  if (!imperium) {
-    throw new NotFoundError('Imperium not found!');
+  if (!user) {
+    throw new NotFoundError('User not found!');
   }
 
-  const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
+  const resource = await resourcesRepo.getResourcesByImperiumId(userId);
 
   if (!resource) {
     throw new NotFoundError('Resources for this Imperium not found!');
@@ -98,16 +99,16 @@ let foodGeneration: number = resource[1].generation;
     throw new ParameterError('Not enough minerals!');
   } else {
     mineralAmount -= mineralToTake;
-    resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount);
-    resourcesRepo.updateFoodGenerationByImperiumId(imperiumId, foodGeneration);
+    resourcesRepo.updateMineralAmountByImperiumId(user.imperium.id, mineralAmount);
+    resourcesRepo.updateFoodGenerationByImperiumId(user.imperium.id, foodGeneration);
     resourcesRepo.updateMineralGenerationByImperiumId(
-      imperiumId,
+      user.imperium.id,
       mineralGeneration
     );
   }
 
   const newBuilding = await buildingsRepo.addNewBuilding(
-    imperiumId,
+    user.imperium.id,
     type,
     mineralCost,
     timeCost,

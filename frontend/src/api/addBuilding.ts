@@ -2,7 +2,7 @@ import AddBuilding from "../interfaces/addBuilding";
 
 export async function addBuildingFetch(type: AddBuilding): Promise<void> {
   try {
-    const response = await fetch('/api/imperia/2/buildings', {
+    const response = await fetch('/api/imperia/buildings', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
