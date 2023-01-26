@@ -19,6 +19,6 @@ export async function fetchMap(data: mapRequest): Promise<void> {
   }
 }
 
-const path = "../api/registration/map/:imperiumId";
+const path = "../api/registration/map/";
 
 export default fetchMap;

@@ -14,8 +14,7 @@ export async function getAllImperia(): Promise<GetAllImperiaResponse> {
     let responseImperium = {
       id: element.id,
       name: element.name,
-      coordinateX: element.coordinateX,
-      coordinateY: element.coordinateY,
+      coordinates: element.coordinates,
       userId: element.userId,
     };
     responseImperia.push(responseImperium);
@@ -37,10 +36,8 @@ export async function setImperiumLocationById(
   }
 
   if (
-    coordinates.coordinateX >= 0 &&
-    coordinates.coordinateX <= 100 &&
-    coordinates.coordinateY <= 100 &&
-    coordinates.coordinateY >= 0
+    coordinates.coordinates >= 0 &&
+    coordinates.coordinates <= 600
   ) {
     await imperiaRepo.setImperiumLocationById(imperiumId, coordinates);
   } else {

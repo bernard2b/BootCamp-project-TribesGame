@@ -8,13 +8,11 @@ export interface GetAllImperiaResponse {
 export interface ImperiumInterface {
     id: number;
     name: string;
-    coordinateX: number;
-    coordinateY: number;
+    coordinates: number;
     userId: number
 }
 export interface SetLocationRequest {
-    coordinateX: number,
-    coordinateY: number
+    coordinates: number,
 }
 
 export interface SetLocationResponse {
