@@ -8,7 +8,10 @@ from '../controllers/buildingsController';
 import * as troopsController from '../controllers/troopsController';
 import * as registrationController from '../controllers/registrationController'
 import * as loginController from '../controllers/loginController'
+import * as updateController from '../controllers/userController'
+import * as userController from '../controllers/userController'
 import authenticationHandler from '../middlewares/authentication';
+import * as resourcesController from '../controllers/resourcesController';
 
 import * as imperiaController from "../controllers/imperiaController"
 const router = express.Router();
@@ -19,9 +22,11 @@ router.get('/hello', helloController.getHelloWorld);
 router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/imperia/:imperiumId/buildings', buildingsController.getAllBuildingsByImperiumId)
+router.get('/user', authenticationHandler, userController.getUserDetail)
 router.get('/imperia/troops', troopsController.getAllTroops);
 router.get('/imperia/:imperiumId/troops',  troopsController.getAllTroopsByImperiumId);
 router.get('/imperia/map/', imperiaController.getAllImperia)
+router.get('/imperia/:imperiumId/resources', resourcesController.getResourcesByImperiumId)
 
 router.post('/imperia/:imperiumId/buildings', buildingsController.addNewBuilding);
 router.post('/imperia/:imperiumId/troops', troopsController.addNewTroop)
@@ -32,6 +37,8 @@ router.post('/imperia/:imperiumId/battle', troopsController.battle)
 router.put('/imperia/:imperiumId/buildings/:id', buildingsController.upgradeBuildingById)
 router.put('/imperia/:imperiumId/troops/:id', troopsController.upgradeTroopById)
 router.put('/registration/map/:imperiumId', imperiaController.setImperiumLocationById)
+router.put('/user',authenticationHandler, updateController.updateUser)
+
 
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));
 router.use(apiErrorHandler);

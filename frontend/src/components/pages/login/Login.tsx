@@ -59,14 +59,14 @@ export default function Login() {
 
   const paperStyle = {
     padding: 50,
-    height: "70vh",
+    height: "100%",
     width: 280,
     margin: "40px auto",
     background: "rgba(255, 255, 255, 0.87)",
   };
 
   return (
-    <div className="background">
+    <div className="login-background">
       <div className="container">
         <Paper elevation={20} style={paperStyle}>
           <div className="avatar">
