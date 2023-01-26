@@ -14,7 +14,6 @@ export function getBuildingByName(name: string): Promise<Building | null> {
 
 export function addNewBuilding(
   imperiumId: number,
-  name: string,
   type: string,
   mineralCost: number,
   timeCost: number,
@@ -22,12 +21,28 @@ export function addNewBuilding(
   mineralPerMinute: number
 ): Promise<Building | null> {
   return Building.create({
-    name,
     type,
     imperiumId,
     mineralCost,
     timeCost,
     foodPerMinute,
-    mineralPerMinute,
+    mineralPerMinute
   });
+}
+
+export function upgradeBuildingById(
+  id: number,
+  level: number,
+): Promise<number[]> {
+  return Building.update(
+    {
+      level
+    },
+
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
 }

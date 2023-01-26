@@ -37,7 +37,7 @@ export async function getTokenByUserName(
 
   if (loggednInUser) {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: '3000',
+      expiresIn: '1d',
     });
 
     return { token: token };

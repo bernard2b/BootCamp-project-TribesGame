@@ -8,9 +8,8 @@ import Landing from "./components/landing/Landing";
 import NotFound from "./components/pages/NotFound";
 import Registration from "./components/pages/registration/Registration";
 import RegistrationMap from "./components/pages/registration/RegistrationMap";
-import Header from "./components/header/Header";
-import Main from "./components/Main/Main";
-import Resources from "./components/Resources/Resources";
+import Login from "./components/pages/login/Login"
+
 
 export default function App() {
   return (
@@ -19,8 +18,9 @@ export default function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/register/map" element={<RegistrationMap />} />
         <Route path="/*" element={<Landing />} />
-        <Route path="/not-found" element={<NotFound />} />
-      </Routes>
+        <Route path="/register" element={<Registration />} />
+        <Route path ="/login" element={< Login/>} />
+    </Routes>  
     </BrowserRouter>
   );
 }
