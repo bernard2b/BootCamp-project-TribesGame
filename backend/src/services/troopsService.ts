@@ -9,7 +9,9 @@ import {
 } from '../interfaces/troops';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
+import * as userRepo from '../repositories/userRepo';
 import Troops from '../models/troop';
+
 
 export async function getAllTroops(): Promise<GetAllTroopsResponse> {
   const troops = await troopsRepo.getAllTroops();
@@ -17,9 +19,10 @@ export async function getAllTroops(): Promise<GetAllTroopsResponse> {
 }
 
 export async function getAllTroopsByImperiumId(
-  imperiumId: number
+  userId: number
 ): Promise<GetAllTroopsResponse> {
-  const troops = await troopsRepo.getAllTroopsByImperiumId(imperiumId);
+  const user = await userRepo.getUserById(userId);
+  const troops = await troopsRepo.getAllTroopsByImperiumId(user.imperium.id);
   if (troops) {
     return { troops: troops };
   } else {

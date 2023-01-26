@@ -1,33 +1,32 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Button, FormHelperText } from "@mui/material";
-import "./addBuilding.scss";
-import addBuildingFetch from "../../api/addBuilding";
+import "./addTroop.scss";
 import { useState } from "react";
-import fetchBuildings from "../../api/buildings";
+import addTroopFetch from "../../api/addTroop";
+import fetchTroops from "../../api/troops";
 
-function AddBuilding() {
-  const [building, setBuilding] = useState("");
+function AddTroop() {
+  const [troop, setTroop] = useState("");
   const [error, setError] = useState("");
 
   const handleChange = async () => {
     setError("");
 
-    const data = { type: building };
+    const data = { type: troop };
     if (data.type == "") {
-      setError("Please select a building");
+      setError("Please select a troop");
       return;
     }
 
-    
     try {
-      await addBuildingFetch(data);
+      await addTroopFetch(data);
       if (data) {
-        fetchBuildings;
+        fetchTroops;
         return;
       }
     } catch (error) {
@@ -38,28 +37,27 @@ function AddBuilding() {
   };
 
   return (
-    <div className="addBuilding">
+    <div className="addTroop">
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel>Select a new Building</InputLabel>
+          <InputLabel>Train a new Troop</InputLabel>
           <Select
-            value={building}
-            label="Building"
-            onChange={(e) => setBuilding(e.target.value)}
+            value={troop}
+            label="Troop"
+            onChange={(e) => setTroop(e.target.value)}
           >
             <MenuItem></MenuItem>
-            <MenuItem value={"mine"}>Mine</MenuItem>
-            <MenuItem value={"farm"}>Farm</MenuItem>
-            <MenuItem value={"lab"}>Lab</MenuItem>
-            <MenuItem value={"barracks"}>Barracks</MenuItem>
+            <MenuItem value={"melee"}>Melee</MenuItem>
+            <MenuItem value={"ranged"}>Ranged</MenuItem>
+            <MenuItem value={"mounted"}>Mounted</MenuItem>
           </Select>
           <div className="error">{error}</div>
 
-          <Button onClick={handleChange}>Build</Button>
+          <Button onClick={handleChange}>Train</Button>
         </FormControl>
       </Box>
     </div>
   );
 }
 
-export default AddBuilding;
+export default AddTroop;

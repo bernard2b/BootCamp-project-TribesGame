@@ -21,7 +21,7 @@ export default function Main() {
           <Route path="/kingdom/battle" element={<Battle />} />
           <Route path="/imperia/buildings" element={<Buildings />} />
           <Route path="/kingdom/leaderboard" element={<Leaderboard />} />
-          <Route path="/kingdom/troops" element={<Troops />} />
+          <Route path="/imperia/troops" element={<Troops />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
       </div>
