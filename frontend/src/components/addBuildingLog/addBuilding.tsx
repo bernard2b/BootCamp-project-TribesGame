@@ -18,6 +18,10 @@ function AddBuilding() {
     setError("");
 
     const data = { type: building };
+    if (data.type == "") {
+      setError("Please select a building");
+      return;
+    }
 
     try {
       await addBuildingFetch(data);
