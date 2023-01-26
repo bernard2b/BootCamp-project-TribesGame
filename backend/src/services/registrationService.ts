@@ -44,8 +44,10 @@ export async function createUserWithImperium(
   return response;
 }
 
-function encryptPassword(password: string) {
+export function encryptPassword(password: string) {
   const salt = bcrypt.genSaltSync(saltRounds);
   password = bcrypt.hashSync(password, salt);
   return password;
 }
+
+

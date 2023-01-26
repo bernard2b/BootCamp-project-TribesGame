@@ -10,3 +10,4 @@ app.listen(port, async () => {
   await db.sync({ alter: false });
   logger.info('DB has been initialized');
 });
+ 
