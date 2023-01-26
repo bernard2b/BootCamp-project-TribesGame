@@ -57,14 +57,20 @@ export async function addNewBuilding(
 
   await newBuildingValidator.parseAsync({ type });
 
-  let mineralCost: number;
-  let timeCost: number;
-  let mineralPerMinute: number;
-  let foodPerMinute: number;
-  let mineralAmount: number = resource[0].amount;
-  let mineralToTake: number = 0;
-  let mineralGeneration: number = resource[0].generation;
-  let foodGeneration: number = resource[1].generation;
+  
+
+
+let mineralCost: number;
+let timeCost: number;
+let mineralPerMinute: number;
+let foodPerMinute: number;
+let mineralAmount: number = resource[0].amount;
+let mineralToTake: number = 0;
+let mineralGeneration: number = resource[0].generation;
+let foodGeneration: number = resource[1].generation;
+
+
+
 
   if (type === 'mine') {
     mineralCost = 500;
@@ -88,7 +94,7 @@ export async function addNewBuilding(
     foodPerMinute = 0;
   }
 
-  if (mineralToTake > mineralAmount) {
+  if (mineralAmount == undefined || mineralToTake > mineralAmount) {
     throw new ParameterError('Not enough minerals!');
   } else {
     mineralAmount -= mineralToTake;

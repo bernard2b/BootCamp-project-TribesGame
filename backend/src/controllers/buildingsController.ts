@@ -59,6 +59,7 @@ export async function addNewBuilding(
     const data = await buildingsService.addNewBuilding(imperiumId, type);
     res.send(data);
   } catch (error) {
+    console.log(error)
     if (error instanceof NotFoundError) {
       next(new HttpError(status.NOT_FOUND, error.message));
     } else if (error instanceof ZodError) {
@@ -66,7 +67,7 @@ export async function addNewBuilding(
     } else if (error instanceof ParameterError) {
         next(new HttpError(status.BAD_REQUEST, error.message));
     } else {
-      next(new HttpError(status.INTERNAL_SERVER_ERROR));
+      next(new HttpError(status.INTERNAL_SERVER_ERROR, error.message));
     }
   }
 }
