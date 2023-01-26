@@ -6,8 +6,6 @@ import buildingsInterface from "./../../interfaces/buildingsInterface";
 
 
 function Buildings() {
-
-  console.log("heeeeeeeeeeeeee") 
    const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
 
   useEffect(() => {

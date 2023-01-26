@@ -2,7 +2,7 @@ import { NotFoundError, ParameterError } from '../errors';
 import * as buildingsRepo from '../repositories/buildingsRepo';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
-import * as userRepo from "../repositories/userRepo"
+import * as userRepo from '../repositories/userRepo';
 
 import {
   AddBuildingResponse,
@@ -40,11 +40,10 @@ export async function getOneBuildingById(
 export async function getAllBuildingsByImperiumId(
   userId: number
 ): Promise<GetAllBuildingsResponse> {
-
-  const user = await userRepo.getUserById(userId)
-
-
-  const buildings = await buildingsRepo.getAllBuildingsByImperiumId(user.imperium.id);
+  const user = await userRepo.getUserById(userId);
+  const buildings = await buildingsRepo.getAllBuildingsByImperiumId(
+    user.imperium.id
+  );
   if (buildings) {
     return { buildings: buildings };
   } else {
@@ -73,20 +72,14 @@ export async function addNewBuilding(
 
   await newBuildingValidator.parseAsync({ type });
 
-  
-
-
-let mineralCost: number;
-let timeCost: number;
-let mineralPerMinute: number;
-let foodPerMinute: number;
-let mineralAmount: number = resource[0].amount;
-let mineralToTake: number = 0;
-let mineralGeneration: number = resource[0].generation;
-let foodGeneration: number = resource[1].generation;
-
-
-
+  let mineralCost: number;
+  let timeCost: number;
+  let mineralPerMinute: number;
+  let foodPerMinute: number;
+  let mineralAmount: number = resource[0].amount;
+  let mineralToTake: number = 0;
+  let mineralGeneration: number = resource[0].generation;
+  let foodGeneration: number = resource[1].generation;
 
   if (type === 'mine') {
     mineralCost = 500;
@@ -114,8 +107,14 @@ let foodGeneration: number = resource[1].generation;
     throw new ParameterError('Not enough minerals!');
   } else {
     mineralAmount -= mineralToTake;
-    resourcesRepo.updateMineralAmountByImperiumId(user.imperium.id, mineralAmount);
-    resourcesRepo.updateFoodGenerationByImperiumId(user.imperium.id, foodGeneration);
+    resourcesRepo.updateMineralAmountByImperiumId(
+      user.imperium.id,
+      mineralAmount
+    );
+    resourcesRepo.updateFoodGenerationByImperiumId(
+      user.imperium.id,
+      foodGeneration
+    );
     resourcesRepo.updateMineralGenerationByImperiumId(
       user.imperium.id,
       mineralGeneration
