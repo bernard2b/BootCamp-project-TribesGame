@@ -6,7 +6,9 @@ import buildingsInterface from "./../../interfaces/buildingsInterface";
 
 
 function Buildings() {
-  const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
+
+  console.log("heeeeeeeeeeeeee") 
+   const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
 
   useEffect(() => {
     fetchBuildings().then((buildingsData) => {

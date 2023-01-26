@@ -38,9 +38,13 @@ export async function getOneBuildingById(
 }
 
 export async function getAllBuildingsByImperiumId(
-  imperiumId: number
+  userId: number
 ): Promise<GetAllBuildingsResponse> {
-  const buildings = await buildingsRepo.getAllBuildingsByImperiumId(imperiumId);
+
+  const user = await userRepo.getUserById(userId)
+
+
+  const buildings = await buildingsRepo.getAllBuildingsByImperiumId(user.imperium.id);
   if (buildings) {
     return { buildings: buildings };
   } else {
