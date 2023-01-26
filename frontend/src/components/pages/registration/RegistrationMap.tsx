@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RegistrationMap.scss";
 import { SubmitHandler } from "react-hook-form";
-import fetchMap from "../../../api/mapFetch";
+import { fetchAllImperia, fetchPutImperia } from "../../../api/mapFetch";
 import $ from "jquery";
 import blueSpaceship from "./blueSpaceship.png";
-import { stringify } from "querystring";
+import mapInterface, { mapRequest } from "../../../interfaces/mapInterface";
 
 function mapSelector() {
   const [image, setImage] = useState("");
@@ -15,6 +15,14 @@ function mapSelector() {
   let coordinates: number;
   const imperiumId = 1;
   const navigate = useNavigate();
+  const [enemyImperia, setEnemyImperia] = useState<mapInterface[]>([]);
+
+  useEffect(() => {
+    fetchAllImperia().then((imperiumData) => {
+      setEnemyImperia(imperiumData.imperia);
+    });
+  }, []);
+
 
   function selected() {
     setImage(blueSpaceship);
@@ -31,13 +39,12 @@ function mapSelector() {
     const currentID = clicked.id || "No ID!";
     coordinates = Number(currentID);
     setPosition(coordinates.toString());
-    return coordinates
+    return coordinates;
   });
 
   const handleClick2 = (event: {
     currentTarget: {
       style: { backgroundColor: string; color: string; opacity: string };
-      // id: { "": string };
       classList: { add: (arg0: string, arg1: string) => void };
     };
   }) => {
@@ -63,9 +70,9 @@ function mapSelector() {
   const confirmButton = async () => {
     setError("");
     try {
-      const data = { imperiumId, coordinates };
-      await fetchMap(data);
-      console.log(data)
+      const data = { id: imperiumId, coordinates };
+      await fetchPutImperia(data);
+      console.log("dataaaa", data);
       // navigate("/");
     } catch (error) {
       if (error instanceof Error) {
@@ -4890,6 +4897,17 @@ function mapSelector() {
         <button className="button" onClick={confirmButton}>
           CONFIRM{" "}
         </button>
+        <section className="enemyContainer">
+          <ul className="enemyList">
+            {enemyImperia.map((imperia) => {
+              return (
+                <li className="imperias" key={imperia.id}>
+                  {imperia.id}, coordinates: {imperia.coordinates}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </div>
     </div>
   );

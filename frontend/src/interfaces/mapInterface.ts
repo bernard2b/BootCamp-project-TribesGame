@@ -1,9 +1,12 @@
 export interface mapRequest {
-  imperiumId: number;
+  id: number;
   coordinates: number;
 }
 
 export interface mapResponse {
-  imperiumId: number;
+  id: number;
   coordinates: number;
+  enemy: boolean;
 }
+
+export default mapRequest;
