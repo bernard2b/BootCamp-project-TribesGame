@@ -12,6 +12,14 @@ export function getBuildingByName(name: string): Promise<Building | null> {
   return Building.findOne({ where: { name: name } });
 }
 
+export function getAllBuildingsByImperiumId(imperiumId: number): Promise<Building[]> {
+  return Building.findAll({
+    where: {
+      imperiumId: imperiumId,
+    },
+  });
+}
+
 export function addNewBuilding(
   imperiumId: number,
   type: string,

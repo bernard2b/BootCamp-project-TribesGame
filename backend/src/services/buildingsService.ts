@@ -36,6 +36,17 @@ export async function getOneBuildingById(
   }
 }
 
+export async function getAllBuildingsByImperiumId(
+  imperiumId: number
+): Promise<GetAllBuildingsResponse> {
+  const buildings = await buildingsRepo.getAllBuildingsByImperiumId(imperiumId);
+  if (buildings) {
+    return { buildings: buildings };
+  } else {
+    throw new NotFoundError();
+  }
+}
+
 export async function addNewBuilding(
   imperiumId: number,
   type: string
