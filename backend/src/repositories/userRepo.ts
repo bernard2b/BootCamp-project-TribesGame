@@ -1,3 +1,4 @@
+import Imperium from '../models/imperium';
 import { where } from 'sequelize';
 import { userSettingsRequest } from '../interfaces/user';
 import User from '../models/user';
@@ -25,5 +26,6 @@ export function updateUser(
 }
 
 export function getUserById(id: number): Promise<User | null> {
-  return User.findByPk(id)
+  return User.findOne({where: { id: id},
+  include: Imperium})
 }

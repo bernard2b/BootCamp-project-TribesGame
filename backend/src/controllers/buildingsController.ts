@@ -63,16 +63,16 @@ export async function getAllBuildingsByImperiumId(
 }
 
 export async function addNewBuilding(
-  req: Request<{ imperiumId: string }, unknown, NewBuildingRequest, unknown>,
+  req: Request<unknown, unknown, NewBuildingRequest, unknown>,
   res: Response<AddBuildingResponse>,
   next: NextFunction
 ): Promise<void> {
-  const imperiumId = Number(req.params.imperiumId);
   const type = req.body.type;
   try {
-    const data = await buildingsService.addNewBuilding(imperiumId, type);
+    const data = await buildingsService.addNewBuilding(req.userId, type);
     res.send(data);
   } catch (error) {
+    console.log(error)
     if (error instanceof NotFoundError) {
       next(new HttpError(status.NOT_FOUND, error.message));
     } else if (error instanceof ZodError) {
@@ -80,7 +80,7 @@ export async function addNewBuilding(
     } else if (error instanceof ParameterError) {
         next(new HttpError(status.BAD_REQUEST, error.message));
     } else {
-      next(new HttpError(status.INTERNAL_SERVER_ERROR));
+      next(new HttpError(status.INTERNAL_SERVER_ERROR, error.message));
     }
   }
 }
