@@ -1,9 +1,7 @@
 export interface mapRequest {
-  xCordinate: number;
-  yCordinate: number 
+  coordinate: number;
 }
 
 export interface mapResponse {
-  xCordinate: number;
-  yCordinate: number
+  coordinate: number;
 }

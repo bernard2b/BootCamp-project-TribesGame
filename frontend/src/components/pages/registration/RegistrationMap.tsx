@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RegistrationMap.scss";
+import fetchMap from "../../../api/registrationMapFetch";
 import { SubmitHandler, useForm } from "react-hook-form";
 import CssBaseline from "@mui/material/CssBaseline";
 import fetchMap from "../../../api/mapFetch";
@@ -10,19 +11,17 @@ import blueSpaceship from "./blueSpaceship.png";
 function mapSelector() {
   const [opacity, setOpacity] = useState(0);
   const [imgage, setImage] = useState();
+  const [error, setError] = useState("");
+  let coordinates = "0";
+  const data = { coordinates };
+  const navigate = useNavigate();
 
-  const handleImg = e => {
+  const handleImg = (e) => {
     setImage(e.blueSpaceship);
   };
 
-  let coordinateX = 0;
-  let coordinateY = 0;
-  const navigate = useNavigate();
-
   function randomCoordinates() {
-    coordinateX = Math.ceil(Math.random() * 100);
-    coordinateY = Math.ceil(Math.random() * 100);
-    navigate("/");
+    coordinates = Math.ceil(Math.random() * 100);
     // write to database here;
   }
 
@@ -41,6 +40,25 @@ function mapSelector() {
     console.log(currentID);
     $("#theDiv").prepend('<img id="ownSpaceship" src="blueSpaceship.png" />');
   });
+
+  $("map").click(function () {
+    $(this).css("opacity", function (i, o) {
+      return parseFloat(o).toFixed(1) === "0.6" ? 1 : 0.6;
+    });
+  });
+
+  const onSubmit = async () => {
+    setError("");
+    try {
+      await fetchMap(data);
+      navigate("/register/map");
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+        console.error(error.message);
+      }
+    }
+  };
 
   return (
     <div className="RegistrationMap">
