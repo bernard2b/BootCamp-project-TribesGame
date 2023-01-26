@@ -11,6 +11,7 @@ import * as loginController from '../controllers/loginController'
 import * as updateController from '../controllers/userController'
 import * as userController from '../controllers/userController'
 import authenticationHandler from '../middlewares/authentication';
+import * as resourcesController from '../controllers/resourcesController';
 
 import * as imperiaController from "../controllers/imperiaController"
 const router = express.Router();
@@ -25,6 +26,7 @@ router.get('/user', authenticationHandler, userController.getUserDetail)
 router.get('/imperia/troops', troopsController.getAllTroops);
 router.get('/imperia/:imperiumId/troops',  troopsController.getAllTroopsByImperiumId);
 router.get('/imperia/map/', imperiaController.getAllImperia)
+router.get('/imperia/:imperiumId/resources', resourcesController.getResourcesByImperiumId)
 
 router.post('/imperia/:imperiumId/buildings', buildingsController.addNewBuilding);
 router.post('/imperia/:imperiumId/troops', troopsController.addNewTroop)
