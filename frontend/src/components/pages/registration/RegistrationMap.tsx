@@ -12,7 +12,7 @@ function mapSelector() {
   const [imgage, setImage] = useState();
   const [error, setError] = useState("");
   let coordinates = 0;
-  const imperiumId = 10;
+  const imperiumId = 1;
   const navigate = useNavigate();
 
   // const handleImg = e => {
@@ -52,7 +52,7 @@ function mapSelector() {
     setError("");
     try {
       const data = { imperiumId, coordinates };
-      console.log(data)
+      console.log(data);
       await fetchMap(data);
       // navigate("/register/map");
     } catch (error) {

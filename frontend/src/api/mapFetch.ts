@@ -2,7 +2,7 @@ import { mapRequest, mapResponse } from "../interfaces/mapInterface";
 
 export async function fetchMap(data: mapRequest): Promise<void> {
   try {
-    const response = await fetch(path, {
+    const response = await fetch(`../api/registration/map/${body.imperiumId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -19,6 +19,5 @@ export async function fetchMap(data: mapRequest): Promise<void> {
   }
 }
 
-const path = "../api/registration/map/";
 
 export default fetchMap;
