@@ -90,7 +90,6 @@ export default function Registration() {
 
   return (
     <div className="Registration">
-      <Header />
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
