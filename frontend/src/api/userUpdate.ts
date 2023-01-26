@@ -4,7 +4,7 @@ export async function fetchUserSettings(
   userSettingsRequest: userSettingsRequest
 ): Promise<void> {
   try {
-    const response = await fetch("/api/userupdate", {
+    const response = await fetch("/api/user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

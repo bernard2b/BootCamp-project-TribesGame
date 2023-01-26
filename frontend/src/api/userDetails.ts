@@ -1,5 +1,5 @@
 export async function fetchUserDetails() {
-  const response = await fetch("/api/userdetails");
+  const response = await fetch("/api/user");
   const user = await response.json();
 
   return user;

@@ -21,7 +21,7 @@ router.get('/hello', helloController.getHelloWorld);
 router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/kingdom/troops', troopsController.getAllTroops);
-router.get('/userdetails', authenticationHandler, userController.getUserDetail)
+router.get('/user', authenticationHandler, userController.getUserDetail)
 router.get('/imperia/troops', troopsController.getAllTroops);
 router.get('/imperia/:imperiumId/troops',  troopsController.getAllTroopsByImperiumId);
 router.get('/imperia/map/', imperiaController.getAllImperia)
@@ -35,7 +35,7 @@ router.post('/imperia/:imperiumId/battle', troopsController.battle)
 router.put('/imperia/:imperiumId/buildings/:id', buildingsController.upgradeBuildingById)
 router.put('/imperia/:imperiumId/troops/:id', troopsController.upgradeTroopById)
 router.put('/registration/map/:imperiumId', imperiaController.setImperiumLocationById)
-router.put('/userupdate',authenticationHandler, updateController.updateUser)
+router.put('/user',authenticationHandler, updateController.updateUser)
 
 
 router.use('/*', (req, res, next) => next(new HttpError(status.NOT_FOUND)));

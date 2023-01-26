@@ -12,7 +12,7 @@ export default function App() {
         <Route path="/*" element={<Landing />} />
         <Route path="/register" element={<Registration />} />
         <Route path ="/login" element={< Login/>} />
-        <Route path ="/usersettings" element={< UserSettings/>} />
+        <Route path ="/user" element={< UserSettings/>} />
 
     </Routes>  
     </BrowserRouter>

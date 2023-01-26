@@ -12,8 +12,8 @@ import {
   userSettingsRequest,
   userSettingsResponse,
 } from '../interfaces/user';
-import * as userSettings from '../services/userSettings'
-import * as getUserDetails from '../services/userSettings'
+import * as userSettings from '../services/userService'
+import * as getUserDetails from '../services/userService'
 
 export async function updateUser(
   req: Request<unknown, unknown, userSettingsRequest, unknown>,
