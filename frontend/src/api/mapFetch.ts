@@ -1,9 +1,9 @@
-import { createUserRequest, createUserResponse } from "../interfaces/registrationInterface";
+import { mapRequest, mapResponse } from "../interfaces/mapInterface";
 
-export async function fetchRegistration(data: createUserRequest): Promise<void> {
+export async function fetchMap(data: mapRequest): Promise<void> {
   try {
     const response = await fetch(path, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -19,6 +19,6 @@ export async function fetchRegistration(data: createUserRequest): Promise<void> 
   }
 }
 
-const path = "api/registration";
+const path = "../api/registration/map/:imperiumId";
 
-export default fetchRegistration;
+export default fetchMap;

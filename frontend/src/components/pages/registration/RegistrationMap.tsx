@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RegistrationMap.scss";
-import fetchMap from "../../../api/registrationMapFetch";
 import { SubmitHandler, useForm } from "react-hook-form";
 import CssBaseline from "@mui/material/CssBaseline";
 import fetchMap from "../../../api/mapFetch";
@@ -12,21 +11,23 @@ function mapSelector() {
   const [opacity, setOpacity] = useState(0);
   const [imgage, setImage] = useState();
   const [error, setError] = useState("");
-  let coordinates = "0";
-  const data = { coordinates };
+  let coordinates = 0;
+  const imperiumId = 10;
   const navigate = useNavigate();
 
-  const handleImg = (e) => {
-    setImage(e.blueSpaceship);
-  };
+  // const handleImg = e => {
+  //   setImage(e.blueSpaceship);
+  // };
 
-  function randomCoordinates() {
-    coordinates = Math.ceil(Math.random() * 100);
-    // write to database here;
+  function randomButton() {
+    randomCoordinates(0, 600);
   }
 
-  function confirm() {
-    navigate("/");
+  function randomCoordinates(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    coordinates = Math.floor(Math.random() * (max - min + 1) + min);
+    return coordinates;
   }
 
   function selected() {
@@ -37,7 +38,7 @@ function mapSelector() {
     const clicked = evt.target;
     const currentID = clicked.id || "No ID!";
     // $(clicked).html(currentID);
-    console.log(currentID);
+    coordinates = Number(currentID);
     $("#theDiv").prepend('<img id="ownSpaceship" src="blueSpaceship.png" />');
   });
 
@@ -47,11 +48,13 @@ function mapSelector() {
     });
   });
 
-  const onSubmit = async () => {
+  const confirmButton = async () => {
     setError("");
     try {
+      const data = { imperiumId, coordinates };
+      console.log(data)
       await fetchMap(data);
-      navigate("/register/map");
+      // navigate("/register/map");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -64,7 +67,7 @@ function mapSelector() {
     <div className="RegistrationMap">
       <h1 className="imperiumName">Choose a place in space to colonize it!</h1>{" "}
       {/* to be fetched from backend */}
-      <div className="MapGridContainer" onClick={handleImg}>
+      <div className="MapGridContainer">
         <div className="map">
           <img id="1" src={blueSpaceship} />
         </div>
@@ -1864,10 +1867,10 @@ function mapSelector() {
         </div>{" "}
       </div>
       <div className="buttons">
-        <button className="button" onClick={randomCoordinates}>
+        <button className="button" onClick={randomButton}>
           RANDOM
         </button>
-        <button className="button" onClick={confirm}>
+        <button className="button" onClick={confirmButton}>
           CONFIRM{" "}
         </button>
       </div>

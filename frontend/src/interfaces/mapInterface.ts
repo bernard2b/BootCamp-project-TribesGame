@@ -1,7 +1,9 @@
 export interface mapRequest {
-  coordinate: number;
+  imperiumId: number;
+  coordinates: number;
 }
 
 export interface mapResponse {
-  coordinate: number;
+  imperiumId: number;
+  coordinates: number;
 }
