@@ -52,6 +52,7 @@
   opacity: 0;
   // max-width: 15px;
   height: fit-content;
+  width: fit-content;
   min-height: 16px;
 }
 
@@ -77,7 +78,7 @@
   border-radius: 6px;
 }
 
-.buttons{
+.buttons {
   margin-left: 44%;
   margin-right: 39.7%;
 }
@@ -87,4 +88,16 @@ img {
   padding: 0;
   width: 16px;
   height: 16px;
+}
+
+.selectedPosition {
+  color: rgb(193, 228, 190);
+  text-align: center;
+  padding-top: 1%;
+  margin-left: 43%;
+  margin-right: 41%;
+  position:sticky;
+  border: 2px solid;
+  border-color: rgb(53, 108, 53);
+  background-color: rgb(7, 64, 20);
 }

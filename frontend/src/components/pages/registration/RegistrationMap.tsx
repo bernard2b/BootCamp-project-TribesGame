@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RegistrationMap.scss";
-import { SubmitHandler, useForm } from "react-hook-form";
-import CssBaseline from "@mui/material/CssBaseline";
+import { SubmitHandler } from "react-hook-form";
 import fetchMap from "../../../api/mapFetch";
 import $ from "jquery";
 import blueSpaceship from "./blueSpaceship.png";
+import { stringify } from "querystring";
 
 function mapSelector() {
-  const [opacity, setOpacity] = useState(0);
   const [imgage, setImage] = useState();
   const [error, setError] = useState("");
+  const [position, setPosition] = useState("please select");
   let coordinates = 0;
   const imperiumId = 1;
   const navigate = useNavigate();
@@ -19,21 +19,36 @@ function mapSelector() {
     setImage;
   }
 
-  $(document.body).click(function (evt) {
+  $("body").click(function (evt) {
+    if (evt.target.className == "button" || evt.target.id.length > 3) return;
+    else if (evt.target.className !== "") return;
     const clicked = evt.target;
     const currentID = clicked.id || "No ID!";
     // $(clicked).html(currentID);
     coordinates = Number(currentID);
-    $("#theDiv").prepend('<img id="ownSpaceship" src="blueSpaceship.png" />');
+    setPosition(coordinates.toString());
+    // $("#theDiv").prepend('<img id="ownSpaceship" src="blueSpaceship.png" />');
   });
+
+  function randomButton(): number {
+    const result = randomCoordinates(0, 600);
+    return result;
+  }
+
+  function randomCoordinates(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    coordinates = Number(Math.floor(Math.random() * (max - min + 1) + min));
+    setPosition(coordinates.toString());
+    return coordinates;
+  }
 
   const confirmButton = async () => {
     setError("");
     try {
       const data = { imperiumId, coordinates };
-      console.log(data);
       await fetchMap(data);
-      //  navigate("/");
+      navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -42,23 +57,10 @@ function mapSelector() {
     }
   };
 
-  function randomButton() {
-   coordinates = randomCoordinates(0, 600);
-   console.log(coordinates)
-  }
-
-  function randomCoordinates(min: number, max: number): number {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    const result = Number(Math.floor(Math.random() * (max - min + 1) + min));
-    console.log(result)
-    return result;
-  }
-
   return (
     <div className="RegistrationMap">
       <h1 className="imperiumName">Choose a place in space to colonize it!</h1>{" "}
-      <div className="MapGridContainer">
+      <div className="MapGridContainer" id="parent">
         <div className="map">
           <img id="1" src={blueSpaceship} />
         </div>
@@ -1865,6 +1867,9 @@ function mapSelector() {
           CONFIRM{" "}
         </button>
       </div>
+      {/* <div className="selectedPosition">
+        <h2>{position}</h2>
+      </div> */}
     </div>
   );
 }
