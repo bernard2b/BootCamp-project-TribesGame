@@ -1,9 +1,9 @@
-.login-background{
+.background{
   padding: 0;
   margin: 0;
   width: 100vw;
-  height: 100vh;
-  background-image: url('./login-pictures/bg3-01.png');
+  height: 100%;
+  background-image: url('../login/login-pictures/bg3-01.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -20,6 +20,7 @@
   margin-bottom: 5px;
 }
 
+
 .input{
   margin-top: 25px;
   display: flex;
@@ -29,12 +30,30 @@
 }
 
 .input .username{
-  margin-top: 35px;
+  margin-top: 25px;
+
 
 }
 
-.input .password{
-  margin-top: 55px;
+.input .email{
+  margin-top: 35px;
+}
+
+.input .email{
+  margin-top: 35px;
+}
+
+.input .newPassword{
+  margin-top: 35px;
+}
+
+.input .confirmNewPassword{
+  margin-top: 35px;
+  margin-bottom: 45px;
+}
+
+.input .oldPassword{
+  margin-top: 7px;
   margin-bottom: 35px;
 }
 
@@ -58,6 +77,18 @@
 }
 
 p{
-  color: black;
+  color: rgb(0, 0, 0);
   font-size: x-large;
+}
+h2{
+  color: rgb(0, 0, 0);
+}
+
+h3{
+  margin-bottom: 35px;
+}
+
+
+.paperstyle{
+  color: rgba(16, 38, 13, 0.576);
 }
