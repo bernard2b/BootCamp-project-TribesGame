@@ -9,7 +9,9 @@ import {
 } from '../interfaces/troops';
 import * as imperiaRepo from '../repositories/imperiaRepo';
 import * as resourcesRepo from '../repositories/resourcesRepo';
+import * as userRepo from '../repositories/userRepo';
 import Troops from '../models/troop';
+
 
 export async function getAllTroops(): Promise<GetAllTroopsResponse> {
   const troops = await troopsRepo.getAllTroops();
@@ -17,9 +19,10 @@ export async function getAllTroops(): Promise<GetAllTroopsResponse> {
 }
 
 export async function getAllTroopsByImperiumId(
-  imperiumId: number
+  userId: number
 ): Promise<GetAllTroopsResponse> {
-  const troops = await troopsRepo.getAllTroopsByImperiumId(imperiumId);
+  const user = await userRepo.getUserById(userId);
+  const troops = await troopsRepo.getAllTroopsByImperiumId(user.imperium.id);
   if (troops) {
     return { troops: troops };
   } else {
@@ -28,19 +31,21 @@ export async function getAllTroopsByImperiumId(
 }
 
 export async function addNewTroop(
-  imperiumId: number,
+  userId: number,
   type: string
 ): Promise<AddTroopResponse> {
-  if (!imperiumId || !Number.isInteger(imperiumId)) {
+  const user = await userRepo.getUserById(userId);
+  
+  if (!user.imperium.id || !Number.isInteger(user.imperium.id)) {
     throw new ParameterError('No imperium Id implemeted');
   }
-  const imperium = await imperiaRepo.getImperiumById(imperiumId);
+  const imperium = await imperiaRepo.getImperiumById(user.imperium.id);
 
   if (!imperium) {
     throw new NotFoundError('No such Id');
   }
 
-  const resource = await resourcesRepo.getResourcesByImperiumId(imperiumId);
+  const resource = await resourcesRepo.getResourcesByImperiumId(user.imperium.id);
   let mineralAmount: number = resource[0].amount;
   let mineralToTake: number = 0;
   let foodAmount: number = resource[1].amount;
@@ -93,13 +98,13 @@ export async function addNewTroop(
     throw new ParameterError("You don't have enough resources!");
   } else {
     mineralAmount -= mineralToTake;
-    resourcesRepo.updateMineralAmountByImperiumId(imperiumId, mineralAmount);
+    resourcesRepo.updateMineralAmountByImperiumId(user.imperium.id, mineralAmount);
     foodGeneration -= foodConsumption;
-    resourcesRepo.updateFoodGenerationByImperiumId(imperiumId, foodGeneration);
+    resourcesRepo.updateFoodGenerationByImperiumId(user.imperium.id, foodGeneration);
   }
 
   const newTroop = await troopsRepo.addNewTroop(
-    imperiumId,
+    user.imperium.id,
     type,
     attack,
     defense,
