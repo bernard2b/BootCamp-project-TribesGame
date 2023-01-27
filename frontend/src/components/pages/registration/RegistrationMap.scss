@@ -1,0 +1,109 @@
+.RegistrationMap {
+  background-image: url("../../../../../docs/background/mapSelect.png");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.imperiumName {
+  padding-top: 10px;
+  color: rgb(53, 108, 53);
+  margin: 1rem;
+  display: block;
+  text-align: center;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 1px rgb(157, 202, 68), 2px 2px 1px rgb(53, 108, 54);
+  letter-spacing: 1px;
+}
+
+.border {
+  border: 3px;
+  border-color: rgb(223, 141, 33);
+  opacity: 1;
+
+}
+
+.MapGridContainer {
+  background-image: url("../../../../../docs/background/Space Background.png");
+  background-position: center;
+  background-size: auto;
+  height: 50vh;
+  overflow-y: hidden;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-gap: 0px;
+  // grid-column-gap: 0px;
+  padding: 0em;
+  margin-left: 20%;
+  margin-right: 20%;
+  max-width: 100%;
+  border: 3px solid;
+  border-color: rgb(74, 135, 61);
+  border-radius: 8px;
+}
+
+.map {
+  padding: 0px;
+  padding-top: 0px;
+  font-size: 1px;
+  border-radius: 10px;
+  // background: rgb(59, 96, 96);
+  // opacity: 0;
+  // max-width: 15px;
+  height: fit-content;
+  width: fit-content;
+  min-height: 16px;
+}
+
+.map:hover {
+  background: rgb(86, 184, 120);
+  opacity: 0.7;
+}
+
+.map:click {
+  background: rgb(86, 184, 120);
+  opacity: 1;
+}
+
+.button {
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(193, 228, 190);
+  text-shadow: 1px 1px 1px rgb(50, 66, 20), 2px 2px 1px rgb(53, 108, 54);
+  background-color: rgb(42, 120, 53);
+  margin-top: 0.3%;
+  margin: 1px;
+  border-radius: 6px;
+}
+
+.buttons {
+  margin-left: 44%;
+  margin-right: 39.7%;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.selectedPosition {
+  color: rgb(193, 228, 190);
+  text-align: left;
+  padding: 0%;
+  margin-left: 20%;
+  margin-right: 20%;
+  position:sticky;
+  border: 2px solid;
+  border-color: rgb(53, 108, 53);
+  border-radius: 8px;
+  background-color: rgb(7, 64, 20);
+}
+
+.imperias{
+  color: aliceblue;
+  background-color: rgb(24, 39, 34);
+}

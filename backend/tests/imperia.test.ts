@@ -15,8 +15,7 @@ describe('GET /api/imperium/map', () => {
     const newImperium = Imperium.create({
       name: 'imperium1',
       userId: 1,
-      coordinateX: 1,
-      coordinateY: 1
+      coordinates: 1,
     });
 
     const result = await request(app).get('/api/imperia/map');
@@ -26,7 +25,7 @@ describe('GET /api/imperium/map', () => {
     const imperiaData = result.body;
 
     expect(imperiaData.imperia[0].name).toEqual('imperium1');
-    expect(imperiaData.imperia[0].coordinateX).toBeGreaterThan(-1);
+    expect(imperiaData.imperia[0].coordinates).toBeGreaterThan(-1);
     expect(imperiaData.imperia.length).toBeDefined();
   });
 
