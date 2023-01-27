@@ -11,14 +11,10 @@
 
 .button{
   display: block;
-  top: 10%;
-  // left: 50%;
-  // right: 50%;
-  position: absolute;
+  position:absolute center;
   vertical-align:-webkit-baseline-middle;
   background-color: rgb(254, 184, 80);
-  // max-height: 500px;
-  margin-top: clamp(min(10vw, 20rem),410px,70%);
+  margin-top: clamp(min(10vw, 20rem),500px,95%);
   margin-left: clamp(15%,35%,40%);
   margin-right: clamp(15%,35%,40%);
   margin-bottom: clamp(15%,35%,40%);
@@ -28,17 +24,4 @@
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
-}
-
-.button2 {
-  color: #FFFFFF;
-  display: block;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
-  padding: 10px 58px;
-  position: absolute;
-  top:16em;
-  right:2em;
-  text-shadow: 2px 1px #000000;
-  text-transform: uppercase;
 }
