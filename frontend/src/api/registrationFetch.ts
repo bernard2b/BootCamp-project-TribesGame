@@ -20,6 +20,6 @@ export async function fetchRegistration(data: createUserRequest): Promise<void> 
   }
 }
 
-const path = "api/registration";
+const path = "http://localhost:3000/api/registration";
 
 export default fetchRegistration;
