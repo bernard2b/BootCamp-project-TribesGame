@@ -10,6 +10,7 @@ export async function fetchRegistration(data: createUserRequest): Promise<void> 
       body: JSON.stringify(data),
     });
     const dbResponse = await response.json();
+    console.log('dataaa',dbResponse)
     if (!response.ok) {
       throw new Error(dbResponse.message);
     }
