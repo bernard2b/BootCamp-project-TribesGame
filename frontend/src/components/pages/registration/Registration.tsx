@@ -18,7 +18,7 @@ import { literal, object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import fetchRegistration from "../../../api/registrationFetch";
 import { useNavigate } from "react-router-dom";
-import loginAvatar from "./logo192.png"
+import loginAvatar from "./img/logo192.png"
 
 export default function Registration() {
   const navigate = useNavigate();

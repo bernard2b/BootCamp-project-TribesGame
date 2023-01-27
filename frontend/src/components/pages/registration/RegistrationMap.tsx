@@ -4,7 +4,9 @@ import "./RegistrationMap.scss";
 import { SubmitHandler } from "react-hook-form";
 import { fetchAllImperia, fetchPutImperia } from "../../../api/mapFetch";
 import $ from "jquery";
-import blueSpaceship from "./blueSpaceship.png";
+import blueSpaceship from "./img/blueSpaceship.png";
+import enemy1 from "./img/enemy1.png";
+import enemy2 from "./img/enemy2.png";
 import mapInterface, { mapRequest } from "../../../interfaces/mapInterface";
 
 function mapSelector() {
@@ -22,7 +24,6 @@ function mapSelector() {
       setEnemyImperia(imperiumData.imperia);
     });
   }, []);
-
 
   function selected() {
     setImage(blueSpaceship);
@@ -45,13 +46,14 @@ function mapSelector() {
   const handleClick2 = (event: {
     currentTarget: {
       style: { backgroundColor: string; color: string; opacity: string };
+      id: string;
       classList: { add: (arg0: string, arg1: string) => void };
     };
   }) => {
     if (event.currentTarget.style.opacity === "0") {
       event.currentTarget.style.opacity = "1";
     } else event.currentTarget.style.opacity = "0";
-    console.log(event.currentTarget);
+    console.log(event.currentTarget.id);
   };
 
   function randomButton(): number {
@@ -70,10 +72,10 @@ function mapSelector() {
   const confirmButton = async () => {
     setError("");
     try {
+      coordinates = Number(position);
       const data = { id: imperiumId, coordinates };
       await fetchPutImperia(data);
-      console.log("dataaaa", data);
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -1921,8 +1923,8 @@ function mapSelector() {
         <div className="map">
           <img
             id="230"
-            src={blueSpaceship}
-            style={{ opacity: isActive ? "1" : "0" }}
+            src={enemy1}
+            style={{ opacity: isActive ? "1" : "1" }}
             onClick={handleClick2}
           />
         </div>
@@ -3321,8 +3323,8 @@ function mapSelector() {
         <div className="map">
           <img
             id="405"
-            src={blueSpaceship}
-            style={{ opacity: isActive ? "1" : "0" }}
+            src={enemy2}
+            style={{ opacity: isActive ? "1" : "1" }}
             onClick={handleClick2}
           />
         </div>
