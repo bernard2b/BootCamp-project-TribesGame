@@ -20,16 +20,16 @@ router.use(express.json());
 
 router.get('/hello', helloController.getHelloWorld);
 router.get('/buildings', buildingsController.getAllBuildings);
+router.get('/troops', troopsController.getAllTroops);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/user', authenticationHandler, userController.getUserDetail)
 router.get('/imperia/buildings', authenticationHandler, buildingsController.getAllBuildingsByImperiumId)
-router.get('/imperia/troops', troopsController.getAllTroops);
-router.get('/imperia/:imperiumId/troops',  troopsController.getAllTroopsByImperiumId);
+router.get('/imperia/troops', authenticationHandler, troopsController.getAllTroopsByImperiumId);
 router.get('/imperia/map/', imperiaController.getAllImperia)
 router.get('/imperia/:imperiumId/resources', resourcesController.getResourcesByImperiumId)
 
 router.post('/imperia/buildings', authenticationHandler, buildingsController.addNewBuilding);
-router.post('/imperia/:imperiumId/troops', troopsController.addNewTroop)
+router.post('/imperia/troops', authenticationHandler, troopsController.addNewTroop)
 router.post('/login', loginController.login);
 router.post('/registration', registrationController.createUserWithImperium);
 router.post('/imperia/:imperiumId/battle', troopsController.battle)
