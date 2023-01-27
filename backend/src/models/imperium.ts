@@ -11,10 +11,7 @@ export default class Imperium extends Model {
   name: string;
 
   @Column
-  coordinateX: number;
-
-  @Column
-  coordinateY: number;
+  coordinates: number;
 
   @ForeignKey(() => User)
   @Column

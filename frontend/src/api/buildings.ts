@@ -1,9 +1,7 @@
-export async function fetchBuildungs() {
-  const response = await fetch("/api/buildings");
+export async function fetchBuildings() {
+  const response = await fetch("/api/imperia/buildings");
   const buildingsData = await response.json();
 
   return buildingsData;
 }
-
-
-export default fetchBuildungs
+export default fetchBuildings

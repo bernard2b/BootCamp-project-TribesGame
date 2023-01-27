@@ -1,4 +1,6 @@
+
 export interface Buildings {
+  type: string;
   id: number;
   name: string;
   level: number;

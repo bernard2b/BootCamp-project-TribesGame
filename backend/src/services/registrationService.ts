@@ -1,5 +1,5 @@
 import * as userRepo from '../repositories/userRepo';
-import * as imperiumRepo from '../repositories/imperiumRepo';
+import * as imperiaRepo from '../repositories/imperiaRepo';
 import { createUserResponse } from '../interfaces/registration';
 import { ParameterError } from '../errors';
 import bcrypt from 'bcrypt';
@@ -30,7 +30,7 @@ export async function createUserWithImperium(
     imperiumName = `${newUser.name}'s imperium`;
   }
 
-  const newImperuim = await imperiumRepo.createImperium(
+  const newImperuim = await imperiaRepo.createImperium(
     imperiumName,
     newUser.id
   );
@@ -44,8 +44,10 @@ export async function createUserWithImperium(
   return response;
 }
 
-function encryptPassword(password: string) {
+export function encryptPassword(password: string) {
   const salt = bcrypt.genSaltSync(saltRounds);
   password = bcrypt.hashSync(password, salt);
   return password;
 }
+
+
