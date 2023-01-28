@@ -13,7 +13,6 @@ export default function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/register/map" element={<RegistrationMap />} />
         <Route path="/*" element={<Landing />} />
-        <Route path="/register" element={<Registration />} />
         <Route path ="/login" element={< Login/>} />
         <Route path ="/user" element={< UserSettings/>} />
 

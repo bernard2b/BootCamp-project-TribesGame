@@ -16,11 +16,10 @@ export default function Main() {
    <div className="container">
       <div className="Main">
         <Routes>
-          <Route path="/" element={<Navigate to="/imperia/buildings" />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/kingdom/battle" element={<Battle />} />
+          <Route path="/*" element={<Navigate to="/imperia/buildings" />} />
+          <Route path="/imperia/battle" element={<Battle />} />
           <Route path="/imperia/buildings" element={<Buildings />} />
-          <Route path="/kingdom/leaderboard" element={<Leaderboard />} />
+          <Route path="/imperia/leaderboard" element={<Leaderboard />} />
           <Route path="/imperia/troops" element={<Troops />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>

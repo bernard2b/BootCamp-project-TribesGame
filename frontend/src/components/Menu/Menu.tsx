@@ -7,10 +7,10 @@ function Menu() {
   return (
     <div className='Menu'>
       <div className="section">
-        <div className="menuComponent"><NavLink to='/kingdom/buildings'><h4>Buildings</h4></NavLink></div>
-        <div className="menuComponent"><NavLink to='/kingdom/battle'><h4>Battle</h4></NavLink></div>
-        <div className="menuComponent"><NavLink to='/kingdom/leaderboard'><h4>Leaderboard</h4></NavLink></div>
-        <div className="menuComponent"><NavLink to='/kingdom/troops'><h4>Troops</h4></NavLink></div>
+        <div className="menuComponent"><NavLink to='/imperia/buildings'><h4>Buildings</h4></NavLink></div>
+        <div className="menuComponent"><NavLink to='/imperia/battle'><h4>Battle</h4></NavLink></div>
+        <div className="menuComponent"><NavLink to='/imperia/leaderboard'><h4>Leaderboard</h4></NavLink></div>
+        <div className="menuComponent"><NavLink to='/imperia/troops'><h4>Troops</h4></NavLink></div>
         </div>
     </div>
   )
