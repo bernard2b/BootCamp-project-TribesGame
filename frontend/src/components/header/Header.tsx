@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import './Header.scss';
 import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
+import fetchUserDetails from "../../api/userDetails";
 
 
 
@@ -9,6 +10,13 @@ import Menu from "../Menu/Menu";
 export default function Header() {
   const [settingsButton, setSettingsButton] = useState('');
   const [logoutButton, setLogoutButton] = useState('');
+  const [imperiumName, setImperiumName] = useState("My Kingdom");
+
+  useEffect(() => {
+    fetchUserDetails().then((user) => {
+    setImperiumName(user.imperium.name)
+  })
+}, [])
 
 
   const userData = [
@@ -36,7 +44,7 @@ export default function Header() {
     <div className="container">
       <div className="header">
         <div className="logo">
-          <h1 className="kingdomName"><a href="/">My Kingdom</a></h1>
+          <h1 className="kingdomName"><a href="/">{ imperiumName }</a></h1>
         </div>
           <Menu />
         <div className="navigation">
