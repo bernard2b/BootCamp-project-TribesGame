@@ -23,7 +23,7 @@ router.get('/buildings', buildingsController.getAllBuildings);
 router.get('/troops', troopsController.getAllTroops);
 router.get('/buildings/:buildingId', buildingsController.getOneBuildingById);
 router.get('/user', authenticationHandler, userController.getUserDetail)
-router.get('/imperia/buildings', authenticationHandler, buildingsController.getAllBuildingsByImperiumId)
+router.get('/imperia/buildings', authenticationHandler, buildingsController.getAllBuildingsByImperiumId);
 router.get('/imperia/troops', authenticationHandler, troopsController.getAllTroopsByImperiumId);
 router.get('/imperia/map/', imperiaController.getAllImperia)
 router.get('/imperia/:imperiumId/resources', resourcesController.getResourcesByImperiumId)
