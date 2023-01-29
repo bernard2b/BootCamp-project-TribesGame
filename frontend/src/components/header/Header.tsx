@@ -11,10 +11,14 @@ export default function Header() {
   const [settingsButton, setSettingsButton] = useState('');
   const [logoutButton, setLogoutButton] = useState('');
   const [imperiumName, setImperiumName] = useState("My Kingdom");
+  const [username, setUsername] = useState("user")
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     fetchUserDetails().then((user) => {
-    setImperiumName(user.imperium.name)
+      setImperiumName(user.imperium.name)
+      setUsername(user.name)
+      setLoggedIn(true)
   })
 }, [])
 
@@ -30,7 +34,7 @@ export default function Header() {
 
 
   useEffect(() => {
-    if (window.location.pathname === "/") {
+    if (loggedIn) {
       setSettingsButton("Settings");
       setLogoutButton("Logout");
     } else {
