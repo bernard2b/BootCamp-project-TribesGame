@@ -1,0 +1,29 @@
+.welcomePageContainer{
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  background-image: url('../login/login-pictures/bg3-01.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.welcomeTitle{
+  width: 100%;
+  height: 100%;
+}
+
+.welcomePageContainer .btn {
+  margin-top:12px;
+}
+
+.welcomePageContainer .contact p{
+  color: black;
+  margin-top:12px;
+  font-size: 14px;
+}
+
+.welcomePageContainer .accord{
+  margin:12px 0;
+  background-color: rgba(255, 255, 255, 0.87);
+}

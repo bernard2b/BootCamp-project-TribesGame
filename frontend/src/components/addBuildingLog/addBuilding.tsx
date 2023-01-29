@@ -23,7 +23,6 @@ function AddBuilding() {
       return;
     }
 
-    
     try {
       await addBuildingFetch(data);
       if (data) {
@@ -36,6 +35,8 @@ function AddBuilding() {
       }
     }
   };
+
+    
 
   return (
     <div className="addBuilding">
