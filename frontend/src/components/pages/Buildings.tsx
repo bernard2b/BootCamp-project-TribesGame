@@ -27,7 +27,6 @@ function Buildings() {
     });
   }, []);
 
-   
 
   return (
     <div className="buildingPage">
@@ -49,6 +48,7 @@ function Buildings() {
                   <p>Time Cost: {building.timeCost}</p>
                 </div>
               </li>
+         
             );
           })}
         </ul>

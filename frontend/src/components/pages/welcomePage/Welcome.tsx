@@ -30,16 +30,16 @@ function Welcome() {
   };
 
   return (
+    <div className="welcome-background">
     <div className="welcomePageContainer">
       <Paper elevation={20} style={paperStyle}>
         <div className="welcomeTitle">
           <h3>Welcome to the STRIGOPS</h3>
+          <h5>(beta)</h5>
         </div>
         <Accordion className="accord">
           <AccordionSummary
-            // expandIcon={<ExpandMoreIcon />}
-            // aria-controls="panel1a-content"
-            id="panel1a-header"
+            id="1"
           >
             <Typography>About the Game...</Typography>
           </AccordionSummary>
@@ -52,11 +52,10 @@ function Welcome() {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion className="assord">
+        <Accordion className="accord">
           <AccordionSummary
-            // expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
+            id="1"
           >
             <Typography>About Us...</Typography>
           </AccordionSummary>
@@ -93,6 +92,7 @@ function Welcome() {
           </Link>
         </div>
       </Paper>
+    </div>
     </div>
   );
 }

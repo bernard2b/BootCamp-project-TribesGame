@@ -17,7 +17,7 @@ export default function NotFound() {
         <p> back to the closest space station:</p>
         <br />
         <div className="button">
-          <Link to="/">Back to the galaxy</Link>
+          <Link to="/imperia/buildings">Back to the galaxy</Link>
         </div>
       </div>
     </div>
