@@ -11,7 +11,7 @@ function Troops() {
       .then((troopsData) => {
         setTroopsData(troopsData.troops);
       });
-  }, []);
+  });
   return (
     <div className="buildingPage">
       <section className="buildingsContainer">

@@ -9,18 +9,19 @@ export default function Resources() {
   const [breadAmount, setBreadAmount] = useState(0);
   const [breadCounter, setBreadCounter] = useState(0);
   const [goldCounter, setGoldCounter] = useState(0);
+  
   useEffect(() => {
+      setTimeout(() => {
     fetchResources().then((resourcesData) => {
       console.log(resourcesData)
-      setTimeout(() => {
-        setGoldAmount(resourcesData.mineralAmount + resourcesData.mineralGeneration)
-        setBreadAmount(resourcesData.foodAmount + resourcesData.foodGeneration);
+        setGoldAmount(resourcesData.mineralAmount)
+        setBreadAmount(resourcesData.foodAmount);
         setGoldCounter(resourcesData.mineralGeneration)
         setBreadCounter(resourcesData.foodGeneration)
-      }, 1000)
-    })
-  }, [])
-
+      })
+    }, 10000)
+  })
+  
 
   return (
     <div className="resources">
