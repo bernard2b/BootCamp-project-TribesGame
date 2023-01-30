@@ -1,8 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import "./Leaderboard.scss";
-import fetchUserDetails from "../../api/userDetails";
+import fetchUserDetails from "./../../../api/userDetails";
+import userImg from "./img/astronaut.png"
 
 function Leaderboard() {
+  const [imperiumName, setImperiumName] = useState("My Kingdom");
+  const [username, setUsername] = useState("user")
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    fetchUserDetails().then((user) => {
+      setImperiumName(user.imperium.name)
+      setUsername(user.name)
+      setLoggedIn(true)
+  })
+}, [])
+
   return (
 <div className="card one">
   <div className="header">
@@ -19,8 +33,8 @@ function Leaderboard() {
     <div className="person second">
       <div className="num">2</div>
       <i className="fas fa-caret-up"></i>
-      <img src="./../header/images/astronaut.png" alt="" className="photo"/>
-      <p className="link">@i_am_ai</p>
+      <img src={userImg} alt="" className="photo"/>
+      <p className="link">{username}</p>
       <p className="points">8023</p>
     </div>
     <div className="person first">
