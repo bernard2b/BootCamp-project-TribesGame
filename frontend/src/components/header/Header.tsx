@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import './Header.scss';
 import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
+import fetchUserDetails from "../../api/userDetails";
 
 
 
@@ -9,6 +10,18 @@ import Menu from "../Menu/Menu";
 export default function Header() {
   const [settingsButton, setSettingsButton] = useState('');
   const [logoutButton, setLogoutButton] = useState('');
+  const [imperiumName, setImperiumName] = useState("My Kingdom");
+  const [username, setUsername] = useState("user")
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    fetchUserDetails().then((user) => {
+      setImperiumName(user.imperium.name)
+      setUsername(user.name)
+      setLoggedIn(true)
+  })
+}, [])
 
 
   const userData = [
@@ -22,7 +35,7 @@ export default function Header() {
 
 
   useEffect(() => {
-    if (window.location.pathname === "/") {
+    if (loggedIn) {
       setSettingsButton("Settings");
       setLogoutButton("Logout");
     } else {
@@ -31,20 +44,35 @@ export default function Header() {
     }
   }, []);
 
+  const handleOpen = () => {
+    if (open) {
+      setOpen(false)
+    } else {
+      setOpen(true)
+    }
+  }
+
 
   return (
     <div className="container">
       <div className="header">
         <div className="logo">
-          <h1 className="kingdomName"><a href="/">My Kingdom</a></h1>
+          <h1 className="kingdomName"><a href="/">{ imperiumName }</a></h1>
         </div>
           <Menu />
+
         <div className="navigation">
-            <h3>{settingsButton}</h3>
-            <h3>{logoutButton}</h3>
           {userData.map((user) => {
             return (
-              <img src={user.img}  className="userImage"/>
+              <ul><img src={user.img} className="userImage dropdown_menu dropdown_menu-5" onClick={handleOpen} />
+                {
+                  open && <div className="dropdown">
+                    <li className="dropdown_item-1"><h3>{settingsButton}</h3></li>
+                    <li className="dropdown_item-2"> <h3>{logoutButton}</h3></li>
+                  </div>
+                }
+
+              </ul>
             )
           })}
         </div>

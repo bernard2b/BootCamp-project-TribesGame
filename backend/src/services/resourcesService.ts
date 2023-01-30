@@ -1,14 +1,16 @@
 import { NotFoundError, ParameterError } from "../errors";
 import { ResourcesResponse } from "../interfaces/resources";
 import * as resourcesRepo from '../repositories/resourcesRepo';
+import * as userRepo from '../repositories/userRepo';
 
 export async function getResourcesByImperiumId(
-    imperiumId: number
+    userId: number
 ): Promise<ResourcesResponse> {
-    if (imperiumId < 0 || !Number.isInteger(imperiumId)) {
+  const user = await userRepo.getUserById(userId);
+    if (user.imperium.id < 0 || !Number.isInteger(user.imperium.id)) {
         throw new ParameterError('ImperiumId not a valid number!');
       }
-    const resources = await resourcesRepo.getResourcesByImperiumId(imperiumId)
+    const resources = await resourcesRepo.getResourcesByImperiumId(user.imperium.id)
     
     if (!resources) {
         throw new NotFoundError('Resources for this Imperium not found!');
@@ -22,8 +24,8 @@ export async function getResourcesByImperiumId(
     currentMineral += mineralPerMinute;
     currentFood += foodPerMinute;
 
-    resourcesRepo.updateMineralAmountByImperiumId(imperiumId, currentMineral)
-    resourcesRepo.updateFoodAmountByImperiumId(imperiumId, currentFood)
+  resourcesRepo.updateMineralAmountByImperiumId(user.imperium.id, currentMineral)
+    resourcesRepo.updateFoodAmountByImperiumId(user.imperium.id, currentFood)
     
     let updatedResources = {
         mineralAmount: currentMineral,
