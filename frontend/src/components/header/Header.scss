@@ -6,7 +6,7 @@
 
 .header{
   margin-top: 0.5%;
-  height: 50px;
+  height: 65px;
   background-color: #016e63;
   display: flex;
   margin-left: auto;
@@ -27,7 +27,7 @@
   font-size: 20px;
   align-items: center;
   align-content: center;
-  margin-top: 3%;
+  // margin-top: 0%;
 }
 
 .header .navigation {
@@ -37,9 +37,10 @@
   margin-left: 40%;
   color: white;
   align-items: center;
-}
+font-size: larger;
+font-weight: bold;}
 
-.header h3 {
+.header .link {
     padding: 5px;
     margin: 4px;
     width: fit-content;
@@ -47,7 +48,7 @@
     align-self: center;
 }
 
-.header h3:hover{
+.header .link:hover{
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     color: black;
@@ -62,13 +63,17 @@ a:visited {
   text-decoration: none;
 }
 .navigation img{
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   border-radius: 100%;
   padding: 5px;
   align-items: center;
   background-image: url("../../../../docs/background/bg3-01.png");
+}
+
+.navigation{
+  margin-top: 0%;
 }
 
 
