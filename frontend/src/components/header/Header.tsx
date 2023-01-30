@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Header.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
+import { Cookies, useCookies } from "react-cookie";
 
 export default function Header() {
   const settings = "/user";
-  const logout = "/logout"
+  const logout = "/";
+  const [token, setToken, removeToken] = useCookies();
+  const cookies = new Cookies();
 
   const userData = [
     {
@@ -16,21 +19,11 @@ export default function Header() {
     },
   ];
 
-  // const click = link('/register')
-
-  // useEffect(() => {
-  //   if (window.location.pathname === "/") {
-  //     setSettingsButton("Settings");
-  //     setButton1Link(settings);
-  //     setLogoutButton("Logout");
-  //     setButton2Link("logout");
-  //   } else {
-  //     setSettingsButton("Register");
-  //     setButton1Link(register);
-  //     setLogoutButton("Login");
-  //     setButton2Link(login);
-  //   }
-  // }, []);
+  const loggingOut = () => {
+    removeToken("auth-cookie", { path: "/" });
+    localStorage.clear();
+    cookies.remove("auth-cookie", { path: '/', domain:"localhost:3000" }, );
+  };
 
   return (
     <div className="container">
@@ -45,7 +38,7 @@ export default function Header() {
           <Link to={settings} className="link">
             Settings
           </Link>
-          <Link to={logout} className="link">
+          <Link onClick={loggingOut} to={logout} className="link">
             Logout
           </Link>
           {userData.map((user) => {
