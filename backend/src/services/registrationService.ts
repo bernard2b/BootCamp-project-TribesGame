@@ -1,5 +1,7 @@
 import * as userRepo from '../repositories/userRepo';
 import * as imperiaRepo from '../repositories/imperiaRepo';
+import * as resourcesRepo from '../repositories/resourcesRepo';
+import * as buildingsRepo from '../repositories/buildingsRepo';
 import { createUserResponse } from '../interfaces/registration';
 import { ParameterError } from '../errors';
 import bcrypt from 'bcrypt';
@@ -30,15 +32,39 @@ export async function createUserWithImperium(
     imperiumName = `${newUser.name}'s imperium`;
   }
 
-  const newImperuim = await imperiaRepo.createImperium(
+  const newImperium = await imperiaRepo.createImperium(
     imperiumName,
     newUser.id
   );
 
+  const newResourceMineral = await resourcesRepo.createResource(
+    newImperium.id,
+    "mineral",
+    100,
+    50
+  )
+
+  const newResourceFood = await resourcesRepo.createResource(
+    newImperium.id,
+    "food",
+    100,
+    50
+  )
+
+  const newNexus = await buildingsRepo.startingBuilding(
+    newImperium.id,
+    "nexus",
+    1,
+    1500,
+    15,
+    50,
+    50
+  )
+
   let response = {
     id: newUser.id,
     name: newUser.name,
-    imperiumId: newImperuim.id
+    imperiumId: newImperium.id
   };
 
   return response;
