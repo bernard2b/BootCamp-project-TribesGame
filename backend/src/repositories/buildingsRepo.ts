@@ -12,11 +12,33 @@ export function getBuildingByName(name: string): Promise<Building | null> {
   return Building.findOne({ where: { name: name } });
 }
 
-export function getAllBuildingsByImperiumId(imperiumId: number): Promise<Building[]> {
+export function getAllBuildingsByImperiumId(
+  imperiumId: number
+): Promise<Building[]> {
   return Building.findAll({
     where: {
       imperiumId: imperiumId,
     },
+  });
+}
+
+export function startingBuilding(
+  imperiumId: number,
+  type: string,
+  level: number,
+  mineralCost: number,
+  timeCost: number,
+  foodPerMinute: number,
+  mineralPerMinute: number
+): Promise<Building> {
+  return Building.create({
+    imperiumId,
+    type,
+    level,
+    mineralCost,
+    timeCost,
+    foodPerMinute,
+    mineralPerMinute,
   });
 }
 
@@ -34,17 +56,17 @@ export function addNewBuilding(
     mineralCost,
     timeCost,
     foodPerMinute,
-    mineralPerMinute
+    mineralPerMinute,
   });
 }
 
 export function upgradeBuildingById(
   id: number,
-  level: number,
+  level: number
 ): Promise<number[]> {
   return Building.update(
     {
-      level
+      level,
     },
 
     {

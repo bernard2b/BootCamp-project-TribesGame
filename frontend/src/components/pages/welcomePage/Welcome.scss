@@ -1,0 +1,48 @@
+.welcome-background{
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../login/login-pictures/bg3-01.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.welcomeTitle{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.welcomeTitle h3{
+margin-bottom: 5px;
+  }
+
+.welcomeTitle h5{
+margin-top: 0;
+margin-bottom: 15px;
+}
+
+
+.welcomePageContainer{
+  padding: 70px;
+}
+
+.welcomePageContainer .btn {
+  margin-top:12px;
+}
+
+.welcomePageContainer .contact p{
+  color: rgb(0, 0, 0);
+  margin-top:12px;
+  font-size: 14px;
+}
+
+.welcomePageContainer .accord{
+  margin:12px 0;
+  background-color: rgba(255, 255, 255, 0);
+}

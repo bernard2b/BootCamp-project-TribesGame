@@ -1,18 +1,32 @@
 import React, { useEffect, useState} from "react";
-import { Link } from "react-router-dom";
 import "./Buildings.scss";
 import fetchBuildings from "../../api/buildings";
 import buildingsInterface from "./../../interfaces/buildingsInterface";
+import { useNavigate } from "react-router-dom";
 
 
 function Buildings() {
    const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
+   const [rresponse, setResponse] = useState("")
+   const navigate = useNavigate();
+
+
+   useEffect(() => {
+    fetchBuildings().then((response) => {
+      setResponse(response.message);
+    });
+  }, []);
+
+  if(rresponse == "Not Bearer token included") {
+    navigate("/welcome", { replace: true });
+  }
 
   useEffect(() => {
     fetchBuildings().then((buildingsData) => {
       setBuildingsData(buildingsData.buildings);
     });
   });
+
 
   return (
     <div className="buildingPage">
@@ -34,6 +48,7 @@ function Buildings() {
                   <p>Time Cost: {building.timeCost}</p>
                 </div>
               </li>
+         
             );
           })}
         </ul>
