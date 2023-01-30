@@ -18,8 +18,8 @@ export default function Resources() {
         setGoldCounter(resourcesData.mineralGeneration)
         setBreadCounter(resourcesData.foodGeneration)
       })
-    }, 10000)
-  }, [resourcesData])
+    }, 9000)
+  }, [resourcesData, goldAmount, breadAmount, breadCounter, goldCounter])
   
 
   return (
