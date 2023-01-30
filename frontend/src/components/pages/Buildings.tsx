@@ -1,12 +1,23 @@
-import React, { useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./Buildings.scss";
 import fetchBuildings from "../../api/buildings";
 import buildingsInterface from "./../../interfaces/buildingsInterface";
-
+import { useNavigate } from "react-router-dom";
 
 function Buildings() {
-   const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
+  const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
+  const [rresponse, setResponse] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchBuildings().then((response) => {
+      setResponse(response.message);
+    });
+  }, []);
+
+  if (rresponse == "Not Bearer token included") {
+    navigate("/welcome", { replace: true });
+  }
 
   useEffect(() => {
     fetchBuildings().then((buildingsData) => {
@@ -25,7 +36,9 @@ function Buildings() {
                   <h4 className="buildingTitle">{building.type}</h4>
                 </div>
                 <div className="buildingLevel">
-                  <p className="buildingLevel">Building Level: {building.level}</p>
+                  <p className="buildingLevel">
+                    Building Level: {building.level}
+                  </p>
                 </div>
                 <div className="mineralCost">
                   <p>Mineral Cost: {building.mineralCost}</p>

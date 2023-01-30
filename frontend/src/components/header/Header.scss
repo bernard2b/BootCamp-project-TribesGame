@@ -4,7 +4,7 @@
   top: 0;
 }
 
-.header{
+.header {
   margin-top: 0.5%;
   height: 65px;
   background-color: #016e63;
@@ -17,7 +17,7 @@
   align-items: center;
 }
 
-.logo{
+.logo {
   margin-left: 1%;
 }
 
@@ -58,6 +58,7 @@ a:link {
   color: white;
   text-decoration: none;
 }
+
 a:visited {
   color: white;
   text-decoration: none;
@@ -68,6 +69,9 @@ a:visited {
   cursor: pointer;
   border-radius: 100%;
   padding: 5px;
+  position: fixed;
+  margin-top: 1%;
+  margin-left: 15%;
   align-items: center;
   background-image: url("../../../../docs/background/bg3-01.png");
 }
@@ -76,4 +80,12 @@ a:visited {
   margin-top: 0%;
 }
 
-
+.dropdown {
+  position: relative;
+  margin-top: 120%;
+  background-color: #016e63;
+  margin-left: 180%;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+}

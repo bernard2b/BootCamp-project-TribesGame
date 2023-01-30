@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import fetchTroops from '../../api/troops';
-import troops from '../../interfaces/troopsInterface';
-import userEvent from '@testing-library/user-event';
+import React, { useEffect, useState } from "react";
+import fetchTroops from "../../api/troops";
+import troops from "../../interfaces/troopsInterface";
+import userEvent from "@testing-library/user-event";
 
 function Troops() {
   const [troopsData, setTroopsData] = useState<troops[]>([]);
 
   useEffect(() => {
-    fetchTroops()
-      .then((troopsData) => {
-        setTroopsData(troopsData.troops);
-      });
+    fetchTroops().then((troopsData) => {
+      setTroopsData(troopsData.troops);
+    });
   }, []);
   return (
     <div className="buildingPage">
@@ -38,7 +37,7 @@ function Troops() {
         </ul>
       </section>
     </div>
-  )
+  );
 }
 
-export default Troops
+export default Troops;

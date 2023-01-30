@@ -47,7 +47,7 @@ export default function Login() {
     try {
       await fetchLogin(data);
       if (data) {
-        navigate("/", { replace: true });
+        navigate("/imperia/buildings", { replace: true });
       }
     } catch (error) {
       if (error instanceof Error) {
