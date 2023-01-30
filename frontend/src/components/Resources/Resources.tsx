@@ -13,14 +13,13 @@ export default function Resources() {
   useEffect(() => {
       setTimeout(() => {
     fetchResources().then((resourcesData) => {
-      console.log(resourcesData)
         setGoldAmount(resourcesData.mineralAmount)
         setBreadAmount(resourcesData.foodAmount);
         setGoldCounter(resourcesData.mineralGeneration)
         setBreadCounter(resourcesData.foodGeneration)
       })
     }, 10000)
-  })
+  }, [resourcesData])
   
 
   return (

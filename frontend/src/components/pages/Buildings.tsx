@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useCallback} from "react";
 import "./Buildings.scss";
 import fetchBuildings from "../../api/buildings";
 import buildingsInterface from "./../../interfaces/buildingsInterface";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Buildings() {
-   const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
+  const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
    const [rresponse, setResponse] = useState("")
    const navigate = useNavigate();
 
@@ -21,12 +21,16 @@ function Buildings() {
     navigate("/welcome", { replace: true });
   }
 
-  useEffect(() => {
+  const getBuildings = useCallback(async () => {
     fetchBuildings().then((buildingsData) => {
-      setBuildingsData(buildingsData.buildings);
-    });
-  });
+      setBuildingsData(buildingsData.buildings)
+      console.log(buildingsData)
+    })
+  }, [])
 
+  useEffect(() => {
+    getBuildings()
+  }, [getBuildings])
 
   return (
     <div className="buildingPage">
