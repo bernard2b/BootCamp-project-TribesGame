@@ -54,7 +54,7 @@ export default function Header() {
     <div className="container">
       <div className="header">
         <div className="logo">
-          <h1 className="kingdomName"><a href="/">{ imperiumName }</a></h1>
+          <h1 className="kingdomName"><a href="/imperia/buildings">{ imperiumName }</a></h1>
         </div>
         <Menu />
         <div className="navigation">
