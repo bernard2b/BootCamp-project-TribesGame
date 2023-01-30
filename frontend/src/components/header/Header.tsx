@@ -12,7 +12,8 @@ export default function Header() {
   const [logoutButton, setLogoutButton] = useState('');
   const [imperiumName, setImperiumName] = useState("My Kingdom");
   const [username, setUsername] = useState("user")
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchUserDetails().then((user) => {
@@ -43,6 +44,14 @@ export default function Header() {
     }
   }, []);
 
+  const handleOpen = () => {
+    if (open) {
+      setOpen(false)
+    } else {
+      setOpen(true)
+    }
+  }
+
 
   return (
     <div className="container">
@@ -51,12 +60,19 @@ export default function Header() {
           <h1 className="kingdomName"><a href="/">{ imperiumName }</a></h1>
         </div>
           <Menu />
+
         <div className="navigation">
-            <h3>{settingsButton}</h3>
-            <h3>{logoutButton}</h3>
           {userData.map((user) => {
             return (
-              <img src={user.img}  className="userImage"/>
+              <ul><img src={user.img} className="userImage dropdown_menu dropdown_menu-5" onClick={handleOpen} />
+                {
+                  open && <div className="dropdown">
+                    <li className="dropdown_item-1"><h3>{settingsButton}</h3></li>
+                    <li className="dropdown_item-2"> <h3>{logoutButton}</h3></li>
+                  </div>
+                }
+
+              </ul>
             )
           })}
         </div>
