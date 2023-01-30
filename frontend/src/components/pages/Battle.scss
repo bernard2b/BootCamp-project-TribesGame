@@ -1,0 +1,37 @@
+
+.Battle{
+  background-image: url("./85146.jpg");
+  background-size: cover;
+  width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 20px;
+}
+
+.userSide{
+  padding: 10px;
+  z-index: 2;
+  margin-right: auto;
+  width: 33.3;
+  color: white;
+}
+.vs{
+  padding: 10px;
+  z-index: 2;
+  text-align: center;
+  margin-right: auto;
+  width: 33.3;
+  color: white;
+}
+.opponentSide{
+  padding: 10px;
+  z-index: 2;
+  float: right;
+  width: 33.3;
+  color: white;
+}

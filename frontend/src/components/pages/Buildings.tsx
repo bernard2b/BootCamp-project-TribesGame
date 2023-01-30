@@ -25,7 +25,7 @@ function Buildings() {
     fetchBuildings().then((buildingsData) => {
       setBuildingsData(buildingsData.buildings);
     });
-  }, []);
+  });
 
 
   return (
