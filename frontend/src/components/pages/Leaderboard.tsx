@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Leaderboard.scss";
-
+import fetchUserDetails from "../../api/userDetails";
 
 function Leaderboard() {
   return (
