@@ -6,6 +6,7 @@ import Login from "./components/pages/login/Login"
 import UserSettings from "./components/pages/user-settings/userSettings";
 import Welcome from "./components/pages/welcomePage/Welcome";
 import NotFound from "./components/pages/NotFound";
+import ContactUs from "./components/pages/contacUsPage/ContactUs";
 
 
 export default function App() {
@@ -17,8 +18,9 @@ export default function App() {
         <Route path="/*" element={<Landing />} />
         <Route path ="/login" element={< Login/>} />
         <Route path ="/user" element={< UserSettings/>} />
-        <Route path = "/welcome" element={< Welcome/>} />
+        <Route path = "/" element={< Welcome/>} />
         <Route path = "/notfound" element={< NotFound/>} />
+        <Route path = "/contact" element={<ContactUs/>} />
     </Routes>  
     </BrowserRouter>
   );

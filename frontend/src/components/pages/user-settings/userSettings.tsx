@@ -41,7 +41,7 @@ export default function UserSettings() {
   const navigate = useNavigate();
 
   const linkToReg = () => {
-    navigate("/", { replace: true });
+    navigate("/imperia/buildings", { replace: true });
   };
 
   const onSubmit = async (e: SyntheticEvent) => {

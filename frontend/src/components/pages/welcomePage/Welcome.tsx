@@ -87,7 +87,7 @@ function Welcome() {
           Sign in
         </Button>
         <div className="contact">
-          <Link href="/" ><p>
+          <Link href="/contact" ><p>
             Contact us!</p>
           </Link>
         </div>
