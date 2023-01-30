@@ -53,7 +53,6 @@ function mapSelector() {
     if (event.currentTarget.style.opacity === "0") {
       event.currentTarget.style.opacity = "1";
     } else event.currentTarget.style.opacity = "0";
-    console.log(event.currentTarget.id);
   };
 
   function randomButton(): number {

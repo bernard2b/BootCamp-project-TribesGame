@@ -16,7 +16,6 @@ function Troops() {
       <section className="buildingsContainer">
         <ul className="buildingList">
           {troopsData.map((troops) => {
-            console.log(troops);
             return (
               <li className="oneBuilding" key={troops.id}>
                 <div className="buildingTitle">
