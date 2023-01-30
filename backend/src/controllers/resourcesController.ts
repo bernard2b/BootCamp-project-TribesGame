@@ -5,14 +5,12 @@ import { ResourcesResponse } from "../interfaces/resources";
 import * as resourcesService from "../services/resourcesService"
 
 export async function getResourcesByImperiumId(
-    req: Request<{ imperiumId: number}, unknown, unknown, unknown>,
+    req: Request<unknown, unknown, unknown, unknown>,
     res: Response<ResourcesResponse>,
     next: NextFunction,
 ): Promise<void> {
-    const imperiumId = Number(req.params.imperiumId)
-
     try {
-        const data = await resourcesService.getResourcesByImperiumId(imperiumId);
+        const data = await resourcesService.getResourcesByImperiumId(req.userId);
         res.send(data);
     } catch (error) {
         if (error instanceof NotFoundError) {
