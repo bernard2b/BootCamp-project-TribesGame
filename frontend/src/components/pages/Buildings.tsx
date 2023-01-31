@@ -28,6 +28,7 @@ function Buildings() {
     })
   }, [])
 
+
   useEffect(() => {
     getBuildings()
   }, [getBuildings])
