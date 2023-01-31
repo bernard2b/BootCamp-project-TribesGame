@@ -17,6 +17,7 @@ function Buildings() {
     });
   }, []);
 
+
   if(rresponse == "Not Bearer token included") {
     navigate("/welcome", { replace: true });
   }

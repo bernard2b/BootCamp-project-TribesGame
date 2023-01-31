@@ -80,7 +80,7 @@ export default function UserSettings() {
     try {
       await fetchUserSettings(data);
       if (data) {
-        console.log(data);
+        console.log(data)
       }
     } catch (error) {
       if (error instanceof Error) {
