@@ -5,7 +5,6 @@ import "./NotFound.scss";
 export default function NotFound() {
   return (
     <div className="NotFound">
-      <Header />
       <div className="text">
         <h2>Stop your spaceship, traveller!</h2>
         <br />
