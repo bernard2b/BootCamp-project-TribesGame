@@ -4,6 +4,7 @@ import fetchUserDetails from "./../../../api/userDetails";
 import userImg from "./img/astronaut.png"
 import enemyImg1 from "./img/astronaut2.png"
 import enemyImg2 from "./img/astronaut3.png"
+import enemyImg3 from "./img/astronaut4.png"
 
 function Leaderboard() {
   const [imperiumName, setImperiumName] = useState("My Kingdom");
@@ -42,7 +43,7 @@ function Leaderboard() {
     <div className="person first">
       <div className="num">1</div>
       <i className="fas fa-crown"></i>
-      <img src={enemyImg2} alt="" className="photo main"/>
+      <img src={enemyImg3} alt="" className="photo main"/>
       <p className="link">@masterMentor234</p>
       <p className="points">8122</p>
     </div>
@@ -61,7 +62,7 @@ function Leaderboard() {
         <p className="num">4</p>
       </div>
       <div className="info flex">
-        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png" alt="" className="p_img"/>
+        <img src={enemyImg2} alt="" className="p_img"/>
         <p className="link">@adam56</p>
         <p className="points">7861</p>
       </div>
