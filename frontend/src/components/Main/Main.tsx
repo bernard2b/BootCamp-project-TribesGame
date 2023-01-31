@@ -6,7 +6,7 @@ import Log from "../log/Log";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Registration from "../pages/registration/Registration";
 import Battle from "../pages/Battle";
-import Leaderboard from "../pages/Leaderboard";
+import Leaderboard from "../pages/Leaderboard/Leaderboard";
 import Troops from "../pages/Troops";
 import Landing from "../landing/Landing";
 

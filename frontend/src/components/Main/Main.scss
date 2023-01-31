@@ -8,18 +8,22 @@
 
 .Main {
   margin-top: 1%;
-  background-color: rgb(207, 206, 206);
-  border-radius: 10px;
+  background-color: rgb(180, 180, 180);
+  opacity: .95;
+  border: 7px solid;
+  border-style: inset;
+  border-color: rgb(71, 140, 91);
+  border-radius: 0px;
   height: 85vh;
   display: flex;
   flex-direction: row;
   margin-left: 5%;
-  width: 120vh;
+  width: 380rem;
   float: left;
 }
 
 .sideBar {
-  width: 100vh;
+  width: 100rem;
   display: flex;
   flex-direction: column;
   float: right;
