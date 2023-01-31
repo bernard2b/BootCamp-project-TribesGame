@@ -17,15 +17,14 @@ export default function authenticationHandler(
   res: Response,
   next: NextFunction
 ): void {
-  const bearerToken = req.headers.cookie;
+  const bearerToken = req.cookies['auth-cookie'];
 
   if (!bearerToken) {
     next(new HttpError(status.UNAUTHORIZED, 'Not Bearer token included'));
   }
 
-  const bearer = bearerToken.split('=')[1];
   jwt.verify(
-    bearer,
+    bearerToken,
     process.env.JWT_SECRET,
     (err: Error, payload: accessTokenPayload) => {
       if (err) {
