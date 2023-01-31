@@ -1,4 +1,4 @@
-.background{
+.background {
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -9,20 +9,25 @@
   font-family: 'Orbitron', sans-serif;
 }
 
-.avatar{
+.background .userContainer {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.avatar {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.avatar h2{
+.avatar h2 {
   margin-top: 22px;
   margin-bottom: 5px;
 }
 
 
-.input{
+.input {
   margin-top: 25px;
   display: flex;
   flex-direction: column;
@@ -30,66 +35,67 @@
   justify-content: center;
 }
 
-.input .username{
+.input .username {
   margin-top: 25px;
 
 
 }
 
-.input .email{
+.input .email {
   margin-top: 35px;
 }
 
-.input .email{
+.input .email {
   margin-top: 35px;
 }
 
-.input .newPassword{
+.input .newPassword {
   margin-top: 35px;
 }
 
-.input .confirmNewPassword{
+.input .confirmNewPassword {
   margin-top: 35px;
   margin-bottom: 45px;
 }
 
-.input .oldPassword{
+.input .oldPassword {
   margin-top: 7px;
   margin-bottom: 35px;
 }
 
-.under{
+.under {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.logInBtn{
+.logInBtn {
   margin-bottom: 20px;
 }
 
-.linkToReg{
+.linkToReg {
   margin-top: 40px;
 }
 
-.psw{
+.psw {
   margin-bottom: 2px;
 }
 
-p{
+p {
   color: rgb(0, 0, 0);
   font-size: x-large;
 }
-h2{
+
+h2 {
   color: rgb(0, 0, 0);
 }
 
-h3{
+h3 {
   margin-bottom: 35px;
 }
 
 
-.paperstyle{
+.paperstyle {
   color: rgba(16, 38, 13, 0.576);
 }

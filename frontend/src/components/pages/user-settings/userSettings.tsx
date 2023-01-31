@@ -45,7 +45,6 @@ export default function UserSettings() {
   };
 
   const onSubmit = async (e: SyntheticEvent) => {
-    
     setError("");
     setFieldError(false);
 
@@ -73,7 +72,7 @@ export default function UserSettings() {
     if (password !== confirmPassword) {
       setPswConfirmError("Passwords do not match");
       return;
-    } else if (password){
+    } else if (password) {
       data.newPassword = password;
     }
 
@@ -92,7 +91,7 @@ export default function UserSettings() {
   const paperStyle = {
     padding: 50,
     height: "100%",
-    width: 280,
+    width: "85%",
     margin: "40px auto",
     background: "rgba(255, 255, 255, 0.87)",
   };
@@ -108,7 +107,7 @@ export default function UserSettings() {
 
   return (
     <div className="background">
-      <div className="container">
+      <div className="userContainer">
         <Paper elevation={20} style={paperStyle}>
           <div className="avatar">
             <Avatar alt="B" src={avatar} sx={{ width: 70, height: 70 }} />
