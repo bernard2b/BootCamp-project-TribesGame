@@ -31,6 +31,7 @@ function Buildings() {
     getBuildings()
   }, [getBuildings])
 
+
   return (
     <div className="buildingPage">
       <section className="buildingsContainer">
