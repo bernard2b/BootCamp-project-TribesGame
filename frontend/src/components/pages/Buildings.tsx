@@ -25,6 +25,7 @@ function Buildings() {
     });
   }, []);
 
+
   return (
     <div className="buildingPage">
       <section className="buildingsContainer">
