@@ -5,7 +5,6 @@ import "./NotFound.scss";
 export default function NotFound() {
   return (
     <div className="NotFound">
-  
         <div className="button">
           <Link to="/imperia/buildings">Back to the galaxy</Link>
       </div>

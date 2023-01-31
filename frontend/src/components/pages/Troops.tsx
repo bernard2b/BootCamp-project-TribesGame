@@ -7,10 +7,12 @@ function Troops() {
   const [troopsData, setTroopsData] = useState<troops[]>([]);
 
   useEffect(() => {
-    fetchTroops().then((troopsData) => {
-      setTroopsData(troopsData.troops);
-    });
+    fetchTroops()
+      .then((troopsData) => {
+        setTroopsData(troopsData.troops);
+      });
   }, []);
+
   return (
     <div className="buildingPage">
       <section className="buildingsContainer">
