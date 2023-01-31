@@ -13,8 +13,6 @@ export async function fetchUserSettings(
     });
     const dbResponse = await response.json();
     if (!response.ok) {
-      console.log('erroor', dbResponse.message);
-    
       throw new Error(dbResponse.message);
     }
     return dbResponse;

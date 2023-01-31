@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import fetchTroops from '../../api/troops';
-import troops from '../../interfaces/troopsInterface';
-import userEvent from '@testing-library/user-event';
+import React, { useEffect, useState } from "react";
+import fetchTroops from "../../api/troops";
+import troops from "../../interfaces/troopsInterface";
+import userEvent from "@testing-library/user-event";
 
 function Troops() {
   const [troopsData, setTroopsData] = useState<troops[]>([]);
@@ -38,7 +38,7 @@ function Troops() {
         </ul>
       </section>
     </div>
-  )
+  );
 }
 
-export default Troops
+export default Troops;

@@ -18,8 +18,6 @@ function ContactUs() {
   const [text, setText] = useState("");
 
   const sendMail = async (e: SyntheticEvent) => {
-    console.log(text);
-
     alert("sent");
   };
 

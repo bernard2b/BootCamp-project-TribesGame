@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from "react";
-import './Header.scss';
+import React, { useState, useEffect } from "react";
+import "./Header.scss";
 import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
 import fetchUserDetails from "../../api/userDetails";
-
-
-
+import { Cookies, useCookies } from "react-cookie";
 
 export default function Header() {
-  const [settingsButton, setSettingsButton] = useState('');
-  const [logoutButton, setLogoutButton] = useState('');
+  const settings = "/user";
+  const logout = "/";
+  const [token, setToken, removeToken] = useCookies();
+  const cookies = new Cookies();
   const [imperiumName, setImperiumName] = useState("My Kingdom");
   const [username, setUsername] = useState("user")
   const [loggedIn, setLoggedIn] = useState(true);
@@ -23,26 +23,23 @@ export default function Header() {
   })
 }, [])
 
-
   const userData = [
     {
       id: "1",
       name: "John",
       level: 1,
-      img: require("./images/alien.png")
-    }
-  ]
+      img: require("./images/astronaut.png"),
+    },
+  ];
 
 
-  useEffect(() => {
-    if (loggedIn) {
-      setSettingsButton("Settings");
-      setLogoutButton("Logout");
-    } else {
-      setSettingsButton("Register");
-      setLogoutButton("Login");
-    }
-  }, []);
+
+
+  const loggingOut = () => {
+    removeToken("auth-cookie", { path: "/" });
+    localStorage.clear();
+    cookies.remove("auth-cookie", { path: '/', domain:"localhost:3000" }, );
+  };
 
   const handleOpen = () => {
     if (open) {
@@ -57,18 +54,21 @@ export default function Header() {
     <div className="container">
       <div className="header">
         <div className="logo">
-          <h1 className="kingdomName"><a href="/">{ imperiumName }</a></h1>
+          <h1 className="kingdomName"><a href="/imperia/buildings">{ imperiumName }</a></h1>
         </div>
-          <Menu />
-
+        <Menu />
         <div className="navigation">
           {userData.map((user) => {
             return (
               <ul><img src={user.img} className="userImage dropdown_menu dropdown_menu-5" onClick={handleOpen} />
                 {
                   open && <div className="dropdown">
-                    <li className="dropdown_item-1"><h3>{settingsButton}</h3></li>
-                    <li className="dropdown_item-2"> <h3>{logoutButton}</h3></li>
+                    <li className="dropdown_item-1"> <Link to={settings} className="link">
+            Settings
+          </Link></li>
+                    <li className="dropdown_item-2"> <Link onClick={loggingOut} to={logout} className="link">
+            Logout
+          </Link></li>
                   </div>
                 }
 
@@ -76,7 +76,7 @@ export default function Header() {
             )
           })}
         </div>
-      </div> 
+      </div>
     </div>
-  )
+  );
 }
