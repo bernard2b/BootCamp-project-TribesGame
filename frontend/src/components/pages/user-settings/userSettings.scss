@@ -12,6 +12,10 @@
 .background .userContainer {
   max-width: 550px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .avatar {
