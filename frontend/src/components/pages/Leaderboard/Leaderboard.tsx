@@ -43,7 +43,7 @@ function Leaderboard() {
     <div className="person first">
       <div className="num">1</div>
       <i className="fas fa-crown"></i>
-      <img src={enemyImg3} alt="" className="photo main"/>
+      <img src={enemyImg3} alt="" className="photo"/>
       <p className="link">@masterMentor234</p>
       <p className="points">8122</p>
     </div>
