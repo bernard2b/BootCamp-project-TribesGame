@@ -36,7 +36,6 @@ function AddBuilding() {
     }
   };
 
-    
 
   return (
     <div className="addBuilding">
