@@ -1,24 +1,24 @@
-import { useState, SyntheticEvent } from "react";
+import { useState} from "react";
 import {
   Button,
   Paper,
   TextareaAutosize,
   TextField,
-  Link,
-  Stack,
-  Alert,
+  Link
 } from "@mui/material";
 import "./ContactUs.scss";
-import { red } from "@mui/material/colors";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ContactUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
 
-  const sendMail = async (e: SyntheticEvent) => {
-    alert("sent");
+
+  const navigate = useNavigate();
+  const linkBack = () => {
+    alert("Your message is successfully sent!");
+    navigate("/", { replace: true });
   };
 
   const paperStyle = {
@@ -54,8 +54,6 @@ function ContactUs() {
               fullWidth
               required
               onChange={(e) => setEmail(e.target.value)}
-              // error={passwordFieldError}
-              // helperText={passwordError}
             />
 
             <TextareaAutosize
@@ -67,25 +65,9 @@ function ContactUs() {
               onChange={(e) => setText(e.target.value)}
             ></TextareaAutosize>
 
-            <Button fullWidth variant="outlined" onClick={sendMail}>
+            <Button fullWidth variant="outlined" onClick={linkBack}>
               SEND
             </Button>
-
-            <Stack sx={{ width: "100%" }} spacing={2}>
-              <Alert onClose={() => {redirect}}>
-                This is a success alert — check it out!
-              </Alert>
-              <Alert
-                action={
-                  <Button color="inherit" size="small">
-                    UNDO
-                  </Button>
-                }
-              >
-                This is a success alert — check it out!
-              </Alert>
-            </Stack>
-
             <div className="navBack">
               <Link href="/">
                 <p>teamSTRIGOPS..</p>
