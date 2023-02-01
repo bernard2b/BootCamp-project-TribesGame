@@ -7,13 +7,13 @@
 }
 
 .Main {
-  margin-top: 1%;
+  margin-top: 10px;
   background-color: rgb(180, 180, 180);
   opacity: .95;
-  border: 7px solid;
-  border-style: inset;
-  border-color: rgb(71, 140, 91);
-  border-radius: 15px;
+  // border: 5px solid;
+  // border-style: groove;
+  // border-color: #069a6d;
+  border-radius: 10px;
   height: 85vh;
   display: flex;
   flex-direction: row;

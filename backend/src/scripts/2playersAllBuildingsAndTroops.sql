@@ -12,11 +12,11 @@ ALTER TABLE `tribes`.`imperia`
 CHANGE COLUMN `createdAt` `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 CHANGE COLUMN `updatedAt` `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 
-INSERT into tribes.imperia (name, coordinateX, coordinateY, userId)
-VALUES ("Imperium1", 1, 1, 1);
+INSERT into tribes.imperia (name, coordinates, userId)
+VALUES ("Imperium1", 1, 1);
 
-INSERT into tribes.imperia (name, coordinateX, coordinateY, userId)
-VALUES ("Imperium2", 100, 100, 2);
+INSERT into tribes.imperia (name, coordinates, userId)
+VALUES ("Imperium2", 100, 2);
 
 ALTER TABLE `tribes`.`buildings` 
 CHANGE COLUMN `createdAt` `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,

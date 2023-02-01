@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./Buildings.scss";
 import fetchBuildings from "../../api/buildings";
 import buildingsInterface from "./../../interfaces/buildingsInterface";
@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 function Buildings() {
   const [buildingsData, setBuildingsData] = useState<buildingsInterface[]>([]);
 
-   const [rresponse, setResponse] = useState("")
-   const navigate = useNavigate();
+  const [rresponse, setResponse] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchBuildings().then((response) => {
@@ -22,15 +22,13 @@ function Buildings() {
 
   const getBuildings = useCallback(async () => {
     fetchBuildings().then((buildingsData) => {
-      setBuildingsData(buildingsData.buildings)
-      console.log(buildingsData)
-    })
-  }, [])
+      setBuildingsData(buildingsData.buildings);
+    });
+  }, []);
 
   useEffect(() => {
-    getBuildings()
-  }, [getBuildings])
-
+    getBuildings();
+  }, [getBuildings]);
 
   return (
     <div className="buildingPage">
@@ -44,14 +42,11 @@ function Buildings() {
                 </div>
                 <div className="buildingLevel">
                   <p className="buildingLevel">
-                    Building Level: {building.level}
+                    Level: {building.level}
                   </p>
                 </div>
                 <div className="mineralCost">
-                  <p>Mineral Cost: {building.mineralCost}</p>
-                </div>
-                <div className="timeCost">
-                  <p>Time Cost: {building.timeCost}</p>
+                  <p>UpgradeCost: {building.mineralCost}</p>
                 </div>
               </li>
             );
