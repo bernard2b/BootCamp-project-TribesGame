@@ -8,6 +8,11 @@
   border-style: groove;
 }
 
+.pop .buttonsss{
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -79,9 +84,9 @@ h5 {
   font-weight: bold;
 }
 
-.buttons .difficult {
+.difficult {
   position: relative;
-  right: 85%;
+  left: 35%;
   margin-top: 40%;
   display: flex;
   flex-direction: column;
@@ -92,9 +97,10 @@ h5 {
   width: 100px;
   text-align: center;
   cursor: pointer;
+  top: 17%;
 }
 
-.buttons .difficult:hover {
+ .difficult:hover {
   background-color: aliceblue;
   opacity: 0.4;
   color: black;
@@ -117,4 +123,7 @@ h5 {
   width: 100%;
   border-radius: 10px;
   height: 100%;
+}
+.buttonsss{
+  display: flex;
 }

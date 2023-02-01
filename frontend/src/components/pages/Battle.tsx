@@ -88,7 +88,7 @@ function Battle() {
             <div className="pop">
               <h5 className='close' onClick={handleFunction}>X</h5>
               <p>choose difficulty</p>
-              <div className="buttons">
+              <div className="buttonsss">
                 <p className='difficult' onClick={() => setSelectedOpponent("low")}>Easy</p>
                 <p className='difficult' onClick={() => setSelectedOpponent("medium")}>Medium</p>
                 <p className='difficult' onClick={() => setSelectedOpponent("high")}>Hard</p>
