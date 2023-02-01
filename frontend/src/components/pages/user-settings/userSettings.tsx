@@ -29,8 +29,6 @@ export default function UserSettings() {
   const [pswConfirmError, setPswConfirmError] = useState("");
   const [fieldError, setFieldError] = useState(false);
 
-  const [open, setOpen] = useState(false);
-
   useEffect(() => {
     fetchUserDetails().then((user) => {
       setCurrentName(user.name);
@@ -80,6 +78,8 @@ export default function UserSettings() {
     try {
       await fetchUserSettings(data);
       if (data) {
+        alert("Your settings are seccessfully changed!")
+        navigate("/imperia/buildings", { replace: true });
       }
     } catch (error) {
       if (error instanceof Error) {
