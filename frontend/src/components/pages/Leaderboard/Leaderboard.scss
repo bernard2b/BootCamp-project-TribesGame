@@ -1,0 +1,257 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  line-height: 1.5;
+  transition: all .3s ease-in-out;
+  font-family: 'Orbitron', sans-serif;
+}
+
+h2 {
+padding: 5%;
+}
+
+body{
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  background: linear-gradient(to bottom right, #38A3A5, #57CC99, #80ED99);
+}
+
+.card{
+  min-height: 405px;
+  min-width: 450px;
+  width: 475px;
+  margin: 2rem;
+  border-radius: 15px;
+  background: #02383C;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 8em;
+  box-shadow: 0 1px 0 rgb(55, 60, 55), 0 2px 0 #373737, 0 3px 0 #555, 0 4px 0 #474747, 0 5px 0 #666, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card .header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  color: #ddd;
+  background-color: #02383C;
+
+}
+
+.card .header .title{
+  font-weight: 300;
+  background-color: #02383C;
+}
+
+.one .sort{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 14.1px;
+}
+
+.one .sort .day{
+  padding: 0.4rem 1.2rem;
+  margin: 0 0.1rem;
+  cursor: pointer;
+}
+
+.one .sort .day.active,
+.one .sort .day:active{
+  background: rgba(210, 255, 213, 0.3);
+  border-radius: 25px;
+}
+
+::selection{
+  background: rgba(210, 255, 213, 0.3);
+}
+
+.photo{
+  width: 75px;
+  height: 75px;
+  background: rgb(31, 24, 24);
+  border-radius: 50%;
+  border: 5px solid rgb(196, 184, 16);
+  box-shadow: 0 0 20px rgb(243, 255, 137);
+  margin: 1rem 0;
+}
+
+.main{
+  width: 85px;
+}
+
+.profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.profile .person{
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile .person.first{
+  z-index: 10;
+  transform: translateY(-10%);
+}
+
+.first .fa-crown{
+  color: gold;
+  filter: drop-shadow(0px 0px 5px gold);
+}
+
+.num{
+  color: white;
+}
+
+.fa-caret-up{
+  color: cyan;
+  font-size: 21px;
+}
+
+.link{
+  margin: 0.2rem 0;
+  color: #fff;
+  margin-top: -0.3rem;
+  font-size: 13px;
+}
+
+.points{
+  color: rgb(191, 153, 27);
+  text-shadow: #ded65e;
+  font-size: 17px;
+}
+
+.second{
+  margin-right: -0.7rem !important;
+}
+
+.third{
+  margin-left: -0.7rem !important;
+}
+
+.p_img{
+  width: 50px;
+  height: 50px;
+  background: rgb(45, 39, 39);
+  border-radius: 50%;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+
+.others{
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+  background: rgba(210, 255, 213, 0.3);
+}
+
+
+.info .points{
+  margin-left: 0.2rem;
+  margin-right: 1.2rem;
+}
+
+.info .link{
+  margin: 0 1rem;
+}
+
+.rank{
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+  flex-direction: column-reverse;
+}
+
+.rank i{
+  margin-top: -5px !important;
+}
+
+.rank .num{
+  margin: 0 !important; 
+}
+
+.buildingTitle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.buildingLevel {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.mineralCost {
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+}
+
+p {
+  color: white;
+}
+
+h4 {
+  color: white;
+}
+
+.buildingHeader {
+  height: 70px;
+  background-color: #009687;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.navigation {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 55%;
+  margin-top: 0%;
+  color: white;
+}
+
+h3 {
+  margin: 10px;
+  cursor: pointer;
+}
