@@ -15,7 +15,7 @@ CHANGE COLUMN `updatedAt` `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAM
 INSERT into tribes.imperia (name, coordinates, userId)
 VALUES ("Imperium1", 1, 1);
 
-INSERT into tribes.imperia (name, coordinateX, coordinateY, userId)
+INSERT into tribes.imperia (name, coordinates, userId)
 VALUES ("Imperium2", 100, 100, 2);
 
 ALTER TABLE `tribes`.`buildings` 
