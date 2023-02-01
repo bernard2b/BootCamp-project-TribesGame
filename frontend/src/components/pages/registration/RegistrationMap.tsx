@@ -15,7 +15,8 @@ function mapSelector() {
   const [error, setError] = useState("");
   const [position, setPosition] = useState("please select");
   let coordinates: number;
-  const imperiumId = 1;
+   const imperiumId = 3;
+  let name: string;
   const navigate = useNavigate();
   const [enemyImperia, setEnemyImperia] = useState<mapInterface[]>([]);
 
@@ -34,7 +35,7 @@ function mapSelector() {
   };
 
   $("body").click(function (evt) {
-    if (evt.target.className == "button" || evt.target.id.length > 3) return;
+    if (evt.target.className == "mapButton" || evt.target.id.length > 3) return;
     else if (evt.target.className !== "") return;
     const clicked = evt.target;
     const currentID = clicked.id || "No ID!";
@@ -72,9 +73,9 @@ function mapSelector() {
     setError("");
     try {
       coordinates = Number(position);
-      const data = { id: imperiumId, coordinates };
+      const data = { id: imperiumId, coordinates, name: name };
       await fetchPutImperia(data);
-      navigate("/");
+       navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -4892,24 +4893,24 @@ function mapSelector() {
         <h3>SELECTED POSITION: {position}</h3>
       </div>
       <div className="buttons">
-        <button className="button" onClick={randomButton}>
+        <button className="mapButton" onClick={randomButton}>
           RANDOM
         </button>
-        <button className="button" onClick={confirmButton}>
+        <button className="mapButton" onClick={confirmButton}>
           CONFIRM{" "}
         </button>
+      </div>
         <section className="enemyContainer">
           <ul className="enemyList">
             {enemyImperia.map((imperia) => {
               return (
                 <li className="imperias" key={imperia.id}>
-                  {imperia.id}, coordinates: {imperia.coordinates}
+                  {imperia.name}, coordinates: {imperia.coordinates}
                 </li>
               );
             })}
           </ul>
         </section>
-      </div>
     </div>
   );
 }
