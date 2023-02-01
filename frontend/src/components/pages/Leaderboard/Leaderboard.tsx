@@ -51,7 +51,7 @@ function Leaderboard() {
       <div className="num">3</div>
       <i className="fas fa-caret-up"></i>
       <img src={enemyImg1} alt="" className="photo"/>
-      <p className="link">@lord_0980</p>
+      <p className="link">@you_die</p>
       <p className="points">7884</p>
     </div>
   </div>
