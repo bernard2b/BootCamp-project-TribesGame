@@ -16,7 +16,7 @@ INSERT into tribes.imperia (name, coordinates, userId)
 VALUES ("Imperium1", 1, 1);
 
 INSERT into tribes.imperia (name, coordinates, userId)
-VALUES ("Imperium2", 100, 100, 2);
+VALUES ("Imperium2", 100, 2);
 
 ALTER TABLE `tribes`.`buildings` 
 CHANGE COLUMN `createdAt` `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
