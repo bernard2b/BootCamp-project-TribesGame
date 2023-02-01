@@ -24,7 +24,7 @@ function ContactUs() {
   const paperStyle = {
     padding: 50,
     height: "100%",
-    width: 280,
+    width: '30%',
     margin: "40px auto",
     background: "rgba(255, 255, 255, 0.87)",
   };
