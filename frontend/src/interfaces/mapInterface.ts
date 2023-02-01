@@ -1,6 +1,7 @@
 export interface mapRequest {
   id: number;
   coordinates: number;
+  name: string;
 }
 
 export interface mapResponse {
