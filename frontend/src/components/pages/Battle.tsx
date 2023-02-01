@@ -52,7 +52,7 @@ function Battle() {
           setIsopen(false)
         }
         
-      }, 100)
+      }, 4000)
     }
   }, [isBattleStarted])
 
