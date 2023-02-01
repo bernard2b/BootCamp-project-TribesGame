@@ -22,7 +22,7 @@ function Leaderboard() {
 
   return (
 <div className="card one">
-  <div className="header">
+  <div className="leaderboardHeader">
     <i className="arrow fas fa-chevron-left"></i>
     <h3 className="title">Leaderboard</h3>
     <div></div>
