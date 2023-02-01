@@ -6,6 +6,8 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
+  "plugins": ["react", "react-hooks",],
+
   extends: [
     'plugin:@typescript-eslint/recommended'
   ],

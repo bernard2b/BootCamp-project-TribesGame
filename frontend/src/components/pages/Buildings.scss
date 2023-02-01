@@ -5,7 +5,7 @@
 }
 
 .buildingsContainer {
-  height: 85vh;
+  height: 90vh;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -13,7 +13,7 @@
 
 .buildingList {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
   margin-top: 1%;
   margin-left: 1%;
   border-radius: 10px;
@@ -35,7 +35,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  color: black;
+  color: white;
 }
 
 .buildingLevel {
@@ -48,6 +48,7 @@
 .mineralCost {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 li {

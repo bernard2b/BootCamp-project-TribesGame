@@ -44,14 +44,11 @@ function Buildings() {
                 </div>
                 <div className="buildingLevel">
                   <p className="buildingLevel">
-                    Building Level: {building.level}
+                    Level: {building.level}
                   </p>
                 </div>
                 <div className="mineralCost">
-                  <p>Mineral Cost: {building.mineralCost}</p>
-                </div>
-                <div className="timeCost">
-                  <p>Time Cost: {building.timeCost}</p>
+                  <p>UpgradeCost: {building.mineralCost}</p>
                 </div>
               </li>
             );
