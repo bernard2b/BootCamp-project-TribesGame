@@ -24,14 +24,18 @@ function Troops() {
                   <h4 className="buildingTitle">{troops.type}</h4>
                 </div>
                 <div className="buildingLevel">
-                  <p className="buildingLevel">{troops.level}</p>
+                  <p className="buildingLevel">Level: {troops.level}</p>
                 </div>
-                <div className="mineralCost">
-                  <p>Mineral Cost: {troops.mineralCost}</p>
+                <div className="buildingLevel"> 
+                  <p className="buildLevel">Attack: {troops.attack}</p>
                 </div>
-                <div className="timeCost">
-                  <p>Time Cost: {troops.timeCost}</p>
+                <div className="buildingLevel"> 
+                  <p className="buildLevel">Defense: {troops.defense}</p>
                 </div>
+                <div className="buildingLevel"> 
+                  <p className="buildLevel">HP: {troops.healthPoint}</p>
+                </div>
+
               </li>
             );
           })}
