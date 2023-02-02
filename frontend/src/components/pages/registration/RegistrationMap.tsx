@@ -75,7 +75,7 @@ function mapSelector() {
       coordinates = Number(position);
       const data = { id: imperiumId, coordinates, name: name };
       await fetchPutImperia(data);
-       navigate("/");
+       navigate("/login");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
