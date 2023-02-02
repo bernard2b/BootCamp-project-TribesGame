@@ -18,7 +18,7 @@ function Welcome() {
     padding: 50,
     height: "100%",
     width: "40%",
-    margin: "40px auto",
+    margin: "0 auto",
     background: "rgba(255, 255, 255, 0.87)",
   };
 

@@ -40,14 +40,14 @@ export async function createUserWithImperium(
   const newResourceMineral = await resourcesRepo.createResource(
     newImperium.id,
     "mineral",
-    100,
+    2500,
     50
   )
 
   const newResourceFood = await resourcesRepo.createResource(
     newImperium.id,
     "food",
-    100,
+    1000,
     50
   )
 
